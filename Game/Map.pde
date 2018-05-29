@@ -3,20 +3,13 @@ public class Map {
   private Room currentRoom;
 
   public Map (int num) {
-    rooms = new Room[][];
+    rooms = new Room[3][3];
     
-    if (num % 2 == 1) { // choose center
-       currentRoom =  
-    }
-    else { // choose top left
-      currentRoom = 
-    }
-  }
+    currentRoom = rooms[1][1];  
+  }  
   
-  private changeRooms(int current, int next) {
-    
-    currentRoom = next;
-    
+  private void changeRooms (int r, int c) {
+    currentRoom = rooms[r][c];
   }
   
 }

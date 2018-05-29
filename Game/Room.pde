@@ -1,11 +1,11 @@
 public class Room {
   private boolean[] availableRooms; 
 
-  public Room (int num) {
-    availableRooms = new boolean[num];
+  public Room () {
+    availableRooms = new boolean[8];
   }
   
-  private setArrows (int num) {
+  private void setArrows (int num) {
     
   }
   
