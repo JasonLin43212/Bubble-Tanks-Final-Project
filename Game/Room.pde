@@ -1,15 +1,15 @@
 public class Room {
   
   private boolean[] availableRooms;
-  private float[] coordsRooms = {{-1,0},{0,-1},{1,0},{0,1}};
+  private int[][] coordsRooms = {{-1,0},{0,-1},{1,0},{0,1}};
   
   // private BubbleTank[] allTanks; 
   
-  private float r, c;
+  private int r, c;
   
-  public Room (float row, float col) {
+  public Room (int row, int col) {
     availableRooms = new boolean[4];
-    for (float i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
       if (row + coordsRooms[i][0] > 2 || row + coordsRooms[i][0] < 0 || col + coordsRooms[i][1] > 2 || col + coordsRooms[i][1] < 0) {
         availableRooms[i] = false;
       }
@@ -19,16 +19,15 @@ public class Room {
     c = col;
   }
   
-  public float getR () {
+  public int getR () {
     return r; 
   }
   
-  public float getC () {
+  public int getC () {
     return c;
   }
   
-  private void setArrows (float num) {
-    
-  }
+  //private void setArrows (int num) {    
+  //}
   
 }
