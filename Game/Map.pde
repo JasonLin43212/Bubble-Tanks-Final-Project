@@ -3,13 +3,19 @@ public class Map {
   private Room currentRoom;
 
   public Map (int num) {
-    rooms = new Room[3][3];
+    rooms = new Room[num][num];
     
-    currentRoom = rooms[1][1];  
+    //if (num % 2 == 1) {
+      //num / 2;
+    //}
+        
+    currentRoom = rooms[1][1]; 
   }  
   
-  private void changeRooms (int r, int c) {
-    currentRoom = rooms[r][c];
+  private void changeRooms (int row, int col) {
+    if (row <= 2 && row >= 0 && col <= 2 && col >= 0) {
+      currentRoom = rooms[row][col];
+    }
   }
   
 }
