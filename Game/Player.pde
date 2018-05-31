@@ -7,7 +7,8 @@ public class Player{
   
   public Player(){
      bubblePoints = 0;
-     tank = new BasicTank();
+     //health,radius,id,speed,numBullets
+     tank = new BasicTank(100,10,0,5,1);
   }
   
   public boolean canUpgrade(){
@@ -19,6 +20,10 @@ public class Player{
      if (bubblePoints > maxPoints){
         bubblePoints = maxPoints; 
      }
+  }
+  
+  public BubbleTank getTank(){
+     return tank; 
   }
   
 }
