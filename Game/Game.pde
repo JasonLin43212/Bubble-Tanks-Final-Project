@@ -45,4 +45,5 @@ void keyPressed() {
       x += 20;
     }
   }
+  m.switchR();
 }
