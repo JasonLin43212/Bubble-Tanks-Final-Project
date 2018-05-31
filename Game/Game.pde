@@ -1,6 +1,8 @@
 Map m; 
 float x, y;
 
+String currentRoom; // for testing
+
 void setup() {
   size(700,750); // the background
   background(178, 207, 255);
@@ -11,9 +13,9 @@ void setup() {
   x = 350; // sets the initial coordinates
   y = 350; // to the center of the Room
   
-  m = new Map(3); // 3 x 3
-  
-  System.out.println(m.currentRoomR() + ", " + m.currentRoomC());
+  m = new Map(5); // 3 x 3
+    
+  // System.out.println(m.currentRoomR() + ", " + m.currentRoomC()); // for testing
 }
 
 void draw() {
@@ -25,6 +27,27 @@ void draw() {
   
   fill(255); // "player"
   ellipse(x,y,20,20);
+  
+  fill(255);
+  currentRoom = m.currentRoomR() + ", " + m.currentRoomC(); // coords of room
+  text(currentRoom,10,20); // for testing
+  
+  direction();
+}
+
+void direction() { // for testing / indicating what direction the room you're trying to move to is in
+  if (y < 11) {
+    text("above",10,40);
+  }
+  if (x < 11) {
+    text("left",10,40);
+  }
+  if (y > 689) {
+    text("down",10,40);
+  }
+ if (x > 689) {
+   text("right",10,40);
+ } 
 }
 
 void keyPressed() { // for moving around

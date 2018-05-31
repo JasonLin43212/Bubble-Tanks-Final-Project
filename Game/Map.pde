@@ -23,30 +23,30 @@ public class Map {
   }  
 
   void switchR () { // lets you switch rooms 
-    if (y < 11.0 && keyCode == 32) { // above
-      System.out.println(x + ", " + y);
-      System.out.println("y: " + y);
+    if (y < 11 && keyCode == 32) { // above
+      // System.out.println(x + ", " + y); // for testing
+      // System.out.println("y: " + y); // for testing
       if (currentRoom.available(0)) {
         changeRooms(currentRoom.getR() + currentRoom.roomCoords(0)[0],currentRoom.getC() + currentRoom.roomCoords(0)[1]);
       }
     }
-    if (y > 689.0 && keyCode == 32) { // below
-      System.out.println(x + ", " + y);
-      System.out.println("y: " + y);
+    if (y > 689 && keyCode == 32) { // below
+      // System.out.println(x + ", " + y); // for testing
+      // System.out.println("y: " + y); // for testing
       if (currentRoom.available(2)) {
         changeRooms(currentRoom.getR() + currentRoom.roomCoords(2)[0], currentRoom.getC() + currentRoom.roomCoords(2)[1]);
       }
     }
-    if (x < 11.0 && keyCode == 32) { // to the left
-      System.out.println(x + ", " + y);
-      System.out.println("x: " + x);
+    if (x < 11 && keyCode == 32) { // to the left
+      // System.out.println(x + ", " + y); // for testing
+      // System.out.println("x: " + x); // for testing
       if (currentRoom.available(1)) {
         changeRooms(currentRoom.getR() + currentRoom.roomCoords(1)[0], currentRoom.getC() + currentRoom.roomCoords(1)[1]);
       }
     }
-    if (x > 689.0 && keyCode == 32) { // to the right
-      System.out.println(x + ", " + y);
-      System.out.println("x: " + x);
+    if (x > 689 && keyCode == 32) { // to the right
+      // System.out.println(x + ", " + y); // for testing
+      // System.out.println("x: " + x); // for testing
       if (currentRoom.available(3)) {
         changeRooms(currentRoom.getR() + currentRoom.roomCoords(3)[0], currentRoom.getC() + currentRoom.roomCoords(3)[1]);
       }
@@ -54,7 +54,7 @@ public class Map {
   }
   
   private void changeRooms (int row, int col) { // lets you actually change rooms
-    System.out.println(row + ", " + col);
+    // System.out.println(row + ", " + col); // for testing
     if (row < n && row >= 0 && col < n && col >= 0) { 
       currentRoom = rooms[row][col];
       x = 350; // puts you in the center
