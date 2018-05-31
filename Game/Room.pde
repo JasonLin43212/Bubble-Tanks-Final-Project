@@ -10,7 +10,7 @@ public class Room {
   public Room (int num, int row, int col) {
     availableRooms = new boolean[4];
     for (int i = 0; i < 4; i++) {
-      if (row + coordsRooms[i][0] > num || row + coordsRooms[i][0] < 0 || col + coordsRooms[i][1] > num || col + coordsRooms[i][1] < 0) {
+      if (row + coordsRooms[i][0] >= num || row + coordsRooms[i][0] < 0 || col + coordsRooms[i][1] >= num || col + coordsRooms[i][1] < 0) {
         availableRooms[i] = false;
       }
       else {
