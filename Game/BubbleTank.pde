@@ -8,8 +8,8 @@ public abstract class BubbleTank {
     this.speed = speed;
     this.radius = radius;
     this.numBullets = numBullets;
-    x = width/2;
-    y = width/2;
+    x = 0;
+    y = 0;
     direction = 0;
     left = 0;
     right = 0;
@@ -39,71 +39,38 @@ public abstract class BubbleTank {
         y = height-101-radius;
       }
     }
-    float small = 250 + radius;
-    float big = 450 - radius;
-    if (x<radius+30) {
-      if (y<250 ||y > 450) {
-        x = radius+30;
-      }
-      if (y>=250 & y <small) {
-        y = small;
-      }
-      if (y>big && y<=450) {
-        y = big;
-      }
-    } else if (x > width-radius-31) {
-      if (y<250 ||y > 450) {
-        x = width-radius-31;
-      }
-      if (y>=250 && y <small) {
-        y =small;
-      }
-      if (y>big && y<=450) {
-        y = big;
-      }
-    }  
-    if (y < radius+30) {
-      if (x<250||x > 450) {
-        y = radius+30;
-      }
-      if (x>=250 && x <small) {
-        x =small;
-      }
-      if (x>big && x<=450) {
-        x = big;
-      }
-    } else if (y > height-radius-131) {
-      if (x<250 ||x > 450) {
-        y = height-radius-131;
-      }
-      if (x>=250 && x <small) {
-        x =small;
-      }
-      if (x>big && x<=450) {
-        x = big;
-      }
+    if (dist(x,y,0,0)>750){
+      println("out");
     }
+    
   }
 
   public void setMovement(float code, float state) {
+    // "W" key
     if (code == 87) {
       up = state;
     }
+    // "S" Key
     if (code == 83) {
       down = state;
     }
+    // "A" key
     if (code == 65) {
       left = state;
     }
+    // "D" key
     if (code == 68) {
       right = state;
     }
+    // <- Key
     if (code == 37) {
       rotateRight = state *radians(5);
     }
+    // -> Key
     if (code == 39) {
       rotateLeft = state*radians(5);
     }
+    // Spacebar
     if (code == 32) {
       isShooting = state;
     }
@@ -113,9 +80,14 @@ public abstract class BubbleTank {
     if (coolDown > 0) {
       coolDown--;
     }
+    //println(x+" " + y);
+    fill(178, 207, 255);
+    noStroke();
+    ellipse(width/2,(height-100)/2,3*radius,3*radius);
     fill(255);
-    ellipse(x, y, 2*radius, 2*radius);
-    ellipse(x+cos(direction)*radius, y+sin(direction)*radius, 5, 5);
+    stroke(0);
+    ellipse(width/2, (height-100)/2, 2*radius, 2*radius);
+    ellipse(width/2+cos(direction)*radius, (height-100)/2+sin(direction)*radius, 5, 5);
   }
 
   public void realignDirection(float _x, float _y) {
@@ -134,7 +106,15 @@ public abstract class BubbleTank {
     if (isShooting == 1 && coolDown == 0) {
       coolDown = 1;
       //radius,speed,tankRadius,x,y,direction,id
-      arr.add(new BubbleBullet(10, 5, radius, x, y, direction, id));
+      arr.add(new BubbleBullet(10, 10, radius, x, y, direction, id));
     }
+  }
+  
+  public float getX(){
+     return x; 
+  }
+  
+  public float getY(){
+     return y; 
   }
 }

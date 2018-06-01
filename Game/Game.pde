@@ -1,7 +1,9 @@
 Player player = new Player();
 BubbleTank tank = player.getTank();
 ArrayList<BubbleBullet> allBullets;
-boolean useMouse = true;
+boolean useMouse = false;
+float centerX = 350;
+float centerY = 350;
 
 void setup() {
   size(700, 800);
@@ -12,22 +14,35 @@ void setup() {
 }
 
 void draw() {
-  background(178, 207, 255);
+  background(200);
   fill(0);
-  rect(0, 0, 250, 30);
-  rect(0, 0, 30, 250);
-  rect(0, 450, 30, 250);
-  rect(0, 670, 250, 30);
-  rect(450, 0, 250, 30);
-  rect(670, 0, 30, 250);
-  rect(450, 670, 250, 30);
-  rect(670, 450, 30, 250);
-  if (useMouse) {
-    tank.realignDirection(mouseX,mouseY);
-  }
+
+  tank.spawnBullets(allBullets);
+  drawMap(tank.getX(), tank.getY());
   tank.display();
   tank.move();
-  tank.spawnBullets(allBullets);
+  drawBullets(tank.getX(), tank.getY());
+  if (useMouse) {
+    tank.realignDirection(mouseX, mouseY);
+  }
+
+
+  fill(200);
+  rect(0, 700, 700, 100);
+}
+
+void drawMap(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  noStroke();
+  fill(178, 207, 255);
+  ellipse(0, 0, 1500, 1500);
+  popMatrix();
+}  
+
+void drawBullets(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
   for (int i = 0; i<allBullets.size(); i++) {
     BubbleBullet current = allBullets.get(i);
     current.display();
@@ -36,8 +51,7 @@ void draw() {
       i--;
     }
   }
-  fill(200);
-  rect(0, 700, 700, 100);
+  popMatrix();
 }
 
 
@@ -61,10 +75,10 @@ void keyReleased() {
   }
 }
 
-void mousePressed(){
-   tank.setMovement(32,1); 
+void mousePressed() {
+  tank.setMovement(32, 1);
 }
 
-void mouseReleased(){
-   tank.setMovement(32,0); 
+void mouseReleased() {
+  tank.setMovement(32, 0);
 }
