@@ -10,8 +10,6 @@ void setup() {
 
 void draw() {
   background(178, 207, 255);
-  fill(200);
-  rect(0, 700, 700, 100);
   fill(0);
   rect(0, 0, 250, 30);
   rect(0, 0, 30, 250);
@@ -23,6 +21,8 @@ void draw() {
   rect(670, 450, 30, 250);
   tank.display();
   tank.move();
+  fill(200);
+  rect(0, 700, 700, 100);
 }
 
 void keyPressed() {

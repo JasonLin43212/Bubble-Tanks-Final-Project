@@ -34,50 +34,52 @@ public abstract class BubbleTank{
      if (y<radius){
         y = radius; 
      }
-     if (y>height-100-radius-1){
-        y = height-100-radius-1; 
+     if (y>height-101-radius){
+        y = height-101-radius; 
      }
     }
+    float small = 250 + radius;
+    float big = 450 - radius;
     if (x<radius+30) {
-      if (y<255 ||y > 445) {
+      if (y<250 ||y > 450) {
         x = radius+30;
       }
-      if (y>240 & y <255) {
-        y = 240;
+      if (y>=250 & y <small) {
+        y = small;
       }
-      if (y>240 && y<255) {
-        y = 240;
+      if (y>big && y<=450) {
+        y = big;
       }
     } else if (x > width-radius-31) {
-      if (y<145 ||y > 255) {
+      if (y<250 ||y > 450) {
         x = width-radius-31;
       }
-      if (y>145 && y <160) {
-        y =160;
+      if (y>=250 && y <small) {
+        y =small;
       }
-      if (y>240 && y<255) {
-        y = 240;
+      if (y>big && y<=450) {
+        y = big;
       }
     }  
     if (y < radius+30) {
-      if (x<145 ||x > 255) {
+      if (x<250||x > 450) {
         y = radius+30;
       }
-      if (x>145 && x <160) {
-        x =160;
+      if (x>=250 && x <small) {
+        x =small;
       }
-      if (x>240 && x<255) {
-        x = 240;
+      if (x>big && x<=450) {
+        x = big;
       }
-    } else if (y > height-radius-31) {
-      if (x<145 ||x > 255) {
-        y = height-radius-31;
+    } else if (y > height-radius-131) {
+      if (x<250 ||x > 450) {
+        y = height-radius-131;
       }
-      if (x>145 && x <160) {
-        x =160;
+      if (x>=250 && x <small) {
+        x =small;
       }
-      if (x>240 && x<255) {
-        x = 240;
+      if (x>big && x<=450) {
+        x = big;
       }
     }
   }
@@ -107,11 +109,20 @@ public abstract class BubbleTank{
   }
   
   public void display() {
+    println(x + " " + y);
     if (coolDown > 0) {
       coolDown--;
     }
     fill(255);
     ellipse(x, y, 2*radius, 2*radius);
     ellipse(x+cos(direction)*radius, y+sin(direction)*radius, 5, 5);
+  }
+  
+  public void spawnBullets(ArrayList<Bullet> arr) {
+    if (isShooting == 1 && coolDown == 0) {
+      coolDown = 10;
+      //radius,x,
+      arr.add(new Bullet(5, x, y, direction,id));
+    }
   }
 }
