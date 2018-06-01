@@ -20,9 +20,6 @@ void setup() {
 }
 
 void draw() {
-  // title();
-  // difficulty();
-  //mapsize();
   background(200);
   fill(0);
 
@@ -36,6 +33,10 @@ void draw() {
   }
   fill(200);
   rect(0, 700, 700, 100);
+  
+  // title();
+  // difficulty();
+  // mapsize();
 }
 
 void drawMap(float xOffset, float yOffset) {
@@ -95,7 +96,6 @@ void mouseReleased() {
 }
 
 void title() {
-  size(700,750); // the background
   background(178, 207, 255);
   
   bubbles();
@@ -145,7 +145,6 @@ void title() {
 }
 
 void difficulty() {
-  size(700,750); // the background
   background(178, 207, 255);
   
   bubbles();
@@ -261,7 +260,6 @@ void difficulty() {
 }
 
 void mapsize() {
-  size(700,750); // the background
   background(178, 207, 255);
   
   bubbles();
