@@ -22,8 +22,8 @@ void draw() {
   rect(670, 0, 30, 250);
   rect(450, 670, 250, 30);
   rect(670, 450, 30, 250);
-  if (useMouse){
-     tank.realignDirection();  
+  if (useMouse) {
+    tank.realignDirection(mouseX,mouseY);
   }
   tank.display();
   tank.move();
@@ -31,33 +31,40 @@ void draw() {
   for (int i = 0; i<allBullets.size(); i++) {
     BubbleBullet current = allBullets.get(i);
     current.display();
-    if (!current.move()){
-        allBullets.remove(i);
-        i--;
+    if (!current.move()) {
+      allBullets.remove(i);
+      i--;
     }
   }
   fill(200);
   rect(0, 700, 700, 100);
 }
 
+
 void keyPressed() {
-  if (useMouse){
-    if (keyCode != 37 && keyCode != 39){
+  if (useMouse) {
+    if (keyCode != 37 && keyCode != 39) {
       tank.setMovement(keyCode, 1);
     }
-  }
-  else {
-     tank.setMovement(keyCode,1); 
+  } else {
+    tank.setMovement(keyCode, 1);
   }
 }
 
 void keyReleased() {
-  if (useMouse){
-    if (keyCode != 37 && keyCode != 39){
+  if (useMouse) {
+    if (keyCode != 37 && keyCode != 39) {
       tank.setMovement(keyCode, 0);
     }
+  } else {
+    tank.setMovement(keyCode, 0);
   }
-  else {
-     tank.setMovement(keyCode,0); 
-  }
+}
+
+void mousePressed(){
+   tank.setMovement(32,1); 
+}
+
+void mouseReleased(){
+   tank.setMovement(32,0); 
 }

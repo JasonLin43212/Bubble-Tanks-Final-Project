@@ -1,43 +1,43 @@
-public abstract class BubbleTank{
-   private float health,x,y,direction,radius,left,right,up,down,rotateLeft,rotateRight,isShooting,coolDown,numBullets,speed;
-   private int id;
-   
-   public BubbleTank(float health,float radius, int id, float speed, float numBullets){
-      this.health = health;
-      this.id = id;
-      this.speed = speed;
-      this.radius = radius;
-      this.numBullets = numBullets;
-      x = width/2;
-      y = width/2;
-      direction = 0;
-      left = 0;
-      right = 0;
-      up = 0;
-      down = 0;
-      rotateLeft = 0;
-      rotateRight = 0;
-      coolDown = 30;
-      isShooting = 0;
-   }
-   
-   public void move() {
+public abstract class BubbleTank {
+  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed;
+  private int id,numBullets;
+
+  public BubbleTank(float health, float radius, int id, float speed, int numBullets) {
+    this.health = health;
+    this.id = id;
+    this.speed = speed;
+    this.radius = radius;
+    this.numBullets = numBullets;
+    x = width/2;
+    y = width/2;
+    direction = 0;
+    left = 0;
+    right = 0;
+    up = 0;
+    down = 0;
+    rotateLeft = 0;
+    rotateRight = 0;
+    coolDown = 30;
+    isShooting = 0;
+  }
+
+  public void move() {
     x += (right-left)*speed;
     y += (down-up)*speed;
     direction += rotateLeft - rotateRight;
-    if (id != 0){
-     if (x < radius){
-        x=radius; 
-     }
-     if (x>width-radius-1){
-        x=width-radius-1; 
-     }
-     if (y<radius){
-        y = radius; 
-     }
-     if (y>height-101-radius){
-        y = height-101-radius; 
-     }
+    if (id != 0) {
+      if (x < radius) {
+        x=radius;
+      }
+      if (x>width-radius-1) {
+        x=width-radius-1;
+      }
+      if (y<radius) {
+        y = radius;
+      }
+      if (y>height-101-radius) {
+        y = height-101-radius;
+      }
     }
     float small = 250 + radius;
     float big = 450 - radius;
@@ -84,7 +84,7 @@ public abstract class BubbleTank{
       }
     }
   }
-  
+
   public void setMovement(float code, float state) {
     if (code == 87) {
       up = state;
@@ -108,7 +108,7 @@ public abstract class BubbleTank{
       isShooting = state;
     }
   }
-  
+
   public void display() {
     if (coolDown > 0) {
       coolDown--;
@@ -117,11 +117,11 @@ public abstract class BubbleTank{
     ellipse(x, y, 2*radius, 2*radius);
     ellipse(x+cos(direction)*radius, y+sin(direction)*radius, 5, 5);
   }
-  
-  public void realignDirection(){
-    float mouseRatio = (mouseX-x)/(mouseY-y);
+
+  public void realignDirection(float _x, float _y) {
+    float mouseRatio = (_x-x)/(_y-y);
     // "first" and "second" quadrant according to Processing
-    if (mouseY>=y){
+    if (_y>=y) {
       direction = PI/2 - atan(mouseRatio);
     }
     // "third" and "fourth" quadrant
@@ -129,12 +129,12 @@ public abstract class BubbleTank{
       direction = (3*PI/2) - atan(mouseRatio);
     }
   }
-  
+
   public void spawnBullets(ArrayList<BubbleBullet> arr) {
     if (isShooting == 1 && coolDown == 0) {
       coolDown = 1;
       //radius,speed,tankRadius,x,y,direction,id
-      arr.add(new BubbleBullet(10,5,radius, x, y, direction,id));
+      arr.add(new BubbleBullet(10, 5, radius, x, y, direction, id));
     }
   }
 }
