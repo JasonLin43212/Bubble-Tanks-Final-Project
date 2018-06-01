@@ -1,102 +1,97 @@
 Map m; 
-// Room[] menu;
-// boolean inMenu = true; // when you finish the menu, it'll set it to false and you'll be able to move around 
-
-String currentRoom; // for testing
-
-float x, y;
-
 PFont bubble;
 PFont ptmono;
+Player player = new Player();
+BubbleTank tank = player.getTank();
+ArrayList<BubbleBullet> allBullets;
+boolean useMouse = false;
+float centerX = 350;
+float centerY = 350;
 
 void setup() {
-  size(700,750); // the background
+  size(700, 800);
   background(178, 207, 255);
-  
-  fill(0); // bar designated for health, exp, etc. 
-  rect(0,700,700,50);
-  
-  x = 350; // sets the initial coordinates
-  y = 350; // to the center of the Room
-    
+  fill(0);
+  rect(0, 0, 700, 50);
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
-  
-  m = new Map(5); // 3 x 3
-
-  // System.out.println(m.currentRoomR() + ", " + m.currentRoomC()); // for testing
-  
+  m = new Map(5);
+  allBullets = new ArrayList<BubbleBullet>();
 }
 
 void draw() {
-  size(700,750); // the background
-  background(178, 207, 255);
-  
-  fill(0); // bar designated for health, exp, etc. 
-  rect(0,700,700,50);
-  
-  fill(255); // "player"
-  ellipse(x,y,20,20);
-  
-  fill(255);
-  currentRoom = m.currentRoomR() + ", " + m.currentRoomC(); // coords of room
-  textAlign(LEFT);
-  textFont(ptmono);
-  text(currentRoom,10,20); // for testing
-    
-  // title();
+// title();
   // difficulty();
   mapsize();
-  
-  direction();
+  background(200);
+  fill(0);
+
+  tank.spawnBullets(allBullets);
+  drawMap(tank.getX(), tank.getY());
+  tank.display();
+  tank.move();
+  drawBullets(tank.getX(), tank.getY());
+  if (useMouse) {
+    tank.realignDirection(mouseX, mouseY);
+  }
+  fill(200);
+  rect(0, 700, 700, 100);
 }
 
-void direction() { // for testing / indicating what direction the room you're trying to move to is in
-  if (y < 11) {
-    textAlign(LEFT);
-    textFont(ptmono);
-    text("above",10,40);
+void drawMap(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  noStroke();
+  fill(178, 207, 255);
+  ellipse(0, 0, 1500, 1500);
+  ellipse(0,2000,1500,1500);
+  ellipse(0,-2000,1500,1500);
+  ellipse(2000,0,1500,1500);
+  ellipse(-2000,0,1500,1500);
+  popMatrix();
+}  
+
+void drawBullets(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  for (int i = 0; i<allBullets.size(); i++) {
+    BubbleBullet current = allBullets.get(i);
+    current.display();
+    if (!current.move()) {
+      allBullets.remove(i);
+      i--;
+    }
   }
-  if (x < 11) {
-    textAlign(LEFT);
-    textFont(ptmono);
-    text("left",10,40);
-  }
-  if (y > 689) {
-    textAlign(LEFT);
-    textFont(ptmono);
-    text("down",10,40);
-  }
-  if (x > 689) {
-    textAlign(LEFT);
-    textFont(ptmono);
-    text("right",10,40);
-  } 
+  popMatrix();
 }
 
-void keyPressed() { // for moving around
-  if (keyCode == 87) { // w (up)
-    if (y > 10) {
-      y -= 20;
+
+void keyPressed() {
+  if (useMouse) {
+    if (keyCode != 37 && keyCode != 39) {
+      tank.setMovement(keyCode, 1);
     }
+  } else {
+    tank.setMovement(keyCode, 1);
   }
-  if (keyCode == 65) { // a (left)
-    if (x > 10) {
-      x -= 20;
+}
+
+void keyReleased() {
+  if (useMouse) {
+    if (keyCode != 37 && keyCode != 39) {
+      tank.setMovement(keyCode, 0);
     }
+  } else {
+    tank.setMovement(keyCode, 0);
   }
-  if (keyCode == 83) { // s (down)
-    if (y < 690) {
-      y += 20;
-    }
-  }
-  if (keyCode == 68) { // d (right)
-    if (x < 690) {
-      x += 20;
-    }
-  }
-  
-  m.switchR(); // for switching rooms
+}
+
+void mousePressed() {
+  tank.setMovement(32, 1);
+}
+
+void mouseReleased() {
+  tank.setMovement(32, 0);
 }
 
 void title() {
@@ -300,3 +295,5 @@ void bubbles() { // reusable!!
     }
   }
 }
+
+
