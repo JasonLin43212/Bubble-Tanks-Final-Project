@@ -20,9 +20,9 @@ void setup() {
 }
 
 void draw() {
-// title();
+  // title();
   // difficulty();
-  mapsize();
+  //mapsize();
   background(200);
   fill(0);
 
@@ -295,5 +295,3 @@ void bubbles() { // reusable!!
     }
   }
 }
-
-

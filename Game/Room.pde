@@ -1,7 +1,6 @@
 public class Room {
   
   private boolean[] availableRooms;
-  private int[][] coordsRooms = {{-1,0},{0,-1},{1,0},{0,1}}; // ccw - up left down right
   
   // private BubbleTank[] allTanks; 
   
@@ -15,7 +14,7 @@ public class Room {
     
     availableRooms = new boolean[4];
     for (int i = 0; i < 4; i++) {
-      if (r + coordsRooms[i][0] >= n || r + coordsRooms[i][0] < 0 || c + coordsRooms[i][1] >= n || c + coordsRooms[i][1] < 0) {
+      if (r + 1 >= n || r -1 < 0 || c + 1 >= n || c -1 < 0) {
         availableRooms[i] = false; // can't move to
       }
       else { // if within bounds
@@ -37,10 +36,9 @@ public class Room {
     return availableRooms[n];
   }
   
-  public int[] roomCoords (int n) { // returns an array of the coordinates of a room you can move into
-     return coordsRooms[n];
+  public boolean[] getAvailable(){
+     return availableRooms; 
   }
-  
   //private void setArrows (int num) {   
     //
   //}
