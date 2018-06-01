@@ -120,14 +120,13 @@ void title() {
 }
 
 void bubbles() {
-  frameRate(5);
-  
+  frameRate(4);
   for (int i = 5; i < 9; i++) {
     for (int j = 5; j < 9; j++) {
-      float r = random(60) + 25 + random(10);
-      fill(250, random(150) + 75);
+      float r = random(60) + 25 + random(5);
+      fill(250, random(150) + 100);
       noStroke();
-      ellipse(i * (random(105)) + random(10),j * (random(105)) + random(10),r,r);
+      ellipse((i * (random(105)) + random(15)) % 690,(j * (random(105)) + random(15)) % 690,r,r);
     }
   }
 }
