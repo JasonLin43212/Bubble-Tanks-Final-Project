@@ -25,8 +25,6 @@ void draw() {
   if (useMouse) {
     tank.realignDirection(mouseX, mouseY);
   }
-
-
   fill(200);
   rect(0, 700, 700, 100);
 }
@@ -37,6 +35,10 @@ void drawMap(float xOffset, float yOffset) {
   noStroke();
   fill(178, 207, 255);
   ellipse(0, 0, 1500, 1500);
+  ellipse(0,2000,1500,1500);
+  ellipse(0,-2000,1500,1500);
+  ellipse(2000,0,1500,1500);
+  ellipse(-2000,0,1500,1500);
   popMatrix();
 }  
 

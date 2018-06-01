@@ -26,21 +26,30 @@ public abstract class BubbleTank {
     y += (down-up)*speed;
     direction += rotateLeft - rotateRight;
     if (id != 0) {
-      if (x < radius) {
-        x=radius;
-      }
-      if (x>width-radius-1) {
-        x=width-radius-1;
-      }
-      if (y<radius) {
-        y = radius;
-      }
-      if (y>height-101-radius) {
-        y = height-101-radius;
+      if (dist(x,y,0,0)>750-radius){
+         println("hi"); 
       }
     }
     if (dist(x,y,0,0)>750){
-      println("out");
+       float angle;
+       if (x>=0){
+         angle = atan(y/x);
+       } 
+       else {
+          angle = PI + atan(y/x);
+       }
+       if (angle>=-PI/4 && angle<PI/4){
+          println("right"); 
+       }
+       else if (angle>=PI/4 && angle<3*PI/4){
+          println("down"); 
+       }
+       else if (angle>=3*PI/4 && angle<5*PI/4){
+          println("left"); 
+       }
+       else {
+         println("up");
+       }
     }
     
   }
@@ -91,14 +100,14 @@ public abstract class BubbleTank {
   }
 
   public void realignDirection(float _x, float _y) {
-    float mouseRatio = (_x-x)/(_y-y);
-    // "first" and "second" quadrant according to Processing
-    if (_y>=y) {
-      direction = PI/2 - atan(mouseRatio);
+    float mouseRatio = (_y-350)/(_x-350);
+    // "first" and "fourth" quadrant according to Processing
+    if (_x>=350) {
+      direction = atan(mouseRatio);
     }
-    // "third" and "fourth" quadrant
+    // "second" and "third" quadrant
     else {
-      direction = (3*PI/2) - atan(mouseRatio);
+      direction = PI + atan(mouseRatio);
     }
   }
 

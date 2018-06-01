@@ -1,4 +1,4 @@
-public class BubbleBullet {
+  public class BubbleBullet {
   float x, y, speed, direction, radius, tankRadius;
   int id;
 
