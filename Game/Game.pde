@@ -44,8 +44,9 @@ void draw() {
   textFont(ptmono);
   text(currentRoom,10,20); // for testing
     
-  //title();
-  difficulty();
+  // title();
+  // difficulty();
+  mapsize();
   
   direction();
 }
@@ -246,7 +247,7 @@ void difficulty() {
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
-  text("save me", 350, 558); // starts at 529 ends at 558
+  text("insane", 350, 558); // starts at 529 ends at 558
 
   if (mouseX > 200 && mouseX < 500 && mouseY > 511 && mouseY < 578) { // for save me
     fill(224,235,255);
@@ -260,11 +261,33 @@ void difficulty() {
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); // 29
-    text("save me", 350, 558); // starts at 529 ends at 558
+    text("insane", 350, 558); // starts at 529 ends at 558
   }
 }
 
-
+void mapsize() {
+  size(700,750); // the background
+  background(178, 207, 255);
+  
+  bubbles();
+  
+  fill(0); // bar designated for health, exp, etc. 
+  rect(0,700,700,50);
+  
+  fill(255);
+  textAlign(CENTER);
+  textFont(bubble);
+  text("map size", 350, 150); // starts at 207 ends at 250
+  // text("bubble tanks", 350, 365); // center of screen
+  
+  float xsize = 100;
+  float ysize = 100;
+  for (int i = 0; i < 7; i++) {
+    fill(255);
+    ellipse(xsize,ysize,20,20);
+    xsize += 50; 
+  }
+}
 
 void bubbles() { // reusable!! 
   frameRate(4);
