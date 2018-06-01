@@ -1,7 +1,8 @@
 public abstract class BubbleTank{
-   private float health,x,y,direction,radius,left,right,up,down,rotateLeft,rotateRight,isShooting,coolDown,numBullets,id,speed;
+   private float health,x,y,direction,radius,left,right,up,down,rotateLeft,rotateRight,isShooting,coolDown,numBullets,speed;
+   private int id;
    
-   public BubbleTank(float health,float radius, float id, float speed, float numBullets){
+   public BubbleTank(float health,float radius, int id, float speed, float numBullets){
       this.health = health;
       this.id = id;
       this.speed = speed;
@@ -109,7 +110,6 @@ public abstract class BubbleTank{
   }
   
   public void display() {
-    println(x + " " + y);
     if (coolDown > 0) {
       coolDown--;
     }
@@ -118,11 +118,23 @@ public abstract class BubbleTank{
     ellipse(x+cos(direction)*radius, y+sin(direction)*radius, 5, 5);
   }
   
-  public void spawnBullets(ArrayList<Bullet> arr) {
+  public void realignDirection(){
+    float mouseRatio = (mouseX-x)/(mouseY-y);
+    // "first" and "second" quadrant according to Processing
+    if (mouseY>=y){
+      direction = PI/2 - atan(mouseRatio);
+    }
+    // "third" and "fourth" quadrant
+    else {
+      direction = (3*PI/2) - atan(mouseRatio);
+    }
+  }
+  
+  public void spawnBullets(ArrayList<BubbleBullet> arr) {
     if (isShooting == 1 && coolDown == 0) {
-      coolDown = 10;
-      //radius,x,
-      arr.add(new Bullet(5, x, y, direction,id));
+      coolDown = 1;
+      //radius,speed,tankRadius,x,y,direction,id
+      arr.add(new BubbleBullet(10,5,radius, x, y, direction,id));
     }
   }
 }

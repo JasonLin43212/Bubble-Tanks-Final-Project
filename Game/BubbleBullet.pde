@@ -1,37 +1,40 @@
-public class Bullet {
-  float x, y, speed, direction, radius;
+public class BubbleBullet {
+  float x, y, speed, direction, radius, tankRadius;
   int id;
 
-  public Bullet(float radius, float x, float y, float direction,int id) {
+  public BubbleBullet(float radius, float speed, float tankRadius, float x, float y, float direction, int id) {
     this.direction = direction;
-    this.x = x;
-    this.y = y;
+    this.x = x+cos(direction)*tankRadius;
+    this.y = y+sin(direction)*tankRadius;
     this.radius = radius;
-    speed = 4;
+    this.speed = speed;
     this.id=id;
+    this.tankRadius = tankRadius;
   }
 
   public boolean move() {
     x += cos(direction) * speed;
     y += sin(direction) * speed;
-    if (x < radius || x > width-radius || y < radius || y>height-radius) {
+    if (x < radius || x > width-radius || y < radius-1 || y>height-radius-101) {
       return false;
     }
-    if (x<radius+35) {
-      if (y<165 ||y > 235) {
+    float small = 250 + radius;
+    float large = 450-radius;
+    if (x<radius+30) {
+      if (y<small||y > large) {
         return false;
       }
-    } else if (x > width-radius-36) {
-      if (y<165 ||y > 235) {
+    } else if (x > width-radius-31) {
+      if (y<small ||y > large) {
         return false;
       }
     }  
-    if (y < radius+35) {
-      if (x<165 ||x > 235) {
+    if (y < radius+30) {
+      if (x<small ||x > large) {
         return false;
       }
-    } else if (y > height-radius-36) {
-      if (x<165 ||x > 235) {
+    } else if (y > height-radius-131) {
+      if (x<small ||x > large) {
         return false;
       }
     }
@@ -40,10 +43,10 @@ public class Bullet {
 
   public void display() {
     fill(255);
-    ellipse(x+cos(direction)*20, y+sin(direction)*20, radius*2, radius*2);
+    ellipse(x, y, radius*2, radius*2);
   }
-  
-  public String toString(){
-     return x + "  " + y; 
+
+  public String toString() {
+    return x + "  " + y;
   }
 }
