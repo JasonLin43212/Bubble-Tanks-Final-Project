@@ -289,7 +289,7 @@ void bubbles() { // reusable!!
       float r = random(70) + 20 + random(5);
       fill(250, random(150) + 100);
       noStroke();
-      ellipse((i * (random(105)) + random(15)) % 690,(j * (random(105)) + random(15)) % 690,r,r);
+      ellipse((i * (random(105)) + random(15)) % 700,(j * (random(105)) + random(15)) % 700,r,r);
     }
   }
 }
