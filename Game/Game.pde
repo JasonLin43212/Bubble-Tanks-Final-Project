@@ -8,6 +8,7 @@ boolean useMouse = false;
 float centerX = 350;
 float centerY = 350;
 
+boolean menu = true;
 float selected = -500; // for map size
 int menupage = 0;
 
@@ -29,7 +30,9 @@ void setup() {
 void draw() {
   background(200);
   fill(0);
-
+  
+  frameRate(40);
+  
   tank.spawnBullets(allBullets);
   drawMap(tank.getX(), tank.getY());
   tank.display();
@@ -38,20 +41,24 @@ void draw() {
   if (useMouse) {
     tank.realignDirection(mouseX, mouseY);
   }
+  
   fill(200);
+  noStroke();
   rect(0, 700, 700, 100);
   
-  if (menupage == 0) {
-    title();
-  }
-  if (menupage == 1) {
-    difficulty();
-  }
-  if (menupage == 2) {
-    mapsize();
-  }
-  if (menupage > 2) {
-    mapsettings();
+  if (menu) {
+    if (menupage == 0) {
+      title();
+    }
+    if (menupage == 1) {
+      difficulty();
+    }
+    if (menupage == 2) {
+      mapsize();
+    }
+    if (menupage > 2) {
+      mapsettings();
+    }
   }
   
 }
@@ -118,6 +125,7 @@ void title() {
   bubbles();
   
   fill(200); // bar designated for health, exp, etc. 
+  noStroke();
   rect(0, 700, 700, 100);
   
   fill(255);
@@ -312,6 +320,7 @@ void mapsize() {
   bubbles();
   
   fill(200); // bar designated for health, exp, etc. 
+  noStroke();
   rect(0, 700, 700, 100);
   
   fill(255);
@@ -486,6 +495,7 @@ void mapsettings() {
   bubbles();
   
   fill(200); // bar designated for health, exp, etc. 
+  noStroke();
   rect(0, 700, 700, 100);
   
   fill(255);
@@ -544,14 +554,16 @@ void mapsettings() {
     // do some stuff to switch to the next menu page
     
     if (mousePressed) {
-      menupage++;
+      menu = false;
     }
   }
 
 }
 
 void bubbles() { // reusable!! 
-  frameRate(4);
+  if (menu) {
+    frameRate(4);
+  }
   for (int i = 5; i < 9; i++) {
     for (int j = 5; j < 9; j++) {
       float r = random(70) + 20 + random(5);
