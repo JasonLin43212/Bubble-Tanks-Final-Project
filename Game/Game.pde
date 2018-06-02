@@ -5,8 +5,11 @@ Player player = new Player();
 BubbleTank tank = player.getTank();
 ArrayList<BubbleBullet> allBullets;
 boolean useMouse = false;
+int menuSetting = 1;
 float centerX = 350;
 float centerY = 350;
+int difficulty = 0;
+int bubbleCount = 1;
 
 void setup() {
   size(700, 800);
@@ -20,23 +23,30 @@ void setup() {
 }
 
 void draw() {
-  background(200);
-  fill(0);
+  println(menuSetting);
+  if (menuSetting == 1) {
+    title();
+  } else if (menuSetting == 2) {
+    difficulty();
+  } else if (menuSetting == 3) {
+    mapsize();
+  } else {
+    background(200);
+    fill(0);
+    strokeWeight(1);
 
-  tank.spawnBullets(allBullets);
-  drawMap(tank.getX(), tank.getY());
-  tank.display();
-  tank.move();
-  drawBullets(tank.getX(), tank.getY());
-  if (useMouse) {
-    tank.realignDirection(mouseX, mouseY);
+    tank.spawnBullets(allBullets);
+    drawMap(tank.getX(), tank.getY());
+    tank.display();
+    tank.move();
+    drawBullets(tank.getX(), tank.getY());
+    if (useMouse) {
+      tank.realignDirection(mouseX, mouseY);
+    }
+    noStroke();
+    fill(200);
+    rect(0, 700, 700, 100);
   }
-  fill(200);
-  rect(0, 700, 700, 100);
-  
-  // title();
-  // difficulty();
-  // mapsize();
 }
 
 void drawMap(float xOffset, float yOffset) {
@@ -45,10 +55,10 @@ void drawMap(float xOffset, float yOffset) {
   noStroke();
   fill(178, 207, 255);
   ellipse(0, 0, 1500, 1500);
-  ellipse(0,2000,1500,1500);
-  ellipse(0,-2000,1500,1500);
-  ellipse(2000,0,1500,1500);
-  ellipse(-2000,0,1500,1500);
+  ellipse(0, 2000, 1500, 1500);
+  ellipse(0, -2000, 1500, 1500);
+  ellipse(2000, 0, 1500, 1500);
+  ellipse(-2000, 0, 1500, 1500);
   popMatrix();
 }  
 
@@ -95,20 +105,55 @@ void mouseReleased() {
   tank.setMovement(32, 0);
 }
 
+void mouseClicked() {
+  //title
+  if (menuSetting == 1 && mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555) { 
+    menuSetting = 2;
+  }
+  //difficulty
+  else if (menuSetting == 2) {
+    //easy
+    if (mouseX > 200 && mouseX < 500 && mouseY > 242 && mouseY < 321) {
+      difficulty = 1;
+      menuSetting = 3;
+    }
+    //normal
+    if (mouseX > 200 && mouseX < 500 && mouseY > 242 && mouseY < 321) {
+      difficulty = 3;
+      menuSetting = 3;
+    }
+    //hard
+    if (mouseX > 200 && mouseX < 500 && mouseY > 420 && mouseY < 489) {
+      difficulty = 5;
+      menuSetting = 3;
+    }
+    //insane
+    if (mouseX > 200 && mouseX < 500 && mouseY > 511 && mouseY < 578) {
+      difficulty = 7;
+      menuSetting = 3;
+    }
+  }
+  //mapSetting
+  else if (menuSetting == 3) {
+    println("hi");
+    menuSetting = 4;
+  }
+}
+
 void title() {
   background(178, 207, 255);
   
   bubbles();
   
-  fill(0); // bar designated for health, exp, etc. 
-  rect(0,700,700,50);
-  
+  fill(200); // bar designated for health, exp, etc. 
+  rect(0, 700, 700, 100);
+
   fill(255);
   textAlign(CENTER);
   textFont(bubble);
   text("bubble tanks", 350, 250); // starts at 207 ends at 250
   // text("bubble tanks", 350, 365); // center of screen
-      
+
   fill(255);
   textAlign(CENTER);
   textFont(bubble);
@@ -117,8 +162,8 @@ void title() {
 
   fill(242, 245, 252);
   noStroke();
-  rect(200,450,300,105);
-    
+  rect(200, 450, 300, 105);
+
   fill(178, 207, 255, 225);
   textAlign(CENTER);
   textFont(bubble);
@@ -126,32 +171,30 @@ void title() {
   text("start", 350, 517); // starts at 488 ends at 517
 
   if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555) {
-    fill(224,235,255);
+    fill(224, 235, 255);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
     stroke(255);
-    rect(200,450,300,105);
-    
+    rect(200, 450, 300, 105);
+
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); // 29
     text("start", 350, 517); // starts at 488 ends at 517
-    
-    // do some stuff to switch to the next menu page
+    strokeWeight(0);
   }
-
 }
 
 void difficulty() {
   background(178, 207, 255);
-  
+
   bubbles();
-  
-  fill(0); // bar designated for health, exp, etc. 
-  rect(0,700,700,50);
-  
+
+  fill(200); // bar designated for health, exp, etc. 
+  rect(0, 700, 700, 100);
+
   fill(255);
   textAlign(CENTER);
   textFont(bubble);
@@ -160,97 +203,97 @@ void difficulty() {
 
   fill(242, 245, 252);
   noStroke();
-  rect(200,242,300,69);
-    
+  rect(200, 242, 300, 69);
+
   fill(178, 207, 255, 225);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
   text("easy", 350, 291); // starts at 262 ends at 291
-  
+
   if (mouseX > 200 && mouseX < 500 && mouseY > 242 && mouseY < 321) { // for easy
-    fill(224,235,255);
+    fill(224, 235, 255);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
     stroke(255);
-    rect(200,242,300,69);
-      
+    rect(200, 242, 300, 69);
+
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); // 29
     text("easy", 350, 291);
   }
-  
+
   fill(242, 245, 252);
   noStroke();
-  rect(200,331,300,69);
-    
+  rect(200, 331, 300, 69);
+
   fill(178, 207, 255, 225);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
   text("normal", 350, 380); // starts at 351 ends at 380
-  
+
   if (mouseX > 200 && mouseX < 500 && mouseY > 331 && mouseY < 400) { // for normal
-    fill(224,235,255);
+    fill(224, 235, 255);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
     stroke(255);
-    rect(200,331,300,69);
-      
+    rect(200, 331, 300, 69);
+
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); // 29
     text("normal", 350, 380); // starts at 351 ends at 380
   }
-  
+
   fill(242, 245, 252);
   noStroke();
-  rect(200,420,300,69);
-  
+  rect(200, 420, 300, 69);
+
   fill(178, 207, 255, 225);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
   text("hard", 350, 469); // starts at 440 ends at 469
-  
+
   if (mouseX > 200 && mouseX < 500 && mouseY > 420 && mouseY < 489) { // for hard
-    fill(224,235,255);
+    fill(224, 235, 255);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
     stroke(255);
-    rect(200,420,300,69);
-  
+    rect(200, 420, 300, 69);
+
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); // 29
     text("hard", 350, 469); // starts at 440 ends at 469
   }
-  
+
   fill(242, 245, 252);
   noStroke();
-  rect(200,511,300,69);
-  
+  rect(200, 511, 300, 69);
+
   fill(178, 207, 255, 225);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
   text("insane", 350, 558); // starts at 529 ends at 558
 
-  if (mouseX > 200 && mouseX < 500 && mouseY > 511 && mouseY < 578) { // for save me
-    fill(224,235,255);
+  if (mouseX > 200 && mouseX < 500 && mouseY > 511 && mouseY < 578) { // insane
+    fill(224, 235, 255);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
     stroke(255);
-    rect(200,511,300,69);
-  
+    rect(200, 511, 300, 69);
+
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
@@ -261,35 +304,35 @@ void difficulty() {
 
 void mapsize() {
   background(178, 207, 255);
-  
+
   bubbles();
-  
-  fill(0); // bar designated for health, exp, etc. 
-  rect(0,700,700,50);
-  
+
+  fill(200); // bar designated for health, exp, etc. 
+  rect(0, 700, 700, 100);
+
   fill(255);
   textAlign(CENTER);
   textFont(bubble);
   text("map size", 350, 150); // starts at 207 ends at 250
   // text("bubble tanks", 350, 365); // center of screen
-  
+
   float xsize = 100;
   float ysize = 100;
   for (int i = 0; i < 7; i++) {
     fill(255);
-    ellipse(xsize,ysize,20,20);
-    xsize += 50; 
+    ellipse(xsize, ysize, 20, 20);
+    xsize += 50;
   }
 }
 
 void bubbles() { // reusable!! 
-  frameRate(4);
-  for (int i = 5; i < 9; i++) {
-    for (int j = 5; j < 9; j++) {
-      float r = random(70) + 20 + random(5);
-      fill(250, random(150) + 100);
-      noStroke();
-      ellipse((i * (random(105)) + random(15)) % 690,(j * (random(105)) + random(15)) % 690,r,r);
+    for (int i = 5; i < 9; i++) {
+      for (int j = 5; j < 9; j++) {
+        float r = random(70) + 20 + random(5);
+        fill(250, random(150) + 100);
+        noStroke();
+        ellipse((i * (random(105)) + random(15)) % 690, (j * (random(105)) + random(15)) % 690, r, r);
+      }
     }
+    bubbleCount = 1;
   }
-}
