@@ -405,27 +405,27 @@ void mapsize() {
 
     fill(242, 245, 252);
     noStroke();
-    rect(200,531,300,69);
+    rect(200,506,300,69);
     
     fill(178, 207, 255, 225);
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); // 29
-    text("ok", 350, 578);
+    text("ok", 350, 553);
   
-    if (mouseX > 200 && mouseX < 500 && mouseY > 531 && mouseY < 598) { // for insane
+    if (mouseX > 200 && mouseX < 500 && mouseY > 531 && mouseY < 598) {
       fill(224,235,255);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
       stroke(255);
-      rect(200,531,300,69);
+      rect(200,506,300,69);
     
       fill(255);
       textAlign(CENTER);
       textFont(bubble);
       textSize(48); // 29
-      text("ok", 350, 578);
+      text("ok", 350, 553);
       
       // do some stuff to switch to the next menu page
     }  
