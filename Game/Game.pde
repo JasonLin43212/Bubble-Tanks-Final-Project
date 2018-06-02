@@ -9,8 +9,8 @@ float centerX = 350;
 float centerY = 350;
 
 boolean menu = true;
+int menupage = 0; 
 float selected = -500; // for map size
-int menupage = 0;
 
 String selectedDifficulty;
 int selectedSize;
@@ -51,12 +51,15 @@ void draw() {
       title();
     }
     if (menupage == 1) {
-      difficulty();
+      mouseuse();
     }
     if (menupage == 2) {
+      difficulty();
+    }
+    if (menupage == 3) {
       mapsize();
     }
-    if (menupage > 2) {
+    if (menupage == 4) {
       mapsettings();
     }
   }
@@ -314,6 +317,84 @@ void difficulty() {
   }
 }
 
+void mouseuse() {
+  background(178, 207, 255);
+  
+  bubbles();
+  
+  fill(200); // bar designated for health, exp, etc. 
+  rect(0, 700, 700, 100);
+  
+  fill(255);
+  textAlign(CENTER);
+  textFont(bubble);
+  text("mouse use", 350, 150); // starts at 207 ends at 250
+
+  fill(242, 245, 252);
+  noStroke();
+  rect(200,292,300,69);
+    
+  fill(178, 207, 255, 225);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("yes", 350, 341); // starts at 262 ends at 291
+  
+  if (mouseX > 200 && mouseX < 500 && mouseY > 292 && mouseY < 371) { // for yes
+    fill(224,235,255);
+    strokeWeight(5);
+    strokeJoin(MITER);
+    strokeCap(SQUARE);
+    stroke(255);
+    rect(200,292,300,69);
+      
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("yes", 350, 341);
+    
+    // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      useMouse = true;
+      menupage++;
+    }
+  }
+  
+  fill(242, 245, 252);
+  noStroke();
+  rect(200,381,300,69);
+    
+  fill(178, 207, 255, 225);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("no", 350, 430); // starts at 351 ends at 380
+  
+  if (mouseX > 200 && mouseX < 500 && mouseY > 381 && mouseY < 450) { // for no
+    fill(224,235,255);
+    strokeWeight(5);
+    strokeJoin(MITER);
+    strokeCap(SQUARE);
+    stroke(255);
+    rect(200,381,300,69);
+      
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("no", 350, 430); // starts at 351 ends at 380
+    
+    // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      useMouse = false;
+      menupage++;
+    }
+  }
+}
+
 void mapsize() {  
   background(178, 207, 255);
   
@@ -328,9 +409,15 @@ void mapsize() {
   textFont(bubble);
   text("map size", 350, 150); // starts at 107 ends at 150
   
+  fill(255);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(24);
+  text("choose the size of your map", 350, 310);  
+
   fill(255); // bar behind circles
   noStroke();
-  rect(88.5, 318, 525, 16);
+  rect(88.5, 218, 525, 16);
   
   float xsize = 12.5;
   int num = 3;
@@ -340,25 +427,25 @@ void mapsize() {
     
     fill(255); // big circle
     noStroke();
-    ellipse(xsize,325,50,50);
+    ellipse(xsize,225,50,50);
     
     fill(255); // little circle (changes colors and stuff)
     strokeWeight(6);
     stroke(178, 207, 255);
-    ellipse(xsize,325,20,20);
+    ellipse(xsize,225,20,20);
 
     fill(255); // size
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
-    text(num, xsize, 375);
+    text(num, xsize, 275);
   }
   
-  if (mouseX > 64.5 && mouseX < 110.5 && mouseY > 300 && mouseY < 350) { // 5
+  if (mouseX > 64.5 && mouseX < 110.5 && mouseY > 200 && mouseY < 250) { // 5
     fill(224,235,255);
     strokeWeight(6);
     stroke(178, 207, 255);
-    ellipse(87.5,325,20,20);
+    ellipse(87.5,225,20,20);
     
     if (mousePressed) {
       selectedSize = 5;
@@ -366,11 +453,11 @@ void mapsize() {
     }
   }
   
-  if (mouseX > 139.5 && mouseX < 185.5 && mouseY > 300 && mouseY < 350) { // 7
+  if (mouseX > 139.5 && mouseX < 185.5 && mouseY > 200 && mouseY < 250) { // 7
     fill(224,235,255);
     strokeWeight(6);
     stroke(178, 207, 255);
-    ellipse(162.5,325,20,20);
+    ellipse(162.5,225,20,20);
     
     if (mousePressed) {
       selectedSize = 7;
@@ -378,11 +465,11 @@ void mapsize() {
     }
   }
   
-  if (mouseX > 214.5 && mouseX < 260.5 && mouseY > 300 && mouseY < 350) { // 9
+  if (mouseX > 214.5 && mouseX < 260.5 && mouseY > 200 && mouseY < 250) { // 9
     fill(224,235,255);
     strokeWeight(6);
     stroke(178, 207, 255);
-    ellipse(237.5,325,20,20);
+    ellipse(237.5,225,20,20);
     
     if (mousePressed) {
       selectedSize = 9;
@@ -390,11 +477,11 @@ void mapsize() {
     }
   }
   
-  if (mouseX > 289.5 && mouseX < 335.5 && mouseY > 300 && mouseY < 350) { // 11
+  if (mouseX > 289.5 && mouseX < 335.5 && mouseY > 200 && mouseY < 250) { // 11
     fill(224,235,255);
     strokeWeight(6);
     stroke(178, 207, 255);
-    ellipse(312.5,325,20,20);
+    ellipse(312.5,225,20,20);
     
     if (mousePressed) {
       selectedSize = 11;
@@ -402,11 +489,11 @@ void mapsize() {
     }
   }
   
-  if (mouseX > 364.5 && mouseX < 410.5 && mouseY > 300 && mouseY < 350) { // 13
+  if (mouseX > 364.5 && mouseX < 410.5 && mouseY > 200 && mouseY < 250) { // 13
     fill(224,235,255);
     strokeWeight(6);
     stroke(178, 207, 255);
-    ellipse(387.5,325,20,20);
+    ellipse(387.5,225,20,20);
     
     if (mousePressed) {
       selectedSize = 13;
@@ -414,11 +501,11 @@ void mapsize() {
     }
   }
   
-  if (mouseX > 439.5 && mouseX < 485.5 && mouseY > 300 && mouseY < 350) { // 15
+  if (mouseX > 439.5 && mouseX < 485.5 && mouseY > 200 && mouseY < 250) { // 15
     fill(224,235,255);
     strokeWeight(6);
     stroke(178, 207, 255);
-    ellipse(462.5,325,20,20);
+    ellipse(462.5,225,20,20);
     
     if (mousePressed) {
       selectedSize = 15;
@@ -426,11 +513,11 @@ void mapsize() {
     }
   }
   
-  if (mouseX > 514.5 && mouseX < 560.5 && mouseY > 300 && mouseY < 350) { // 17
+  if (mouseX > 514.5 && mouseX < 560.5 && mouseY > 200 && mouseY < 250) { // 17
     fill(224,235,255);
     strokeWeight(6);
     stroke(178, 207, 255);
-    ellipse(537.5,325,20,20);
+    ellipse(537.5,225,20,20);
     
     if (mousePressed) {
       selectedSize = 17;
@@ -438,11 +525,11 @@ void mapsize() {
     }
   }
   
-  if (mouseX > 589.5 && mouseX < 635.5 && mouseY > 300 && mouseY < 350) { // 19
+  if (mouseX > 589.5 && mouseX < 635.5 && mouseY > 200 && mouseY < 250) { // 19
     fill(224,235,255);
     strokeWeight(6);
     stroke(178, 207, 255);
-    ellipse(612.5,325,20,20);
+    ellipse(612.5,225,20,20);
     
     if (mousePressed) {
       selectedSize = 19;
@@ -454,31 +541,31 @@ void mapsize() {
     fill(178, 207, 255); // little circle (changes color while hovering)
     strokeWeight(6);
     stroke(224,235,255);
-    ellipse(selected,325,20,20);
+    ellipse(selected,225,20,20);
 
     fill(242, 245, 252); // button to move to next page
     noStroke();
-    rect(200,506,300,69);
+    rect(200,360,300,69);
     
     fill(178, 207, 255, 225); // button to move to next page
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); // 29
-    text("ok", 350, 553);
+    text("ok", 350, 407);
   
-    if (mouseX > 200 && mouseX < 500 && mouseY > 506 && mouseY < 575) { 
+    if (mouseX > 200 && mouseX < 500 && mouseY > 360 & mouseY < 429) { 
       fill(224,235,255);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
       stroke(255);
-      rect(200,506,300,69);
+      rect(200,360,300,69);
     
       fill(255);
       textAlign(CENTER);
       textFont(bubble);
       textSize(48); // 29
-      text("ok", 350, 553);
+      text("ok", 350, 407);
       
       // do some stuff to switch to the next menu page
       
@@ -507,35 +594,52 @@ void mapsettings() {
   textAlign(LEFT);
   textFont(bubble);
   textSize(48); // 29
-  text("difficulty", 100, 291);  
+  text("difficulty", 100, 300);  
   
   fill(255); // selected difficulty
   textAlign(RIGHT);
   textFont(bubble);
   textSize(36); // 29
-  text(selectedDifficulty, 600, 291);
+  text(selectedDifficulty, 600, 300);
+
+  fill(255); // mouse use
+  textAlign(LEFT);
+  textFont(bubble);
+  textSize(48); // 29
+  text("mouse use", 100, 350);
+
+  fill(255); // selected mouse use
+  textAlign(RIGHT);
+  textFont(bubble);
+  textSize(36); // 29
+  if (useMouse) {
+    text("yes", 600, 350);
+  }
+  if (!useMouse) {
+    text("no", 600, 350);
+  }
 
   fill(255); // map size
   textAlign(LEFT);
   textFont(bubble);
   textSize(48); // 29
-  text("map size", 100, 380);
-
+  text("map size", 100, 400);
+  
   fill(255); // selected map size
   textAlign(RIGHT);
   textFont(bubble);
   textSize(36); // 29
-  text(selectedSize, 600, 380);
-
+  text(selectedSize, 600, 400);
+  
   fill(242, 245, 252); // start game
   noStroke();
-  rect(200,450,300,105);
+  rect(200,500,300,105);
     
   fill(178, 207, 255, 225);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
-  text("start", 350, 517); // starts at 488 ends at 517
+  text("start", 350, 567); // starts at 488 ends at 517
 
   if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555) {
     fill(224,235,255);
@@ -543,27 +647,26 @@ void mapsettings() {
     strokeJoin(MITER);
     strokeCap(SQUARE);
     stroke(255);
-    rect(200,450,300,105);
+    rect(200,500,300,105);
     
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); // 29
-    text("start", 350, 517); // starts at 488 ends at 517
+    text("start", 350, 567); // starts at 488 ends at 517
     
     // do some stuff to switch to the next menu page
     
     if (mousePressed) {
-      menu = false;
+      menu = false; // lets you start playing
     }
   }
 
 }
 
 void bubbles() { // reusable!! 
-  if (menu) {
-    frameRate(4);
-  }
+  frameRate(4);
+  
   for (int i = 5; i < 9; i++) {
     for (int j = 5; j < 9; j++) {
       float r = random(70) + 20 + random(5);
