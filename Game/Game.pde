@@ -8,11 +8,13 @@ boolean useMouse = false;
 float centerX = 350;
 float centerY = 350;
 
+float selected = -500; // for map size
+
 void setup() {
   size(700, 800);
   background(178, 207, 255);
-  fill(0);
-  rect(0, 0, 700, 50);
+  fill(200);
+  rect(0, 700, 700, 100);
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
   m = new Map(5);
@@ -100,8 +102,8 @@ void title() {
   
   bubbles();
   
-  fill(0); // bar designated for health, exp, etc. 
-  rect(0,700,700,50);
+  fill(200); // bar designated for health, exp, etc. 
+  rect(0, 700, 700, 100);
   
   fill(255);
   textAlign(CENTER);
@@ -149,8 +151,8 @@ void difficulty() {
   
   bubbles();
   
-  fill(0); // bar designated for health, exp, etc. 
-  rect(0,700,700,50);
+  fill(200); // bar designated for health, exp, etc. 
+  rect(0, 700, 700, 100);
   
   fill(255);
   textAlign(CENTER);
@@ -181,6 +183,8 @@ void difficulty() {
     textFont(bubble);
     textSize(48); // 29
     text("easy", 350, 291);
+    
+    // do some stuff to switch to the next menu page
   }
   
   fill(242, 245, 252);
@@ -206,6 +210,8 @@ void difficulty() {
     textFont(bubble);
     textSize(48); // 29
     text("normal", 350, 380); // starts at 351 ends at 380
+    
+    // do some stuff to switch to the next menu page
   }
   
   fill(242, 245, 252);
@@ -231,6 +237,8 @@ void difficulty() {
     textFont(bubble);
     textSize(48); // 29
     text("hard", 350, 469); // starts at 440 ends at 469
+    
+    // do some stuff to switch to the next menu page
   }
   
   fill(242, 245, 252);
@@ -243,7 +251,7 @@ void difficulty() {
   textSize(48); // 29
   text("insane", 350, 558); // starts at 529 ends at 558
 
-  if (mouseX > 200 && mouseX < 500 && mouseY > 511 && mouseY < 578) { // for save me
+  if (mouseX > 200 && mouseX < 500 && mouseY > 511 && mouseY < 578) { // for insane
     fill(224,235,255);
     strokeWeight(5);
     strokeJoin(MITER);
@@ -256,29 +264,171 @@ void difficulty() {
     textFont(bubble);
     textSize(48); // 29
     text("insane", 350, 558); // starts at 529 ends at 558
+    
+    // do some stuff to switch to the next menu page
   }
 }
 
-void mapsize() {
+void mapsize() {  
   background(178, 207, 255);
   
   bubbles();
   
-  fill(0); // bar designated for health, exp, etc. 
-  rect(0,700,700,50);
+  fill(200); // bar designated for health, exp, etc. 
+  rect(0, 700, 700, 100);
   
   fill(255);
   textAlign(CENTER);
   textFont(bubble);
-  text("map size", 350, 150); // starts at 207 ends at 250
+  text("map size", 350, 150); // starts at 107 ends at 150
   // text("bubble tanks", 350, 365); // center of screen
   
-  float xsize = 100;
-  float ysize = 100;
-  for (int i = 0; i < 7; i++) {
+  fill(255); // bar designated for health, exp, etc. 
+  noStroke();
+  rect(88.5, 318, 525, 16);
+  
+  float xsize = 12.5;
+  int num = 3;
+  for (int i = 0; i < 8; i++) {
+    xsize += 75;
+    num += 2; 
+    
     fill(255);
-    ellipse(xsize,ysize,20,20);
-    xsize += 50; 
+    noStroke();
+    ellipse(xsize,325,50,50);
+    
+    fill(255);
+    strokeWeight(6);
+    stroke(178, 207, 255);
+    ellipse(xsize,325,20,20);
+
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(24); 
+    text(num, xsize, 375);
+  }
+  
+  if (mouseX > 64.5 && mouseX < 110.5 && mouseY > 300 && mouseY < 350) { // 5
+    fill(224,235,255);
+    strokeWeight(6);
+    stroke(178, 207, 255);
+    ellipse(87.5,325,20,20);
+    
+    if (mousePressed) {
+      selected = 87.5;
+    }
+  }
+  
+  if (mouseX > 139.5 && mouseX < 185.5 && mouseY > 300 && mouseY < 350) { // 7
+    fill(224,235,255);
+    strokeWeight(6);
+    stroke(178, 207, 255);
+    ellipse(162.5,325,20,20);
+    
+    if (mousePressed) {
+      selected = 162.5;
+    }
+  }
+  
+  if (mouseX > 214.5 && mouseX < 260.5 && mouseY > 300 && mouseY < 350) { // 9
+    fill(224,235,255);
+    strokeWeight(6);
+    stroke(178, 207, 255);
+    ellipse(237.5,325,20,20);
+    
+    if (mousePressed) {
+      selected = 237.5;
+    }
+  }
+  
+  if (mouseX > 289.5 && mouseX < 335.5 && mouseY > 300 && mouseY < 350) { // 11
+    fill(224,235,255);
+    strokeWeight(6);
+    stroke(178, 207, 255);
+    ellipse(312.5,325,20,20);
+    
+    if (mousePressed) {
+      selected = 312.5;
+    }
+  }
+  
+  if (mouseX > 364.5 && mouseX < 410.5 && mouseY > 300 && mouseY < 350) { // 13
+    fill(224,235,255);
+    strokeWeight(6);
+    stroke(178, 207, 255);
+    ellipse(387.5,325,20,20);
+    
+    if (mousePressed) {
+      selected = 387.5;
+    }
+  }
+  
+  if (mouseX > 439.5 && mouseX < 485.5 && mouseY > 300 && mouseY < 350) { // 15
+    fill(224,235,255);
+    strokeWeight(6);
+    stroke(178, 207, 255);
+    ellipse(462.5,325,20,20);
+    
+    if (mousePressed) {
+      selected = 462.5;
+    }
+  }
+  
+  if (mouseX > 514.5 && mouseX < 560.5 && mouseY > 300 && mouseY < 350) { // 17
+    fill(224,235,255);
+    strokeWeight(6);
+    stroke(178, 207, 255);
+    ellipse(537.5,325,20,20);
+    
+    if (mousePressed) {
+      selected = 537.5;
+    }
+  }
+  
+  if (mouseX > 589.5 && mouseX < 635.5 && mouseY > 300 && mouseY < 350) { // 19
+    fill(224,235,255);
+    strokeWeight(6);
+    stroke(178, 207, 255);
+    ellipse(612.5,325,20,20);
+    
+    if (mousePressed) {
+      selected = 612.5;
+    }
+  }
+
+  if (selected > 0) {
+    fill(178, 207, 255);
+    strokeWeight(6);
+    stroke(224,235,255);
+    ellipse(selected,325,20,20);
+
+    fill(242, 245, 252);
+    noStroke();
+    rect(200,531,300,69);
+    
+    fill(178, 207, 255, 225);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("ok", 350, 578);
+  
+    if (mouseX > 200 && mouseX < 500 && mouseY > 531 && mouseY < 598) { // for insane
+      fill(224,235,255);
+      strokeWeight(5);
+      strokeJoin(MITER);
+      strokeCap(SQUARE);
+      stroke(255);
+      rect(200,531,300,69);
+    
+      fill(255);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(48); // 29
+      text("ok", 350, 578);
+      
+      // do some stuff to switch to the next menu page
+    }  
   }
 }
 
