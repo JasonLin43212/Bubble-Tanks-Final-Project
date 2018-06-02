@@ -11,6 +11,10 @@ float centerY = 350;
 float selected = -500; // for map size
 int menupage = 0;
 
+String selectedDifficulty;
+int selectedSize;
+
+
 void setup() {
   size(700, 800);
   background(178, 207, 255);
@@ -40,18 +44,16 @@ void draw() {
   if (menupage == 0) {
     title();
   }
-  
   if (menupage == 1) {
     difficulty();
   }
-  
-  if (menupage > 1) {
+  if (menupage == 2) {
     mapsize();
   }
+  if (menupage > 2) {
+    mapsettings();
+  }
   
-  // title();
-  // difficulty();
-  // mapsize();
 }
 
 void drawMap(float xOffset, float yOffset) {
@@ -122,7 +124,6 @@ void title() {
   textAlign(CENTER);
   textFont(bubble);
   text("bubble tanks", 350, 250); // starts at 207 ends at 250
-  // text("bubble tanks", 350, 365); // center of screen
       
   fill(255);
   textAlign(CENTER);
@@ -175,7 +176,6 @@ void difficulty() {
   textAlign(CENTER);
   textFont(bubble);
   text("difficulty", 350, 150); // starts at 207 ends at 250
-  // text("bubble tanks", 350, 365); // center of screen
 
   fill(242, 245, 252);
   noStroke();
@@ -204,6 +204,7 @@ void difficulty() {
     // do some stuff to switch to the next menu page
     
     if (mousePressed) {
+      selectedDifficulty = "easy";
       menupage++;
     }
   }
@@ -235,6 +236,7 @@ void difficulty() {
     // do some stuff to switch to the next menu page
     
     if (mousePressed) {
+      selectedDifficulty = "normal";
       menupage++;
     }
   }
@@ -266,6 +268,7 @@ void difficulty() {
     // do some stuff to switch to the next menu page
     
     if (mousePressed) {
+      selectedDifficulty = "hard";
       menupage++;
     }
   }
@@ -297,6 +300,7 @@ void difficulty() {
     // do some stuff to switch to the next menu page
     
     if (mousePressed) {
+      selectedDifficulty = "insane";
       menupage++;
     }
   }
@@ -314,9 +318,8 @@ void mapsize() {
   textAlign(CENTER);
   textFont(bubble);
   text("map size", 350, 150); // starts at 107 ends at 150
-  // text("bubble tanks", 350, 365); // center of screen
   
-  fill(255); // bar designated for health, exp, etc. 
+  fill(255); // bar behind circles
   noStroke();
   rect(88.5, 318, 525, 16);
   
@@ -326,16 +329,16 @@ void mapsize() {
     xsize += 75;
     num += 2; 
     
-    fill(255);
+    fill(255); // big circle
     noStroke();
     ellipse(xsize,325,50,50);
     
-    fill(255);
+    fill(255); // little circle (changes colors and stuff)
     strokeWeight(6);
     stroke(178, 207, 255);
     ellipse(xsize,325,20,20);
 
-    fill(255);
+    fill(255); // size
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
@@ -349,6 +352,7 @@ void mapsize() {
     ellipse(87.5,325,20,20);
     
     if (mousePressed) {
+      selectedSize = 5;
       selected = 87.5;
     }
   }
@@ -360,6 +364,7 @@ void mapsize() {
     ellipse(162.5,325,20,20);
     
     if (mousePressed) {
+      selectedSize = 7;
       selected = 162.5;
     }
   }
@@ -371,6 +376,7 @@ void mapsize() {
     ellipse(237.5,325,20,20);
     
     if (mousePressed) {
+      selectedSize = 9;
       selected = 237.5;
     }
   }
@@ -382,6 +388,7 @@ void mapsize() {
     ellipse(312.5,325,20,20);
     
     if (mousePressed) {
+      selectedSize = 11;
       selected = 312.5;
     }
   }
@@ -393,6 +400,7 @@ void mapsize() {
     ellipse(387.5,325,20,20);
     
     if (mousePressed) {
+      selectedSize = 13;
       selected = 387.5;
     }
   }
@@ -404,6 +412,7 @@ void mapsize() {
     ellipse(462.5,325,20,20);
     
     if (mousePressed) {
+      selectedSize = 15;
       selected = 462.5;
     }
   }
@@ -415,6 +424,7 @@ void mapsize() {
     ellipse(537.5,325,20,20);
     
     if (mousePressed) {
+      selectedSize = 17;
       selected = 537.5;
     }
   }
@@ -426,27 +436,28 @@ void mapsize() {
     ellipse(612.5,325,20,20);
     
     if (mousePressed) {
+      selectedSize = 19;
       selected = 612.5;
     }
   }
 
-  if (selected > 0) {
-    fill(178, 207, 255);
+  if (selected > 0) { // if you chose something
+    fill(178, 207, 255); // little circle (changes color while hovering)
     strokeWeight(6);
     stroke(224,235,255);
     ellipse(selected,325,20,20);
 
-    fill(242, 245, 252);
+    fill(242, 245, 252); // button to move to next page
     noStroke();
     rect(200,506,300,69);
     
-    fill(178, 207, 255, 225);
+    fill(178, 207, 255, 225); // button to move to next page
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); // 29
     text("ok", 350, 553);
   
-    if (mouseX > 200 && mouseX < 500 && mouseY > 531 && mouseY < 598) {
+    if (mouseX > 200 && mouseX < 500 && mouseY > 506 && mouseY < 575) { 
       fill(224,235,255);
       strokeWeight(5);
       strokeJoin(MITER);
@@ -461,8 +472,82 @@ void mapsize() {
       text("ok", 350, 553);
       
       // do some stuff to switch to the next menu page
+      
+      if (mousePressed) {
+        menupage++;
+      }
     }  
   }
+}
+
+void mapsettings() {  
+  background(178, 207, 255);
+  
+  bubbles();
+  
+  fill(200); // bar designated for health, exp, etc. 
+  rect(0, 700, 700, 100);
+  
+  fill(255);
+  textAlign(CENTER);
+  textFont(bubble);
+  text("map size", 350, 150); // starts at 107 ends at 150
+  
+  fill(255); // difficulty
+  textAlign(LEFT);
+  textFont(bubble);
+  textSize(48); // 29
+  text("difficulty", 100, 291);  
+  
+  fill(255); // selected difficulty
+  textAlign(RIGHT);
+  textFont(bubble);
+  textSize(36); // 29
+  text(selectedDifficulty, 600, 291);
+
+  fill(255); // map size
+  textAlign(LEFT);
+  textFont(bubble);
+  textSize(48); // 29
+  text("map size", 100, 380);
+
+  fill(255); // selected map size
+  textAlign(RIGHT);
+  textFont(bubble);
+  textSize(36); // 29
+  text(selectedSize, 600, 380);
+
+  fill(242, 245, 252); // start game
+  noStroke();
+  rect(200,450,300,105);
+    
+  fill(178, 207, 255, 225);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("start", 350, 517); // starts at 488 ends at 517
+
+  if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555) {
+    fill(224,235,255);
+    strokeWeight(5);
+    strokeJoin(MITER);
+    strokeCap(SQUARE);
+    stroke(255);
+    rect(200,450,300,105);
+    
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("start", 350, 517); // starts at 488 ends at 517
+    
+    // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      menupage++;
+    }
+  }
+
 }
 
 void bubbles() { // reusable!! 
