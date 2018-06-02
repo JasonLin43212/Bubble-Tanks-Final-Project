@@ -9,6 +9,7 @@ float centerX = 350;
 float centerY = 350;
 
 float selected = -500; // for map size
+int menupage = 0;
 
 void setup() {
   size(700, 800);
@@ -36,9 +37,21 @@ void draw() {
   fill(200);
   rect(0, 700, 700, 100);
   
+  if (menupage == 0) {
+    title();
+  }
+  
+  if (menupage == 1) {
+    difficulty();
+  }
+  
+  if (menupage > 1) {
+    mapsize();
+  }
+  
   // title();
   // difficulty();
-  mapsize();
+  // mapsize();
 }
 
 void drawMap(float xOffset, float yOffset) {
@@ -142,6 +155,10 @@ void title() {
     text("start", 350, 517); // starts at 488 ends at 517
     
     // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      menupage++;
+    }
   }
 
 }
@@ -185,6 +202,10 @@ void difficulty() {
     text("easy", 350, 291);
     
     // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      menupage++;
+    }
   }
   
   fill(242, 245, 252);
@@ -212,6 +233,10 @@ void difficulty() {
     text("normal", 350, 380); // starts at 351 ends at 380
     
     // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      menupage++;
+    }
   }
   
   fill(242, 245, 252);
@@ -239,6 +264,10 @@ void difficulty() {
     text("hard", 350, 469); // starts at 440 ends at 469
     
     // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      menupage++;
+    }
   }
   
   fill(242, 245, 252);
@@ -266,6 +295,10 @@ void difficulty() {
     text("insane", 350, 558); // starts at 529 ends at 558
     
     // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      menupage++;
+    }
   }
 }
 
