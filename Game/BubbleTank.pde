@@ -90,7 +90,7 @@ public abstract class BubbleTank {
       coolDown--;
     }
     //println(x+" " + y);
-    fill(178, 207, 255);
+    fill(39, 150, 203);
     noStroke();
     ellipse(width/2,(height-100)/2,3*radius,3*radius);
     fill(255);

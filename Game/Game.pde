@@ -10,20 +10,21 @@ float centerX = 350;
 float centerY = 350;
 int difficulty = 0;
 int bubbleCount = 1;
+ArrayList<TitleBubble> titleCircles;
 
 void setup() {
   size(700, 800);
-  background(178, 207, 255);
+  background(39, 150, 203);
   fill(0);
   rect(0, 0, 700, 50);
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
   m = new Map(5);
   allBullets = new ArrayList<BubbleBullet>();
+  titleCircles = new ArrayList<TitleBubble>();
 }
 
 void draw() {
-  println(menuSetting);
   if (menuSetting == 1) {
     title();
   } else if (menuSetting == 2) {
@@ -43,7 +44,6 @@ void draw() {
     if (useMouse) {
       tank.realignDirection(mouseX, mouseY);
     }
-    noStroke();
     fill(200);
     rect(0, 700, 700, 100);
   }
@@ -53,7 +53,7 @@ void drawMap(float xOffset, float yOffset) {
   pushMatrix();
   translate(-xOffset+350, -yOffset+350);
   noStroke();
-  fill(178, 207, 255);
+  fill(39, 150, 203);
   ellipse(0, 0, 1500, 1500);
   ellipse(0, 2000, 1500, 1500);
   ellipse(0, -2000, 1500, 1500);
@@ -141,12 +141,9 @@ void mouseClicked() {
 }
 
 void title() {
-  background(178, 207, 255);
-  
+  background(39, 150, 203);
+
   bubbles();
-  
-  fill(200); // bar designated for health, exp, etc. 
-  rect(0, 700, 700, 100);
 
   fill(255);
   textAlign(CENTER);
@@ -164,7 +161,7 @@ void title() {
   noStroke();
   rect(200, 450, 300, 105);
 
-  fill(178, 207, 255, 225);
+  fill(39, 150, 203);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
@@ -188,12 +185,9 @@ void title() {
 }
 
 void difficulty() {
-  background(178, 207, 255);
+  background(39, 150, 203);
 
   bubbles();
-
-  fill(200); // bar designated for health, exp, etc. 
-  rect(0, 700, 700, 100);
 
   fill(255);
   textAlign(CENTER);
@@ -205,7 +199,7 @@ void difficulty() {
   noStroke();
   rect(200, 242, 300, 69);
 
-  fill(178, 207, 255, 225);
+  fill(39, 150, 203);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
@@ -230,7 +224,7 @@ void difficulty() {
   noStroke();
   rect(200, 331, 300, 69);
 
-  fill(178, 207, 255, 225);
+  fill(39, 150, 203);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
@@ -255,7 +249,7 @@ void difficulty() {
   noStroke();
   rect(200, 420, 300, 69);
 
-  fill(178, 207, 255, 225);
+  fill(39, 150, 203);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
@@ -280,7 +274,7 @@ void difficulty() {
   noStroke();
   rect(200, 511, 300, 69);
 
-  fill(178, 207, 255, 225);
+  fill(39, 150, 203);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
@@ -303,12 +297,9 @@ void difficulty() {
 }
 
 void mapsize() {
-  background(178, 207, 255);
+  background(39, 150, 203);
 
   bubbles();
-
-  fill(200); // bar designated for health, exp, etc. 
-  rect(0, 700, 700, 100);
 
   fill(255);
   textAlign(CENTER);
@@ -326,13 +317,17 @@ void mapsize() {
 }
 
 void bubbles() { // reusable!! 
-    for (int i = 5; i < 9; i++) {
-      for (int j = 5; j < 9; j++) {
-        float r = random(70) + 20 + random(5);
-        fill(250, random(150) + 100);
-        noStroke();
-        ellipse((i * (random(105)) + random(15)) % 690, (j * (random(105)) + random(15)) % 690, r, r);
-      }
-    }
+  bubbleCount++;
+  if (bubbleCount % 10 == 0) {
+    titleCircles.add(new TitleBubble(random(700), random(10)+1, random(20))); 
     bubbleCount = 1;
   }
+  for (int i=0; i<titleCircles.size(); i++){
+    TitleBubble current = titleCircles.get(i);
+    current.display();
+    if (current.move()){
+       titleCircles.remove(i);
+       i--;
+    }
+  }
+}
