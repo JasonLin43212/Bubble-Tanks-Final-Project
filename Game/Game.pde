@@ -26,7 +26,7 @@ void setup() {
   size(700, 800);
   background(178, 207, 255);
   fill(200);
-  rect(0, 700, 700, 100);
+  rect(0, 700, 700, 100);  
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
   m = new Map(5);
@@ -37,14 +37,17 @@ void setup() {
 void draw() {
   if (menuSetting == 1) {
     title();
-  } else if (menuSetting == 2) {
+  } 
+  else if (menuSetting == 2) {
     difficulty();
-  } else if (menuSetting == 3) {
+  } 
+  else if (menuSetting == 3) {
     mapsize();
-    } else if (menuSetting ==4){
-      mapsettings();
-    }
-  } else {
+  }
+  else if (menuSetting ==4){
+    mapsettings();
+  }
+  else {
     background(200);
     fill(0);
     strokeWeight(1);
@@ -745,39 +748,6 @@ void mapsettings() {
       menu = false; // lets you start playing
     }
   }
-
-  fill(242, 245, 252);
-  noStroke();
-  rect(200,381,300,69);
-    
-  fill(178, 207, 255, 225);
-  textAlign(CENTER);
-  textFont(bubble);
-  textSize(48); // 29
-  text("no", 350, 430); // starts at 351 ends at 380
-  
-  if (mouseX > 200 && mouseX < 500 && mouseY > 381 && mouseY < 450) { // for no
-    fill(224,235,255);
-    strokeWeight(5);
-    strokeJoin(MITER);
-    strokeCap(SQUARE);
-    stroke(255);
-    rect(200,381,300,69);
-      
-    fill(255);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(48); // 29
-    text("no", 350, 430); // starts at 351 ends at 380
-    
-    // do some stuff to switch to the next menu page
-    
-    if (mousePressed) {
-      useMouse = false;
-      menupage++;
-    }
-  }
-
 }
 
 void bubbles() { // reusable!!
