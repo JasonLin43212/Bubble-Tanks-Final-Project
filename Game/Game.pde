@@ -18,7 +18,6 @@ void setup() {
   size(700, 800);
   background(39, 150, 203);
   fill(200);
-  rect(0, 700, 700, 100);  
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
   m = new Map(5);
@@ -55,7 +54,7 @@ void draw() {
     tank.spawnBullets(allBullets);
     drawMap(tank.getX(), tank.getY());
     tank.display();
-    tank.move();
+    tank.move(m);
     drawBullets(tank.getX(), tank.getY());
     if (useMouse) {
       tank.realignDirection(mouseX, mouseY);
@@ -71,10 +70,10 @@ void drawMap(float xOffset, float yOffset) {
   noStroke();
   fill(39, 150, 203);
   ellipse(0, 0, 1500, 1500);
-  ellipse(0, 2000, 1500, 1500);
-  ellipse(0, -2000, 1500, 1500);
-  ellipse(2000, 0, 1500, 1500);
-  ellipse(-2000, 0, 1500, 1500);
+  ellipse(0, 3000, 1500, 1500);
+  ellipse(0, -3000, 1500, 1500);
+  ellipse(3000, 0, 1500, 1500);
+  ellipse(-3000, 0, 1500, 1500);
   popMatrix();
 }  
 
