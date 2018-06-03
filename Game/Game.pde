@@ -9,7 +9,9 @@ float centerX = 350;
 float centerY = 350;
 
 boolean menu = true;
+boolean editting = false;
 int menupage = 0; 
+int edit = -1;
 float selected = -500; // for map size
 
 String selectedDifficulty;
@@ -63,7 +65,7 @@ void draw() {
       mapsettings();
     }
   }
-  
+    
 }
 
 void drawMap(float xOffset, float yOffset) {
@@ -427,7 +429,7 @@ void mapsize() {
     
     fill(255); // big circle
     noStroke();
-    ellipse(xsize,225,50,50);
+    ellipse(xsize,225,40,40);
     
     fill(255); // little circle (changes colors and stuff)
     strokeWeight(6);
@@ -588,7 +590,14 @@ void mapsettings() {
   fill(255);
   textAlign(CENTER);
   textFont(bubble);
-  text("map size", 350, 150); // starts at 107 ends at 150
+  text("map settings", 350, 150); // starts at 107 ends at 150
+  
+  fill(255);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(30);
+  text("click to edit", 350, 200);  
+
   
   fill(255); // difficulty
   textAlign(LEFT);
@@ -601,6 +610,11 @@ void mapsettings() {
   textFont(bubble);
   textSize(36); // 29
   text(selectedDifficulty, 600, 300);
+
+  if (mouseX > 100 && mouseX < 600 && mouseY > 271 && mouseY < 300 && mousePressed) {
+    editting = true;
+    edit = 0;
+  }
 
   fill(255); // mouse use
   textAlign(LEFT);
@@ -618,6 +632,11 @@ void mapsettings() {
   if (!useMouse) {
     text("no", 600, 350);
   }
+  
+  if (mouseX > 100 && mouseX < 600 && mouseY > 321 && mouseY < 350 && mousePressed) {
+    editting = true;
+    edit = 1;
+  }
 
   fill(255); // map size
   textAlign(LEFT);
@@ -631,17 +650,31 @@ void mapsettings() {
   textSize(36); // 29
   text(selectedSize, 600, 400);
   
+  if (mouseX > 100 && mouseX < 600 && mouseY > 371 && mouseY < 400 && mousePressed) {
+    editting = false;
+    menupage--;
+  }
+  
   fill(242, 245, 252); // start game
   noStroke();
   rect(200,500,300,105);
-    
+  
   fill(178, 207, 255, 225);
   textAlign(CENTER);
   textFont(bubble);
   textSize(48); // 29
   text("start", 350, 567); // starts at 488 ends at 517
 
-  if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555) {
+  if (editting) {
+    if (edit == 0) {
+      editDifficulty();
+    }
+    if (edit == 1) {
+      editMouse();
+    }
+  }
+
+  if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555 && !editting) {
     fill(224,235,255);
     strokeWeight(5);
     strokeJoin(MITER);
@@ -662,6 +695,209 @@ void mapsettings() {
     }
   }
 
+}
+
+void editDifficulty () {
+  
+  fill(224,235,255,155);
+  rect(0,0,700,700);
+  
+  fill(255);
+  rect(100,100,500,500);
+  
+  fill(224,235,255); // mouse use
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("difficulty", 350, 200);
+
+  fill(242, 245, 252);
+  noStroke();
+  rect(200,242,300,69);
+    
+  fill(178, 207, 255, 225);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("easy", 350, 291); // starts at 262 ends at 291
+  
+  if (mouseX > 200 && mouseX < 500 && mouseY > 242 && mouseY < 321) { // for easy
+    fill(224,235,255);
+    noStroke();
+    rect(200,242,300,69);
+      
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("easy", 350, 291);
+    
+    // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      selectedDifficulty = "easy";
+      editting = false;
+    }
+  }
+  
+  fill(242, 245, 252);
+  noStroke();
+  rect(200,331,300,69);
+    
+  fill(178, 207, 255, 225);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("normal", 350, 380); // starts at 351 ends at 380
+  
+  if (mouseX > 200 && mouseX < 500 && mouseY > 331 && mouseY < 400) { // for normal
+    fill(224,235,255);
+    noStroke();
+    rect(200,331,300,69);
+      
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("normal", 350, 380); // starts at 351 ends at 380
+    
+    // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      selectedDifficulty = "normal";
+      editting = false;
+    }
+  }
+  
+  fill(242, 245, 252);
+  noStroke();
+  rect(200,420,300,69);
+  
+  fill(178, 207, 255, 225);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("hard", 350, 469); // starts at 440 ends at 469
+  
+  if (mouseX > 200 && mouseX < 500 && mouseY > 420 && mouseY < 489) { // for hard
+    fill(224,235,255);
+    noStroke();
+    rect(200,420,300,69);
+  
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("hard", 350, 469); // starts at 440 ends at 469
+    
+    // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      selectedDifficulty = "hard";
+      editting = false;
+    }
+  }
+  
+  fill(242, 245, 252);
+  noStroke();
+  rect(200,511,300,69);
+  
+  fill(178, 207, 255, 225);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("insane", 350, 558); // starts at 529 ends at 558
+
+  if (mouseX > 200 && mouseX < 500 && mouseY > 511 && mouseY < 578) { // for insane
+    fill(224,235,255);
+    noStroke();
+    rect(200,511,300,69);
+  
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("insane", 350, 558); // starts at 529 ends at 558
+    
+    // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      selectedDifficulty = "insane";
+      editting = false;
+    }
+  }
+}
+
+void editMouse () {
+  fill(224,235,255,155);
+  rect(0,0,700,700);
+  
+  fill(255);
+  rect(100,100,500,500);
+  
+  fill(224,235,255); // mouse use
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("mouse use", 350, 200);
+
+  fill(242, 245, 252);
+  noStroke();
+  rect(200,292,300,69);
+    
+  fill(178, 207, 255, 225);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("yes", 350, 341); // starts at 262 ends at 291
+  
+  if (mouseX > 200 && mouseX < 500 && mouseY > 292 && mouseY < 371) { // for yes
+    fill(224,235,255);
+    noStroke();
+    rect(200,292,300,69);
+      
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("yes", 350, 341);
+    
+    // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      useMouse = true;
+      editting = false;
+    }
+  }
+  
+  fill(242, 245, 252);
+  noStroke();
+  rect(200,400,300,69);
+    
+  fill(178, 207, 255, 225);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("no", 350, 449); // starts at 351 ends at 380
+  
+  if (mouseX > 200 && mouseX < 500 && mouseY > 381 && mouseY < 450) { // for no
+    fill(224,235,255);
+    noStroke();
+    rect(200,400,300,69);
+    
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("no", 350, 449); // starts at 351 ends at 380
+    
+    // do some stuff to switch to the next menu page
+    
+    if (mousePressed) {
+      useMouse = false;
+      editting = false;
+    }
+  }
 }
 
 void bubbles() { // reusable!! 
