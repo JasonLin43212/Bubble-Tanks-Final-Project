@@ -23,7 +23,6 @@
 
   public void display() {
     fill(255);
-    println(x+" " + y);
     ellipse(x, y, radius*2, radius*2);
   }
 
