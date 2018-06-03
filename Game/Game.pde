@@ -726,29 +726,36 @@ void mapsettings() {
 
   fill(242, 245, 252);
   noStroke();
-  rect(0,0,100,50);
-  
-  fill(178, 207, 255, 225);
-  textAlign(LEFT);
-  textFont(bubble);
-  textSize(30); // 29
-  text("back", 7, 35);
-  
-  if (mouseX > 0 && mouseX < 100 && mouseY > 0 && mouseY < 50) { // for back
-    fill(255);
-    noStroke();
-    rect(0,0,100,50);
+  rect(200,381,300,69);
     
-    fill(178, 207, 255);
-    textAlign(LEFT);
+  fill(178, 207, 255, 225);
+  textAlign(CENTER);
+  textFont(bubble);
+  textSize(48); // 29
+  text("no", 350, 430); // starts at 351 ends at 380
+  
+  if (mouseX > 200 && mouseX < 500 && mouseY > 381 && mouseY < 450) { // for no
+    fill(224,235,255);
+    strokeWeight(5);
+    strokeJoin(MITER);
+    strokeCap(SQUARE);
+    stroke(255);
+    rect(200,381,300,69);
+      
+    fill(255);
+    textAlign(CENTER);
     textFont(bubble);
-    textSize(30); // 29
-    text("back", 7, 35);
+    textSize(48); // 29
+    text("no", 350, 430); // starts at 351 ends at 380
+    
+    // do some stuff to switch to the next menu page
     
     if (mousePressed) {
-      menupage--;
+      useMouse = false;
+      menupage++;
     }
   }
+
 }
 
 void bubbles() { // reusable!! 
