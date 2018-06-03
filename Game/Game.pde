@@ -470,7 +470,7 @@ void mapsize() {
     text(num, xsize, 275);
   }
 
-  fill(224, 235, 255);
+  fill(39, 150, 203,225);
   strokeWeight(6);
   stroke(178, 207, 255);
   if (mouseX > 64.5 && mouseX < 110.5 && mouseY > 200 && mouseY < 250) { // 5
@@ -506,7 +506,7 @@ void mapsize() {
   }
 
   if (selected > 0) { // if you chose something
-    fill(90, 190, 240); // little circle (changes color while hovering)
+    fill(39, 150, 203); // little circle (changes color while hovering)
     strokeWeight(6);
     stroke(224, 235, 255);
     ellipse(selected, 225, 20, 20);
