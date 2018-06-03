@@ -18,6 +18,7 @@ public class TitleBubble{
    
    public void display(){
      fill(140,204,250);
-      ellipse(x,y,2*radius,2*radius); 
+     noStroke();
+     ellipse(x,y,2*radius,2*radius); 
    }
 }

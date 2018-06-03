@@ -18,7 +18,7 @@ void setup() {
   size(700, 800);
   background(39, 150, 203);
   fill(200);
-  rect(0, 700, 700, 100);
+  rect(0, 700, 700, 100);  
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
   m = new Map(5);
@@ -39,9 +39,11 @@ void setup() {
 void draw() {
   if (menuSetting == 1) {
     title();
-  } else if (menuSetting == 2) {
+  } 
+  else if (menuSetting == 2) {
     difficulty();
-  } else if (menuSetting == 3) {
+  } 
+  else if (menuSetting == 3) {
     mapsize();
   } else if (menuSetting == 4) {
     mouseuse();
