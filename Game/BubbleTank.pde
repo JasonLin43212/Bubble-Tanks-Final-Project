@@ -122,15 +122,9 @@ public abstract class BubbleTank {
       transferTank();
     }
     float distFromCenter = dist(x, y, 0, 0);
-    float angleFromCenter = atan2(y,x);
     println(x+" " + y);
     if (distFromCenter > 750-1.5*radius) {
-      fill(6, 153, 173);
-      stroke(195, 234, 250);
-      strokeWeight(5);
-      ellipse(350, 350, 3*radius, 3*radius);
-      noStroke();
-      ellipse(350 + cos(angleFromCenter)*(750-distFromCenter-500), 350+sin(angleFromCenter)*(750-distFromCenter-500), 1000, 1000);
+      
     }
     fill(255);
     strokeWeight(1);
@@ -166,6 +160,14 @@ public abstract class BubbleTank {
   public float getY() {
     return y;
   }
+  
+  public float getRadius(){
+     return radius; 
+  }
+  
+  public boolean getHasTransfered(){
+    return hasTransfered;
+  }  
 
   public void transferTank() {
     if (transferedSoFar >= transferDistance) {

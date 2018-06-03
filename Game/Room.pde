@@ -4,17 +4,17 @@ public class Room {
   
   // private BubbleTank[] allTanks; 
   
-  private int n;
-  private int r, c;
+  private int mapSize;
+  private int row, col;
   
-  public Room (int num, int row, int col) {
-    n = num; 
-    r = row;
-    c = col;
+  public Room (int mapSize, int row, int col) {
+    this.mapSize = mapSize; 
+    this.row = row;
+    this.col = col;
     
     availableRooms = new boolean[4];
     for (int i = 0; i < 4; i++) {
-      if (r + 1 >= n || r -1 < 0 || c + 1 >= n || c -1 < 0) {
+      if (row + 1 >= mapSize || row -1 < 0 || col + 1 >= mapSize || col -1 < 0) {
         availableRooms[i] = false; // can't move to
       }
       else { // if within bounds
@@ -25,11 +25,11 @@ public class Room {
   }
   
   public int getR () {
-    return r; 
+    return row; 
   }
   
   public int getC () {
-    return c;
+    return col;
   }
   
   public boolean available (int n) { // returns whether or not there is a room / you can move into that room

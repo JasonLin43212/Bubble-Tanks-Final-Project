@@ -9,7 +9,7 @@ int menuSetting = 1;
 float centerX = 350;
 float centerY = 350;
 int difficulty = 0;
-int bubbleCount = 1;
+int bubbleTick = 1;
 ArrayList<TitleBubble> titleCircles;
 int mapSize;
 float selected;
@@ -49,9 +49,21 @@ void draw() {
     background(200);
     fill(0);
     strokeWeight(1);
-
+    
+    if(tank.getHasTransfered()){
+       allBullets.clear(); 
+    }
     tank.spawnBullets(allBullets);
     drawMap(tank.getX(), tank.getY());
+    fill(6, 153, 173);
+    stroke(195, 234, 250);
+    strokeWeight(5);
+    ellipse(350, 350, 3*tank.getRadius(), 3*tank.getRadius());
+    noStroke();
+    pushMatrix();
+    translate(-tank.getX()+350,-tank.getY()+350);
+    ellipse(0,0,1495,1495);
+    popMatrix();
     tank.display();
     tank.move(m);
     drawBullets(tank.getX(), tank.getY());
@@ -67,14 +79,10 @@ void draw() {
 void drawMap(float xOffset, float yOffset) {
   pushMatrix();
   translate(-xOffset+350, -yOffset+350);
-  stroke(195,234,250);
+  stroke(195, 234, 250);
   strokeWeight(5);
   fill(6, 153, 173);
   ellipse(0, 0, 1500, 1500);
-  ellipse(0, 3000, 1500, 1500);
-  ellipse(0, -3000, 1500, 1500);
-  ellipse(3000, 0, 1500, 1500);
-  ellipse(-3000, 0, 1500, 1500);
   popMatrix();
 }  
 
@@ -101,12 +109,12 @@ void keyPressed() {
   } else {
     tank.setMovement(keyCode, 1);
   }
-  if (keyCode == 76){
+  if (keyCode == 76) {
     difficulty = 1;
     mapSize = 5;
     useMouse = true;
     m = new Map(5);
-   menuSetting =6; 
+    menuSetting =6;
   }
   println(keyCode);
 }
@@ -731,10 +739,10 @@ void mapsettings() {
 }
 
 void bubbles() { // reusable!!
-  bubbleCount++;
-  if (bubbleCount % 10 == 0) {
+  bubbleTick++;
+  if (bubbleTick % 10 == 0) {
     titleCircles.add(new TitleBubble(random(700), random(10)+1, random(20))); 
-    bubbleCount = 1;
+    bubbleTick = 1;
   }
   for (int i=0; i<titleCircles.size(); i++) {
     TitleBubble current = titleCircles.get(i);
