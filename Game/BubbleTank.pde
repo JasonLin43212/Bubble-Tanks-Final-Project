@@ -124,7 +124,7 @@ public abstract class BubbleTank {
       strokeWeight(5);
       ellipse(350, 350, 3*radius, 3*radius);
       noStroke();
-      ellipse(350 + cos(angleFromCenter)*(750-distFromCenter-12.5*radius), 350+sin(angleFromCenter)*(750-distFromCenter-12.5*radius), 1000, 1000);
+      ellipse(350 + cos(angleFromCenter)*(750-distFromCenter-500), 350+sin(angleFromCenter)*(750-distFromCenter-500), 1000, 1000);
     }
     fill(255);
     strokeWeight(1);
