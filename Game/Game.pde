@@ -39,11 +39,9 @@ void setup() {
 void draw() {
   if (menuSetting == 1) {
     title();
-  } 
-  else if (menuSetting == 2) {
+  } else if (menuSetting == 2) {
     difficulty();
-  } 
-  else if (menuSetting == 3) {
+  } else if (menuSetting == 3) {
     mapsize();
   } else if (menuSetting == 4) {
     mouseuse();
@@ -117,12 +115,16 @@ void keyReleased() {
 
 //shooting with mouse
 void mousePressed() {
-  tank.setMovement(32, 1);
+  if (useMouse) {
+    tank.setMovement(32, 1);
+  }
 }
 
 //stop shooting with mouse
 void mouseReleased() {
-  tank.setMovement(32, 0);
+  if (useMouse) {
+    tank.setMovement(32, 0);
+  }
 }
 
 void mouseClicked() {
@@ -228,8 +230,8 @@ void mouseClicked() {
   }
   //confirmation
   else if (menuSetting == 5) {
-    if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 605){
-       menuSetting = 6; 
+    if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 605) {
+      menuSetting = 6;
     }
     //back
     if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
@@ -650,17 +652,14 @@ void mapsettings() {
   textAlign(RIGHT);
   textSize(36); // 29
   String difficultyText;
-  if (difficulty == 1){
+  if (difficulty == 1) {
     difficultyText = "easy";
-  }
-  else if (difficulty == 3){
+  } else if (difficulty == 3) {
     difficultyText = "normal";
-  }
-  else if (difficulty == 5){
+  } else if (difficulty == 5) {
     difficultyText = "hard";
-  }
-  else{
-   difficultyText = "insane"; 
+  } else {
+    difficultyText = "insane";
   }
   text(difficultyText, 600, 300);
   // selected mouse use
@@ -695,7 +694,7 @@ void mapsettings() {
     textSize(48); // 29
     text("start", 350, 567); // starts at 488 ends at 517
   }
-  
+
   //back button
   fill(242, 245, 252);
   noStroke();

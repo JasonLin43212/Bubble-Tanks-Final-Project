@@ -126,4 +126,8 @@ public abstract class BubbleTank {
   public float getY(){
      return y; 
   }
+  
+  public void transferTank(int dx, int dy){
+   return; 
+  }
 }
