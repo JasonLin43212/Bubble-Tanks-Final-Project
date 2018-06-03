@@ -67,8 +67,9 @@ void draw() {
 void drawMap(float xOffset, float yOffset) {
   pushMatrix();
   translate(-xOffset+350, -yOffset+350);
-  noStroke();
-  fill(39, 150, 203);
+  stroke(195,234,250);
+  strokeWeight(5);
+  fill(6, 153, 173);
   ellipse(0, 0, 1500, 1500);
   ellipse(0, 3000, 1500, 1500);
   ellipse(0, -3000, 1500, 1500);
@@ -100,6 +101,13 @@ void keyPressed() {
   } else {
     tank.setMovement(keyCode, 1);
   }
+  if (keyCode == 76){
+    difficulty = 1;
+    mapSize = 5;
+    useMouse = true;
+   menuSetting =6; 
+  }
+  println(keyCode);
 }
 
 void keyReleased() {

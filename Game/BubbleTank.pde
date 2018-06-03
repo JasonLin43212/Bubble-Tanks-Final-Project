@@ -50,31 +50,30 @@ public abstract class BubbleTank {
         angle = abs(angle);
         transferX = 1;
         transferY = 0;
-        transferDistance = (int) (2050+ radius - 750*cos(asin(y/750)) - distFromCenter*cos(angle));
+        transferDistance = (int) (3100+ radius - 750*cos(asin(y/750)) - distFromCenter*cos(angle));
       } 
       //transfering down
       else if (angle>=PI/4 && angle<3*PI/4) {
         angle = abs(angle-(PI/2));
         transferX = 0;
         transferY = 1;
-        transferDistance = (int) (2050 + radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
+        transferDistance = (int) (3100 + radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
       } 
       //transfering up
       else if (angle>=-3*PI/4 && angle<-PI/4) {
         angle = abs(angle+(PI/2));
         transferX = 0;
         transferY = -1;
-        transferDistance = (int) (2050 +radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
+        transferDistance = (int) (3100 +radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
       } 
       //transfering left
       else {
         angle = PI - abs(angle);
         transferX = -1;
         transferY = 0;
-        transferDistance = (int) (2050 + radius - (750*cos(asin(y/750))) - (distFromCenter*cos(angle)));
+        transferDistance = (int) (3100 + radius - (750*cos(asin(y/750))) - (distFromCenter*cos(angle)));
       }
-      transferSpeed = 40;
-      //println(transferX + " " + transferY + " " + transferDistance + " " + degrees(angle));
+      transferSpeed = 60;
     }
   }
 
@@ -116,13 +115,19 @@ public abstract class BubbleTank {
     if (preventControl) {
       transferTank();
     }
-    //println(x+" " + y);
-    //println(hasTransfered + " " + preventControl);
-    //println(transferDistance);
-    fill(39, 150, 203);
-    noStroke();
-    ellipse(width/2, (height-100)/2, 3*radius, 3*radius);
+    float distFromCenter = dist(x, y, 0, 0);
+    float angleFromCenter = atan2(y,x);
+    println(x+" " + y);
+    if (distFromCenter > 750-1.5*radius) {
+      fill(6, 153, 173);
+      stroke(195, 234, 250);
+      strokeWeight(5);
+      ellipse(350, 350, 3*radius, 3*radius);
+      noStroke();
+      ellipse(350 + cos(angleFromCenter)*(750-distFromCenter-12.5*radius), 350+sin(angleFromCenter)*(750-distFromCenter-12.5*radius), 1000, 1000);
+    }
     fill(255);
+    strokeWeight(1);
     stroke(0);
     ellipse(width/2, (height-100)/2, 2*radius, 2*radius);
     ellipse(width/2+cos(direction)*radius, (height-100)/2+sin(direction)*radius, 5, 5);
@@ -174,7 +179,7 @@ public abstract class BubbleTank {
       x += transferSpeed * transferX;
       y += transferSpeed * transferY;
       transferedSoFar += abs(transferSpeed);
-      transferSpeed -= 0.5;
+      transferSpeed -= 0.9;
     }
   }
 }
