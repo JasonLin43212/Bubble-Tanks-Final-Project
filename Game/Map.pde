@@ -19,6 +19,11 @@ public class Map {
     currentRoom = rooms[(n - 1) / 2][(n - 1) / 2];
   }  
 
+/* 0: right
+*  1: down
+*  2: left
+*  3: up
+*/
   private void changeRooms (int changeTo) { // lets you actually change rooms
     if (currentRoom.getAvailable()[changeTo]){
       currentRoom = rooms[currentRoomR()+coordRooms[changeTo][0]][currentRoomC()+coordRooms[changeTo][1]];

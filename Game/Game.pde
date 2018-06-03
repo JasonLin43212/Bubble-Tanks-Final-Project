@@ -20,7 +20,6 @@ void setup() {
   fill(200);
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
-  m = new Map(5);
   allBullets = new ArrayList<BubbleBullet>();
   titleCircles = new ArrayList<TitleBubble>();
 }
@@ -61,6 +60,7 @@ void draw() {
     }
     fill(200);
     rect(0, 700, 700, 100);
+    println(m.currentRoomR() + " " + m.currentRoomC());
   }
 }
 
@@ -105,6 +105,7 @@ void keyPressed() {
     difficulty = 1;
     mapSize = 5;
     useMouse = true;
+    m = new Map(5);
    menuSetting =6; 
   }
   println(keyCode);
@@ -239,6 +240,7 @@ void mouseClicked() {
   else if (menuSetting == 5) {
     if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 605) {
       menuSetting = 6;
+      m = new Map(mapSize);
     }
     //back
     if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {

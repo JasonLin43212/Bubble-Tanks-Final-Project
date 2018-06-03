@@ -36,12 +36,14 @@ public abstract class BubbleTank {
       direction += rotateLeft - rotateRight;
     }
     float distFromCenter = dist(x, y, 0, 0);
+    //if you are an enemy, don't allow it to move out of bounds
     if (id != 0) {
       if (distFromCenter>750-radius) {
         println("hi");
       }
     }
-    if (distFromCenter>750 && preventControl == false) {
+    //if you are the player, handle changing rooms 
+    else if (distFromCenter>750 && preventControl == false) {
       preventControl = true;
       float angle = atan2(y, x);
       println(transferDistance);
@@ -51,6 +53,7 @@ public abstract class BubbleTank {
         transferX = 1;
         transferY = 0;
         transferDistance = (int) (3100+ radius - 750*cos(asin(y/750)) - distFromCenter*cos(angle));
+        m.changeRooms(0);
       } 
       //transfering down
       else if (angle>=PI/4 && angle<3*PI/4) {
@@ -58,6 +61,7 @@ public abstract class BubbleTank {
         transferX = 0;
         transferY = 1;
         transferDistance = (int) (3100 + radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
+        m.changeRooms(1);
       } 
       //transfering up
       else if (angle>=-3*PI/4 && angle<-PI/4) {
@@ -65,6 +69,7 @@ public abstract class BubbleTank {
         transferX = 0;
         transferY = -1;
         transferDistance = (int) (3100 +radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
+        m.changeRooms(3);
       } 
       //transfering left
       else {
@@ -72,6 +77,7 @@ public abstract class BubbleTank {
         transferX = -1;
         transferY = 0;
         transferDistance = (int) (3100 + radius - (750*cos(asin(y/750))) - (distFromCenter*cos(angle)));
+        m.changeRooms(2);
       }
       transferSpeed = 60;
     }
