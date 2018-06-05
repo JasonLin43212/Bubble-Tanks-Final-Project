@@ -15,7 +15,7 @@
   public boolean move() {
     x += cos(direction) * speed;
     y += sin(direction) * speed;
-    if (dist(x, y, 0, 0)>750-radius) {
+    if (dist(x, y, 0, 0)>1000-radius) {
       return false;
     }
     return true;

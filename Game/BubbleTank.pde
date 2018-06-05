@@ -45,7 +45,7 @@ public class BubbleTank {
       }
     }
     //if you are the player, handle changing rooms 
-    else if (distFromCenter>750 && preventControl == false) {
+    else if (distFromCenter>1000 && preventControl == false) {
       preventControl = true;
       float angle = atan2(y, x);
       println(transferDistance);
@@ -54,7 +54,7 @@ public class BubbleTank {
         angle = abs(angle);
         transferX = 1;
         transferY = 0;
-        transferDistance = (int) (3100+ radius - 750*cos(asin(y/750)) - distFromCenter*cos(angle));
+        transferDistance = (int) (4200+ radius - 1000*cos(asin(y/1000)) - distFromCenter*cos(angle));
         m.changeRooms(0);
       } 
       //transfering down
@@ -62,7 +62,7 @@ public class BubbleTank {
         angle = abs(angle-(PI/2));
         transferX = 0;
         transferY = 1;
-        transferDistance = (int) (3100 + radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
+        transferDistance = (int) (4200 + radius - 1000*cos(asin(x/1000)) - distFromCenter*cos(angle));
         m.changeRooms(1);
       } 
       //transfering up
@@ -70,7 +70,7 @@ public class BubbleTank {
         angle = abs(angle+(PI/2));
         transferX = 0;
         transferY = -1;
-        transferDistance = (int) (3100 +radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
+        transferDistance = (int) (4200 +radius - 1000*cos(asin(x/1000)) - distFromCenter*cos(angle));
         m.changeRooms(3);
       } 
       //transfering left
@@ -78,10 +78,10 @@ public class BubbleTank {
         angle = PI - abs(angle);
         transferX = -1;
         transferY = 0;
-        transferDistance = (int) (3100 + radius - (750*cos(asin(y/750))) - (distFromCenter*cos(angle)));
+        transferDistance = (int) (4200 + radius - (1000*cos(asin(y/1000))) - (distFromCenter*cos(angle)));
         m.changeRooms(2);
       }
-      transferSpeed = 60;
+      transferSpeed = 70;
     }
   }
 
@@ -175,7 +175,7 @@ public class BubbleTank {
       hasTransfered = false;
       transferedSoFar = 0;
       transferSpeed = 20;
-    } else if ((abs(x) > 1500 || abs(y) > 1500) && !hasTransfered) {
+    } else if ((abs(x) > 2000 || abs(y) > 2000) && !hasTransfered) {
       if (abs(transferX) == 1) {
         x = -x + transferX*transferSpeed;
       } else if (abs(transferY) == 1) {

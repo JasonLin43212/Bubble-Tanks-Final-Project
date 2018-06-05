@@ -62,7 +62,7 @@ void draw() {
     noStroke();
     pushMatrix();
     translate(-tank.getX()+350,-tank.getY()+350);
-    ellipse(0,0,1495,1495);
+    ellipse(0,0,1995,1995);
     popMatrix();
     tank.display();
     tank.move(m);
@@ -82,7 +82,7 @@ void drawMap(float xOffset, float yOffset) {
   stroke(195, 234, 250);
   strokeWeight(5);
   fill(6, 153, 173);
-  ellipse(0, 0, 1500, 1500);
+  ellipse(0, 0, 2000, 2000);
   popMatrix();
 }  
 
