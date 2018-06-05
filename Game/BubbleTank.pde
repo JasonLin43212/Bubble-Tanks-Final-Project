@@ -48,7 +48,6 @@ public class BubbleTank {
     else if (distFromCenter>1000 && preventControl == false) {
       preventControl = true;
       float angle = atan2(y, x);
-      println(transferDistance);
       //transfering right
       if (angle>=-PI/4 && angle<PI/4) {
         angle = abs(angle);

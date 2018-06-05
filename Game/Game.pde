@@ -72,7 +72,6 @@ void draw() {
     }
     fill(200);
     rect(0, 700, 700, 100);
-    println(m.currentRoomR() + " " + m.currentRoomC());
   }
 }
 
@@ -116,7 +115,6 @@ void keyPressed() {
     m = new Map(5);
     menuSetting =6;
   }
-  println(keyCode);
 }
 
 void keyReleased() {
