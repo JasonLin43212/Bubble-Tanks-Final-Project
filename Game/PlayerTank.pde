@@ -52,63 +52,80 @@ public class PlayerTank extends BubbleTank {
       blocks.add(new BubbleBlock(350+1.8*getRadius()*cos(getDirection()-PI/9), 350+1.8*getRadius()*sin(getDirection()-PI/9), getRadius()/5, getDirection(), base));
     }
     //Type 4
-    if (type == 4){
-      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+PI), 350+1.4*getRadius()*sin(getDirection()+PI), getRadius()/3, getDirection(), base));
-      blocks.add(new BubbleBlock(350+1.9*getRadius()*cos(getDirection()+PI), 350+1.9*getRadius()*sin(getDirection()+PI), getRadius()/5, getDirection(), base));
-      blocks.add(new BubbleBlock(350+2.3*getRadius()*cos(getDirection()+PI), 350+2.3*getRadius()*sin(getDirection()+PI), getRadius()/7, getDirection(), base));
-      blocks.add(new BubbleBlock(350,350,getRadius(),getDirection(),base));
-      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+3*PI/4), 350+1.4*getRadius()*sin(getDirection()+3*PI/4), getRadius()/2, getDirection(), base));
-      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()-3*PI/4), 350+1.4*getRadius()*sin(getDirection()-3*PI/4), getRadius()/2, getDirection(), base));
-      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+PI/2), 350+1.4*getRadius()*sin(getDirection()+PI/2), getRadius()/1.5, getDirection(), base));
-      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()-PI/2), 350+1.4*getRadius()*sin(getDirection()-PI/2), getRadius()/1.5, getDirection(), base));
-       blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/2.6), 350+2*getRadius()*sin(getDirection()+PI/2.6), getRadius()/2, getDirection(), base));
-      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()-PI/2.6), 350+2*getRadius()*sin(getDirection()-PI/2.6), getRadius()/2, getDirection(), base));
-      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/4), 350+2*getRadius()*sin(getDirection()+PI/4), getRadius()/2.5, getDirection(), base));
-      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()-PI/4), 350+2*getRadius()*sin(getDirection()-PI/4), getRadius()/2.5, getDirection(), base));
-       blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/6), 350+2*getRadius()*sin(getDirection()+PI/6), getRadius()/3, getDirection(), base));
-      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()-PI/6), 350+2*getRadius()*sin(getDirection()-PI/6), getRadius()/3, getDirection(), base));
+    if (type == 4) {
+      blocks.add(new BubbleBlock(350, 350, getRadius(), getDirection(), base));
+      for (int i=0; i<6; i++) {
+        blocks.add(new BubbleBlock(350+1.2*getRadius()*cos(getDirection()+i*PI/3+PI/6), 350+1.2*getRadius()*sin(getDirection()+i*PI/3+PI/6), getRadius()/4.5, getDirection(), base)); 
+        blocks.add(new BubbleBlock(350+1.6*getRadius()*cos(getDirection()+i*PI/3+PI/6), 350+1.6*getRadius()*sin(getDirection()+i*PI/3+PI/6), getRadius()/4.5, getDirection(), base));
+      }
     }
+
     //Type 5
-    if (type == 5){
-      blocks.add(new BubbleBlock(350,350,getRadius(),getDirection(),base));
-      for (int i=0; i<8; i++){
+    if (type == 5) {
+      blocks.add(new BubbleBlock(350, 350, getRadius(), getDirection(), base));
+      for (int i=0; i<8; i++) {
         blocks.add(new BubbleBlock(350+1.2*getRadius()*cos(getDirection()+i*PI/4+PI/8), 350+1.2*getRadius()*sin(getDirection()+i*PI/4+PI/8), getRadius()/5, getDirection(), base)); 
         blocks.add(new BubbleBlock(350+1.6*getRadius()*cos(getDirection()+i*PI/4+PI/8), 350+1.6*getRadius()*sin(getDirection()+i*PI/4+PI/8), getRadius()/5, getDirection(), base));
-        if (i%2==0){
-          blocks.add(new BubbleBlock(350+1.9*getRadius()*cos(getDirection()+i*PI/4+PI/16), 350+1.9*getRadius()*sin(getDirection()+i*PI/4+PI/16), getRadius()/5, getDirection(), base)); 
-        }
-        else {
-          blocks.add(new BubbleBlock(350+1.9*getRadius()*cos(getDirection()+i*PI/4+3*PI/16), 350+1.9*getRadius()*sin(getDirection()+i*PI/4+3*PI/16), getRadius()/5, getDirection(), base)); 
+        if (i%2==0) {
+          blocks.add(new BubbleBlock(350+1.9*getRadius()*cos(getDirection()+i*PI/4+PI/16), 350+1.9*getRadius()*sin(getDirection()+i*PI/4+PI/16), getRadius()/5, getDirection(), base));
+        } else {
+          blocks.add(new BubbleBlock(350+1.9*getRadius()*cos(getDirection()+i*PI/4+3*PI/16), 350+1.9*getRadius()*sin(getDirection()+i*PI/4+3*PI/16), getRadius()/5, getDirection(), base));
         }
       }
     }
     //Type 6
-    if (type == 6){
-      
+    if (type == 6) {
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+PI), 350+1.4*getRadius()*sin(getDirection()+PI), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.9*getRadius()*cos(getDirection()+PI), 350+1.9*getRadius()*sin(getDirection()+PI), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.3*getRadius()*cos(getDirection()+PI), 350+2.3*getRadius()*sin(getDirection()+PI), getRadius()/7, getDirection(), base));
+      blocks.add(new BubbleBlock(350, 350, getRadius(), getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+3*PI/4), 350+1.4*getRadius()*sin(getDirection()+3*PI/4), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()-3*PI/4), 350+1.4*getRadius()*sin(getDirection()-3*PI/4), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+PI/2), 350+1.4*getRadius()*sin(getDirection()+PI/2), getRadius()/1.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()-PI/2), 350+1.4*getRadius()*sin(getDirection()-PI/2), getRadius()/1.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/2.6), 350+2*getRadius()*sin(getDirection()+PI/2.6), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()-PI/2.6), 350+2*getRadius()*sin(getDirection()-PI/2.6), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/4), 350+2*getRadius()*sin(getDirection()+PI/4), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()-PI/4), 350+2*getRadius()*sin(getDirection()-PI/4), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/6), 350+2*getRadius()*sin(getDirection()+PI/6), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()-PI/6), 350+2*getRadius()*sin(getDirection()-PI/6), getRadius()/3, getDirection(), base));
     }
     //Type 7
-    if (type == 7){
-      
+    if (type == 7) {
+      blocks.add(new BubbleBlock(350, 350, getRadius(), getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.3*getRadius()*cos(getDirection()+4*PI/5), 350+1.3*getRadius()*sin(getDirection()+4*PI/5), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.3*getRadius()*cos(getDirection()-4*PI/5), 350+1.3*getRadius()*sin(getDirection()-4*PI/5), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.9*getRadius()*cos(getDirection()+5*PI/6), 350+1.9*getRadius()*sin(getDirection()+5*PI/6), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.9*getRadius()*cos(getDirection()-5*PI/6), 350+1.9*getRadius()*sin(getDirection()-5*PI/6), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.6*getRadius()*cos(getDirection()+6*PI/7), 350+2.6*getRadius()*sin(getDirection()+6*PI/7), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.6*getRadius()*cos(getDirection()-6*PI/7), 350+2.6*getRadius()*sin(getDirection()-6*PI/7), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+3*PI/4), 350+1.4*getRadius()*sin(getDirection()+3*PI/4), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()-3*PI/4), 350+1.4*getRadius()*sin(getDirection()-3*PI/4), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+PI/2), 350+1.4*getRadius()*sin(getDirection()+PI/2), getRadius()/1.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()-PI/2), 350+1.4*getRadius()*sin(getDirection()-PI/2), getRadius()/1.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/2.6), 350+2*getRadius()*sin(getDirection()+PI/2.6), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()-PI/2.6), 350+2*getRadius()*sin(getDirection()-PI/2.6), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.2*getRadius()*cos(getDirection()+PI/3.5), 350+2.2*getRadius()*sin(getDirection()+PI/3.5), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.2*getRadius()*cos(getDirection()-PI/3.5), 350+2.2*getRadius()*sin(getDirection()-PI/3.5), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.5*getRadius()*cos(getDirection()+PI/5), 350+2.5*getRadius()*sin(getDirection()+PI/5), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.5*getRadius()*cos(getDirection()-PI/5), 350+2.5*getRadius()*sin(getDirection()-PI/5), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.3*getRadius()*cos(getDirection()+PI/4.5), 350+1.3*getRadius()*sin(getDirection()+PI/4.5), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.3*getRadius()*cos(getDirection()-PI/4.5), 350+1.3*getRadius()*sin(getDirection()-PI/4.5), getRadius()/3, getDirection(), base));
     }
     //Type 8
-    if (type == 8){
-      
+    if (type == 8) {
     }
     //Type 9
-    if (type == 9){
-      
+    if (type == 9) {
     }
     //Type 10
-    if (type == 10){
-      
+    if (type == 10) {
     }
     //Type 11
-    if (type == 11){
-      
+    if (type == 11) {
     }
     //Type 12
-    if (type == 12){
-      
+    if (type == 12) {
     }
-}
+  }
 }
