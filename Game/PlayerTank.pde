@@ -93,6 +93,29 @@ public class PlayerTank extends BubbleTank {
     //Type 7
     if (type == 7) {
       blocks.add(new BubbleBlock(350, 350, getRadius(), getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+3*PI/4), 350+1.4*getRadius()*sin(getDirection()+3*PI/4), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()-3*PI/4), 350+1.4*getRadius()*sin(getDirection()-3*PI/4), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+PI/2), 350+1.4*getRadius()*sin(getDirection()+PI/2), getRadius()/1.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()-PI/2), 350+1.4*getRadius()*sin(getDirection()-PI/2), getRadius()/1.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/2.6), 350+2*getRadius()*sin(getDirection()+PI/2.6), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()-PI/2.6), 350+2*getRadius()*sin(getDirection()-PI/2.6), getRadius()/2, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.2*getRadius()*cos(getDirection()+PI/3.5), 350+2.2*getRadius()*sin(getDirection()+PI/3.5), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.2*getRadius()*cos(getDirection()-PI/3.5), 350+2.2*getRadius()*sin(getDirection()-PI/3.5), getRadius()/2.5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.4*getRadius()*cos(getDirection()+PI/5), 350+2.4*getRadius()*sin(getDirection()+PI/5), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.4*getRadius()*cos(getDirection()-PI/5), 350+2.4*getRadius()*sin(getDirection()-PI/5), getRadius()/3, getDirection(), base));
+       blocks.add(new BubbleBlock(350+2.4*getRadius()*cos(getDirection()+4*PI/5), 350+2.4*getRadius()*sin(getDirection()+4*PI/5), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.4*getRadius()*cos(getDirection()-4*PI/5), 350+2.4*getRadius()*sin(getDirection()-4*PI/5), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.7*getRadius()*cos(getDirection()+6*PI/7), 350+2.7*getRadius()*sin(getDirection()+6*PI/7), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.7*getRadius()*cos(getDirection()-6*PI/7), 350+2.7*getRadius()*sin(getDirection()-6*PI/7), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.9*getRadius()*cos(getDirection()+7*PI/9), 350+2.9*getRadius()*sin(getDirection()+7*PI/9), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(350+2.9*getRadius()*cos(getDirection()-7*PI/9), 350+2.9*getRadius()*sin(getDirection()-7*PI/9), getRadius()/5, getDirection(), base));
+    }
+    //Type 8
+    if (type == 8) {
+    }
+    //Type 9
+    if (type == 9) {
+       blocks.add(new BubbleBlock(350, 350, getRadius(), getDirection(), base));
        blocks.add(new BubbleBlock(350+1.7*getRadius()*cos(getDirection()), 350+1.7*getRadius()*sin(getDirection()), getRadius()/1.2, getDirection(), base));
        for (int i=0 ;i<4;i++){
            blocks.add(new BubbleBlock(350+1.3*getRadius()*cos(getDirection()+i*PI/2+PI/4), 350+1.3*getRadius()*sin(getDirection()+i*PI/2+PI/4), getRadius()/3, getDirection(), base)); 
@@ -104,12 +127,6 @@ public class PlayerTank extends BubbleTank {
        blocks.add(new BubbleBlock(350+1.2*getRadius()*cos(getDirection()-PI/26), 350+1.2*getRadius()*sin(getDirection()-PI/26), getRadius()/8, getDirection(), internal));
        blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()+PI/10), 350+1.4*getRadius()*sin(getDirection()+PI/10), getRadius()/8, getDirection(), internal));
        blocks.add(new BubbleBlock(350+1.4*getRadius()*cos(getDirection()-PI/10), 350+1.4*getRadius()*sin(getDirection()-PI/10), getRadius()/8, getDirection(), internal));
-    }
-    //Type 8
-    if (type == 8) {
-    }
-    //Type 9
-    if (type == 9) {
     }
     //Type 10
     if (type == 10) {
