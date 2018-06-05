@@ -1,7 +1,8 @@
-public abstract class BubbleTank {
+public class BubbleTank {
   private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed;
   private int id, numBullets, transferX, transferY, transferDistance, transferedSoFar;
   private boolean preventControl, hasTransfered;
+  public ArrayList<BubbleBlock> blocks;
 
   public BubbleTank(float health, float radius, int id, float speed, int numBullets) {
     this.health = health;
@@ -27,6 +28,7 @@ public abstract class BubbleTank {
     transferDistance = 0;
     transferSpeed = 0;
     transferedSoFar = 0;
+    blocks = new ArrayList<BubbleBlock>();
   }
 
   public void move(Map m) {
@@ -121,16 +123,6 @@ public abstract class BubbleTank {
     if (preventControl) {
       transferTank();
     }
-    float distFromCenter = dist(x, y, 0, 0);
-    println(x+" " + y);
-    if (distFromCenter > 750-1.5*radius) {
-      
-    }
-    fill(255);
-    strokeWeight(1);
-    stroke(0);
-    ellipse(width/2, (height-100)/2, 2*radius, 2*radius);
-    ellipse(width/2+cos(direction)*radius, (height-100)/2+sin(direction)*radius, 5, 5);
   }
 
   public void realignDirection(float _x, float _y) {
@@ -165,9 +157,17 @@ public abstract class BubbleTank {
      return radius; 
   }
   
+  public float getDirection(){
+     return direction; 
+  }
+  
   public boolean getHasTransfered(){
     return hasTransfered;
   }  
+  
+  public ArrayList<BubbleBlock> getBlocks() {
+     return blocks; 
+  }
 
   public void transferTank() {
     if (transferedSoFar >= transferDistance) {
