@@ -4,7 +4,8 @@ public class BubbleTank {
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
 
-  public BubbleTank(float health, float radius, int id, float speed, int numBullets) {
+  public BubbleTank(float health, float radius, int id, float speed, int numBullets, int blaster, int cannon, int machinegun, int missile, int stunburst, 
+    int areaburst, int superattack) {
     this.health = health;
     this.id = id;
     this.speed = speed;
@@ -29,6 +30,14 @@ public class BubbleTank {
     transferSpeed = 0;
     transferedSoFar = 0;
     blocks = new ArrayList<BubbleBlock>();
+    
+    this.blaster = blaster;
+    this.cannon = cannon;
+    this.machinegun = machinegun;
+    this.missile = missile;
+    this.stunburst = stunburst;
+    this.areaburst = areaburst;
+    this.superattack = superattack;
   }
 
   public void move(Map m) {

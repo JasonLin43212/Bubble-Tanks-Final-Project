@@ -3,8 +3,12 @@ public class PlayerTank extends BubbleTank {
   color base = color(20, 54, 129);
   color internal = color(214, 149, 9);
 
-  public PlayerTank(float health, float radius, int id, float speed, int numBullets, int type) {
-    super(health, radius, id, speed, numBullets);
+  private int blaster, cannon, machinegun, missile, stunburst, areaburst, superattack;
+
+  public PlayerTank(float health, float radius, int id, float speed, int numBullets, int type, 
+    int blaster, int cannon, int machinegun, int missile, int stunburst, 
+    int areaburst, int superattack) {
+    super(health, radius, id, speed, numBullets, blaster, cannon, machinegun, missile, stunburst, areaburst, superattack);
     this.type = type;
   }
 
@@ -200,7 +204,7 @@ public class PlayerTank extends BubbleTank {
       blocks.add(new BubbleBlock(350+4*getRadius()*cos(getDirection()+5*PI/4), 350+2*getRadius()*sin(getDirection()+5*PI/4), getRadius()/10, getDirection(), internal));
       blocks.add(new BubbleBlock(350+4*getRadius()*cos(getDirection()+3*PI/2), 350+2*getRadius()*sin(getDirection()+3*PI/2), getRadius()/10, getDirection(), internal));
       blocks.add(new BubbleBlock(350+4*getRadius()*cos(getDirection()+7*PI/4), 350+2*getRadius()*sin(getDirection()+7*PI/4), getRadius()/10, getDirection(), internal));
-      
+
       blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()), 350+4*getRadius()*sin(getDirection()), getRadius()/10, getDirection(), internal));
       blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/4), 350+4*getRadius()*sin(getDirection()+PI/4), getRadius()/10, getDirection(), internal));
       blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/2), 350+4*getRadius()*sin(getDirection()+PI/2), getRadius()/10, getDirection(), internal));
@@ -209,7 +213,7 @@ public class PlayerTank extends BubbleTank {
       blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+5*PI/4), 350+4*getRadius()*sin(getDirection()+5*PI/4), getRadius()/10, getDirection(), internal));
       blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+3*PI/2), 350+4*getRadius()*sin(getDirection()+3*PI/2), getRadius()/10, getDirection(), internal));
       blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+7*PI/4), 350+4*getRadius()*sin(getDirection()+7*PI/4), getRadius()/10, getDirection(), internal));
-      
+
       blocks.add(new BubbleBlock(350, 350, getRadius(), getDirection(), base));
       blocks.add(new BubbleBlock(350+1.8*getRadius()*cos(getDirection()), 350+1.8*getRadius()*sin(getDirection()), getRadius()/2, getDirection(), internal));
 
@@ -232,7 +236,7 @@ public class PlayerTank extends BubbleTank {
       blocks.add(new BubbleBlock(350+2.8*getRadius()*cos(getDirection()-PI/2.6), 350+2.8*getRadius()*sin(getDirection()-PI/2.6), getRadius()/2, getDirection(), base));
       blocks.add(new BubbleBlock(350+3.2*getRadius()*cos(getDirection()+PI/3), 350+3.2*getRadius()*sin(getDirection()+PI/3), getRadius()/3, getDirection(), base));
       blocks.add(new BubbleBlock(350+3.2*getRadius()*cos(getDirection()-PI/3), 350+3.2*getRadius()*sin(getDirection()-PI/3), getRadius()/3, getDirection(), base));
-      
+
       blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()+PI/10), 350+2*getRadius()*sin(getDirection()+PI/10), getRadius()/5, getDirection(), internal));
       blocks.add(new BubbleBlock(350+2*getRadius()*cos(getDirection()-PI/10), 350+2*getRadius()*sin(getDirection()-PI/10), getRadius()/5, getDirection(), internal));
       blocks.add(new BubbleBlock(350+2.4*getRadius()*cos(getDirection()+PI/10), 350+2.4*getRadius()*sin(getDirection()+PI/10), getRadius()/5, getDirection(), internal));
@@ -243,4 +247,6 @@ public class PlayerTank extends BubbleTank {
       blocks.add(new BubbleBlock(350+1*getRadius()*cos(getDirection()), 350+1*getRadius()*sin(getDirection()), getRadius()/4.5, getDirection(), internal));
     }
   }
+
+  // buildGuns
 }

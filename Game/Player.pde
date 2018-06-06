@@ -4,11 +4,12 @@ public class Player {
   private BubbleTank tank;
   //new
   private int maxPoints;
+  private int level = 1; 
 
   public Player() {
     bubblePoints = 0;
-    //health,radius,id,speed,numBullets
-    tank = new PlayerTank(100, 40, 0, 5, 1,12);
+    //health,radius,id,speed,numBullets,type
+    tank = new PlayerTank(100, 40, 0, 5, 1, 12, 0, 0, 0, 0, 0, 0, 0);
   }
 
   public boolean canUpgrade() {
@@ -25,4 +26,6 @@ public class Player {
   public BubbleTank getTank() {
     return tank;
   }
+  
+  // levels
 }
