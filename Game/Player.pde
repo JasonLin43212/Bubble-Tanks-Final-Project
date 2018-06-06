@@ -5,6 +5,8 @@ public class Player {
   //new
   private int maxPoints;
   private int level = 1; 
+  
+  private int blaster, cannon, machinegun, missile, stunburst, areaburst, superattack;
 
   public Player() {
     bubblePoints = 0;

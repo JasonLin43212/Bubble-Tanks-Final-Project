@@ -3,6 +3,8 @@ public class BubbleTank {
   private int id, numBullets, transferX, transferY, transferDistance, transferedSoFar;
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
+  
+  private int blaster, cannon, machinegun, missile, stunburst, areaburst, superattack;
 
   public BubbleTank(float health, float radius, int id, float speed, int numBullets, int blaster, int cannon, int machinegun, int missile, int stunburst, 
     int areaburst, int superattack) {
