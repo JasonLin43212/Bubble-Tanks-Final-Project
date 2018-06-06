@@ -22,7 +22,7 @@ public class BubbleTank {
     rotateRight = 0;
     coolDown = 30;
     isShooting = 0;
-    preventControl = false;
+    preventControl = false; // use this when upgrading to prevent user from moving, also for pause button 
     hasTransfered = false;
     transferX = 0;
     transferY = 0;
@@ -31,6 +31,8 @@ public class BubbleTank {
     transferedSoFar = 0;
     blocks = new ArrayList<BubbleBlock>();
     
+    // array with all of these + cool down (2d array) 
+    // make something to show cool downs in bottom + health (later) 
     this.blaster = blaster;
     this.cannon = cannon;
     this.machinegun = machinegun;
