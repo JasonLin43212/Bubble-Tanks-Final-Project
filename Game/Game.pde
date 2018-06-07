@@ -1,8 +1,12 @@
 Map m; 
 PFont bubble;
 PFont ptmono;
-Player player = new Player();
+Boss player = new Boss();
 BubbleTank tank = player.getTank();
+
+Boss boss = new Boss();
+BubbleTank bosst = boss.getTank();
+
 ArrayList<BubbleBullet> allBullets;
 boolean useMouse = false;
 int menuSetting = 1;
@@ -54,23 +58,29 @@ void draw() {
     if(tank.getHasTransfered()){
        allBullets.clear(); 
     }
+    
     tank.spawnBullets(allBullets);
     drawMap(tank.getX(), tank.getY());
+    
     fill(6, 153, 173);
     stroke(195, 234, 250);
     strokeWeight(5);
     ellipse(350, 350, 7*tank.getRadius(), 7*tank.getRadius());
+    
     noStroke();
     pushMatrix();
     translate(-tank.getX()+350,-tank.getY()+350);
     ellipse(0,0,1995,1995);
     popMatrix();
+    
     tank.display();
     tank.move(m);
+        
     drawBullets(tank.getX(), tank.getY());
     if (useMouse) {
       tank.realignDirection(mouseX, mouseY);
     }
+
     fill(200);
     rect(0, 700, 700, 100);
   }
@@ -84,6 +94,9 @@ void drawMap(float xOffset, float yOffset) {
   fill(6, 153, 173);
   ellipse(0, 0, 2000, 2000);
   popMatrix();
+  
+  bosst.display();
+  bosst.move(m);
 }  
 
 void drawBullets(float xOffset, float yOffset) {

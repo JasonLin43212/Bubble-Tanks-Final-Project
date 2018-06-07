@@ -6,8 +6,9 @@ public class BubbleTank {
   
   private int blaster, cannon, machinegun, missile, stunburst, areaburst, superattack;
 
-  public BubbleTank(float health, float radius, int id, float speed, int numBullets, int blaster, int cannon, int machinegun, int missile, int stunburst, 
-    int areaburst, int superattack) {
+  public BubbleTank(float health, float radius, int id, float speed, int numBullets, 
+                    int blaster, int cannon, int machinegun, int missile, int stunburst, 
+                    int areaburst, int superattack) {
     this.health = health;
     this.id = id;
     this.speed = speed;
