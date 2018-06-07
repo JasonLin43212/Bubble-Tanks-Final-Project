@@ -22,13 +22,14 @@ public class Room {
       }
     }
     int manhattanDist = abs(row - ((mapSize-1)/2)) + abs(col - ((mapSize-1)/2));
-    int numEnemies = (int) (random(manhattanDist) + manhattanDist/2) * difficulty;
+    int numEnemies = (int) (random(manhattanDist) + (manhattanDist+3)) * difficulty;
     allEnemyTanks = new ArrayList<EnemyTank>();
     for (int i=0; i<numEnemies; i++){
        int type = (int) (random(manhattanDist/3) * difficulty);
        int id = maxID;
        maxID++;
-       allEnemyTanks.add(new EnemyTank(random(100+manhattanDist*10)*difficulty,manhattanDist*7.5,id,manhattanDist*0.6 + 3,type));
+       //health,radius,id,speed,type
+       allEnemyTanks.add(new EnemyTank(random(100+manhattanDist*10)*difficulty,manhattanDist*3 + difficulty*1.5 + 10,id,manhattanDist*0.7 + 2 + difficulty,0));
     }
   }
   
@@ -46,6 +47,10 @@ public class Room {
   
   public boolean[] getAvailable(){
      return availableRooms; 
+  }
+  
+  public ArrayList<EnemyTank> getEnemies(){
+     return allEnemyTanks; 
   }
   //private void setArrows (int num) {   
     //

@@ -4,7 +4,7 @@ public class BubbleTank {
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
 
-  public BubbleTank(float health, float radius, int id, float speed) {
+  public BubbleTank(float health, float radius, int id, float speed,float coolDown) {
     this.health = health;
     this.id = id;
     this.speed = speed;
@@ -18,7 +18,7 @@ public class BubbleTank {
     down = 0;
     rotateLeft = 0;
     rotateRight = 0;
-    coolDown = 30;
+    this.coolDown = coolDown;
     isShooting = 0;
     preventControl = false;
     hasTransfered = false;
@@ -31,22 +31,15 @@ public class BubbleTank {
   }
 
   public void move(Map m) {
-    if (!preventControl) {
+    if (!preventControl && id==0) {
       x += (right-left)*speed;
       y += (down-up)*speed;
       direction += rotateLeft - rotateRight;
     }
     float distFromCenter = dist(x, y, 0, 0);
     float angle = atan2(y, x);
-    //if you are an enemy, don't allow it to move out of bounds
-    if (id != 0) {
-      if (distFromCenter>1000-radius) {
-        x = (1000-radius)*cos(angle);
-        y = (1000-radius)*sin(angle);
-      }
-    }
     //if you are the player, handle changing rooms 
-    else if (distFromCenter>1000 && preventControl == false) {
+    if (id==0 && distFromCenter>1000 && preventControl == false) {
       preventControl = true;
       //transfering right
       if (angle>=-PI/4 && angle<PI/4) {
@@ -152,6 +145,14 @@ public class BubbleTank {
     return y;
   }
   
+  public void setX(float newX){
+    x = newX; 
+  }
+  
+  public void setY(float newY){
+    y = newY; 
+  }
+  
   public float getRadius(){
      return radius; 
   }
@@ -178,6 +179,14 @@ public class BubbleTank {
   
   public float getHealth(){
      return health; 
+  }
+  
+  public int getId(){
+     return id; 
+  }
+  
+  public float getSpeed(){
+     return speed; 
   }
 
   public void transferTank() {

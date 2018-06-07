@@ -37,4 +37,8 @@ public class Map {
   public int currentRoomC () {
     return currentRoom.getC();
   }
+  
+  public Room getCurrentRoom(){
+     return currentRoom; 
+  }
 }
