@@ -75,6 +75,10 @@ void draw() {
     drawShading(tank.getX(),tank.getY());
     fill(200);
     rect(0, 700, 700, 100);
+    fill(0);
+    rect(30,720,300,35);  
+    fill(251,31,50);
+    rect(30,720,300*(tank.getHealth()/tank.getMaxHealth()),35);
   }
 }
 

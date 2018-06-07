@@ -1,11 +1,12 @@
 public class BubbleTank {
-  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed, shootingDown;
+  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed, shootingDown,maxHealth;
   private int id, transferX, transferY, transferDistance, transferedSoFar;
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
 
   public BubbleTank(float health, float radius, int id, float speed, float coolDown) {
     this.health = health;
+    this.maxHealth = health;
     this.id = id;
     this.speed = speed;
     this.radius = radius;
@@ -138,7 +139,7 @@ public class BubbleTank {
     if (isShooting == 1 && shootingDown == 0) {
       shootingDown = coolDown;
       //radius,speed,tankRadius,x,y,direction,id
-      arr.add(new BubbleBullet(5, 10, radius, x, y, direction, id));
+      arr.add(new BubbleBullet(5, 15, radius, x, y, direction, id));
     }
   }
 
@@ -184,6 +185,10 @@ public class BubbleTank {
 
   public float getHealth() {
     return health;
+  }
+  
+  public float getMaxHealth(){
+     return maxHealth; 
   }
 
   public int getId() {

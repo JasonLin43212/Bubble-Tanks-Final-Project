@@ -21,6 +21,8 @@ public class EnemyTank extends BubbleTank {
     for (int i=0; i<blocks.size(); i++) {
       blocks.get(i).display();
     }
+    fill(255,190);
+    rect(getX()-1.5*getRadius(), getY()-2*getRadius(), 3*getRadius()*(getHealth()/getMaxHealth()), 0.5*getRadius());
   }
 
   public void buildBlocks() {
