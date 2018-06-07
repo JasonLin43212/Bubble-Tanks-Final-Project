@@ -51,6 +51,7 @@ void draw() {
     background(200);
     fill(0);
     strokeWeight(1);  
+    println(tank.getHealth());
     if (tank.getHasTransfered()) {
       allBullets.clear();
     }
@@ -133,6 +134,7 @@ void drawEnemies(float xOffset, float yOffset) {
   ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
   for (int i=0; i<enemies.size(); i++) {
     EnemyTank currentEnemy = enemies.get(i);
+    currentEnemy.spawnBullets(allBullets);
     currentEnemy.setDirection(tank.getX(),tank.getY());
     currentEnemy.move();
     currentEnemy.display();
@@ -153,7 +155,7 @@ void keyPressed() {
     tank.setMovement(keyCode, 1);
   }
   if (keyCode == 76) {
-    difficulty = 1;
+    difficulty = 7;
     mapSize = 5;
     useMouse = true;
     m = new Map(19, difficulty);

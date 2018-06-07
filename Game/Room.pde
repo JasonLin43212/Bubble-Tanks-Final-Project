@@ -29,7 +29,7 @@ public class Room {
        int id = maxID;
        maxID++;
        //health,radius,id,speed,type,coolDown
-       allEnemyTanks.add(new EnemyTank(random(100)*difficulty+60 + manhattanDist*10,manhattanDist*3 + difficulty*1.5 + 10,id,manhattanDist*0.7 + 2 + difficulty,0,120-difficulty*10-manhattanDist*2));
+       allEnemyTanks.add(new EnemyTank(random(100)*difficulty+60 + manhattanDist*10,manhattanDist*3 + difficulty*1.5 + 10,id,manhattanDist*0.7 + 2 + difficulty,0,140-difficulty*5-manhattanDist));
     }
   }
   

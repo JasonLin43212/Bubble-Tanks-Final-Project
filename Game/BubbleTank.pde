@@ -1,10 +1,10 @@
 public class BubbleTank {
-  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed,shootingDown;
+  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed, shootingDown;
   private int id, transferX, transferY, transferDistance, transferedSoFar;
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
 
-  public BubbleTank(float health, float radius, int id, float speed,float coolDown) {
+  public BubbleTank(float health, float radius, int id, float speed, float coolDown) {
     this.health = health;
     this.id = id;
     this.speed = speed;
@@ -19,7 +19,11 @@ public class BubbleTank {
     rotateLeft = 0;
     rotateRight = 0;
     this.coolDown = coolDown;
-    isShooting = 0;
+    if (id!=0) {
+      isShooting = 1;
+    } else {
+      isShooting = 0;
+    }
     preventControl = false;
     hasTransfered = false;
     transferX = 0;
@@ -145,54 +149,54 @@ public class BubbleTank {
   public float getY() {
     return y;
   }
-  
-  public void setX(float newX){
-    x = newX; 
-  }
-  
-  public void setY(float newY){
-    y = newY; 
-  }
-  
-  public float getRadius(){
-     return radius; 
-  }
-  
-  public float getDirection(){
-     return direction; 
-  }
-  
-  public boolean getHasTransfered(){
-    return hasTransfered;
-  }  
-  
-  public ArrayList<BubbleBlock> getBlocks() {
-     return blocks; 
-  }
-  
-  public void setRadius(float val){
-     radius = val; 
-  }
-  
-  public void incrementHealth(float val){
-     health += val; 
-  }
-  
-  public float getHealth(){
-     return health; 
-  }
-  
-  public int getId(){
-     return id; 
-  }
-  
-  public float getSpeed(){
-     return speed; 
+
+  public void setX(float newX) {
+    x = newX;
   }
 
-public void setDirection(float x, float y){
-   direction =  atan2(y-this.y,x-this.x);
-}
+  public void setY(float newY) {
+    y = newY;
+  }
+
+  public float getRadius() {
+    return radius;
+  }
+
+  public float getDirection() {
+    return direction;
+  }
+
+  public boolean getHasTransfered() {
+    return hasTransfered;
+  }  
+
+  public ArrayList<BubbleBlock> getBlocks() {
+    return blocks;
+  }
+
+  public void setRadius(float val) {
+    radius = val;
+  }
+
+  public void incrementHealth(float val) {
+    health += val;
+  }
+
+  public float getHealth() {
+    return health;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public float getSpeed() {
+    return speed;
+  }
+
+  public void setDirection(float x, float y) {
+    direction =  atan2(y-this.y, x-this.x);
+  }
   public void transferTank() {
     if (transferedSoFar >= transferDistance) {
       preventControl = false;
