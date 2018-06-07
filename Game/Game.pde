@@ -14,6 +14,7 @@ MenuPages mt = new MenuPages();
 ArrayList<TitleBubble> titleCircles;
 int mapSize;
 float selected;
+int maxID=0;
 
 void setup() {
   size(700, 800);
@@ -59,12 +60,13 @@ void draw() {
     fill(6, 153, 173);
     stroke(195, 234, 250);
     strokeWeight(5);
-    //ellipse(350, 350, 7*tank.getRadius(), 7*tank.getRadius());
+    ellipse(350, 350, 7*tank.getRadius(), 7*tank.getRadius());
     noStroke();
     pushMatrix();
     translate(-tank.getX()+350,-tank.getY()+350);
     ellipse(0,0,1995,1995);
     popMatrix();
+    drawEnemies(tank.getX(),tank.getY());
     tank.display();
     tank.move(m);
     drawBullets(tank.getX(), tank.getY());
@@ -100,6 +102,12 @@ void drawBullets(float xOffset, float yOffset) {
   popMatrix();
 }
 
+void drawEnemies(float xOffset, float yOffset){
+   pushMatrix();
+   
+   popMatrix();
+}
+
 
 void keyPressed() {
   if (useMouse) {
@@ -113,7 +121,7 @@ void keyPressed() {
     difficulty = 1;
     mapSize = 5;
     useMouse = true;
-    m = new Map(5);
+    m = new Map(5,difficulty);
     menuSetting =6;
   }
 }
@@ -247,7 +255,7 @@ void mouseClicked() {
   else if (menuSetting == 5) {
     if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 605) {
       menuSetting = 6;
-      m = new Map(mapSize);
+      m = new Map(mapSize,difficulty);
     }
     //back
     if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {

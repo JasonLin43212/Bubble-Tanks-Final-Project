@@ -5,13 +5,13 @@ public class Map {
   private int[][] coordRooms = {{1,0},{0,1},{-1,0},{0,-1}};
   private int n;
 
-  public Map (int num) {
+  public Map (int num, int difficulty) {
     n = num;
     rooms = new Room[n][n];
 
     for (int r = 0; r < n; r++) {
       for (int c = 0; c < n; c++) {
-        rooms[r][c] = new Room (n, r, c);
+        rooms[r][c] = new Room (n, r, c, difficulty);
       }
     }
 

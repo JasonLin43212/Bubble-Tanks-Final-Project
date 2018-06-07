@@ -3,8 +3,8 @@ public class PlayerTank extends BubbleTank {
   color base = color(20, 54, 129);
   color internal = color(214, 149, 9);
 
-  public PlayerTank(float health, float radius, int id, float speed, int numBullets, int type) {
-    super(health, radius, id, speed, numBullets);
+  public PlayerTank(float health, float radius, int id, float speed, int type) {
+    super(health, radius, id, speed);
     this.type = type;
   }
 
