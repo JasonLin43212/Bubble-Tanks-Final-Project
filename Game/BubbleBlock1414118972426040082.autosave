@@ -9,11 +9,11 @@ public class BubbleBlock {
     this.direction = direction;
     this.c = c;
   }
-  
+
   public void display() {
     fill(c);
     strokeWeight(2);
-    stroke(255,240);
+    stroke(195, 234, 250);
     ellipse(x, y, radius*2, radius*2);
     noStroke();
     fill(255, 40);

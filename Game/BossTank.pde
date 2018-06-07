@@ -15,68 +15,73 @@ public class BossTank extends BubbleTank {
       blocks.get(i).display();
     }
   }
-  
+
   public void buildBlocks() {
     blocks.clear();
     if (type == 0) { // bull
-      blocks.add(new BubbleBlock(292, 325 - 80, 20, getDirection(), color(205,183,158)));
-      blocks.add(new BubbleBlock(408, 325 - 80, 20, getDirection(), color(205,183,158)));
-
-      blocks.add(new BubbleBlock(350, 365 - 80, 77, getDirection(), color(82,54,27))); 
-      blocks.add(new BubbleBlock(350, 430 - 80, 40, 30, getDirection(), color(82,54,27)));
-      
-      blocks.add(new BubbleBlock(350, 430 - 80, 20, 10, getDirection(), color(175,28,25)));
-      blocks.add(new BubbleBlock(320, 350 - 80, 10, getDirection(), color(175,28,25)));
-      blocks.add(new BubbleBlock(380, 350 - 80, 10, getDirection(), color(175,28,25)));
-      
-      blocks.add(new BubbleBlock(340, 345 - 80, 5, getDirection(), color(101,15,22))); 
-      blocks.add(new BubbleBlock(360, 345 - 80, 5, getDirection(), color(101,15,22)));
-      blocks.add(new BubbleBlock(330, 330 - 80, 5, getDirection(), color(101,15,22)));
-      blocks.add(new BubbleBlock(370, 330 - 80, 5, getDirection(), color(101,15,22)));
-      blocks.add(new BubbleBlock(315, 325 - 80, 5, getDirection(), color(101,15,22)));
-      blocks.add(new BubbleBlock(385, 325 - 80, 5, getDirection(), color(101,15,22)));
-      
-      blocks.add(new BubbleBlock(330, 400 - 80, 15, getDirection(), color(110,90,67)));
-      blocks.add(new BubbleBlock(370, 400 - 80, 15, getDirection(), color(110,90,67)));
-            
-      blocks.add(new BubbleBlock(280, 315 - 80, 17, getDirection(), color(205,183,158)));
-      blocks.add(new BubbleBlock(420, 315 - 80, 17, getDirection(), color(205,183,158)));
-      blocks.add(new BubbleBlock(280, 315 - 80, 12, getDirection(), color(222,208,192)));
-      blocks.add(new BubbleBlock(420, 315 - 80, 12, getDirection(), color(222,208,192)));
-      
-      blocks.add(new BubbleBlock(265, 300 - 80, 14, getDirection(), color(205,183,158)));
-      blocks.add(new BubbleBlock(435, 300 - 80, 14, getDirection(), color(205,183,158)));
-      blocks.add(new BubbleBlock(265, 300 - 80, 9, getDirection(), color(222,208,192)));
-      blocks.add(new BubbleBlock(435, 300 - 80, 9, getDirection(), color(222,208,192)));
-      
-      blocks.add(new BubbleBlock(245, 295 - 80, 12, getDirection(), color(205,183,158)));
-      blocks.add(new BubbleBlock(455, 295 - 80, 12, getDirection(), color(205,183,158)));
-      blocks.add(new BubbleBlock(245, 295 - 80, 7, getDirection(), color(222,208,192)));
-      blocks.add(new BubbleBlock(455, 295 - 80, 7, getDirection(), color(222,208,192)));
-      
-      blocks.add(new BubbleBlock(230, 295 - 80, 10, getDirection(), color(205,183,158)));
-      blocks.add(new BubbleBlock(470, 295 - 80, 10, getDirection(), color(205,183,158)));
-      blocks.add(new BubbleBlock(230, 295 - 80, 5, getDirection(), color(222,208,192)));
-      blocks.add(new BubbleBlock(470, 295 - 80, 5, getDirection(), color(222,208,192)));
-      
-      blocks.add(new BubbleBlock(330, 400 - 80, 15, getDirection(), color(110,90,67)));
-      blocks.add(new BubbleBlock(370, 400 - 80, 15, getDirection(), color(110,90,67)));
+      color bullBrown = color(82, 54, 27);
+      color g = color(205, 183, 158);
+      color bullRed = color(175, 28, 25);
+      color eyebrow = color(101, 15, 22);
+      color nose = color(110, 90, 67);
+      color horn1 =color(205, 183, 158);
+      color horn2 = color(222, 208, 192);
+      //Horn 0
+      blocks.add(new BubbleBlock(350+83*cos(getDirection()+28*PI/36), 350+83*sin(getDirection()+28*PI/36), 17, getDirection(), horn1));
+      blocks.add(new BubbleBlock(350+83*cos(getDirection()-28*PI/36), 350+83*sin(getDirection()-28*PI/36), 17, getDirection(), horn1));
+      //Face
+      blocks.add(new BubbleBlock(350+cos(getDirection()), 350+sin(getDirection()), 77, getDirection(), bullBrown));
+      blocks.add(new BubbleBlock(350+70*cos(getDirection()), 350+70*sin(getDirection()), 40, getDirection(), bullBrown));
+      //Nose and Eye
+      blocks.add(new BubbleBlock(350+70*cos(getDirection()), 350+70*sin(getDirection()), 20, getDirection(), bullRed));
+      blocks.add(new BubbleBlock(350+30*cos(getDirection()-5*PI/8), 350+30*sin(getDirection()-5*PI/8), 10, getDirection(), bullRed));
+      blocks.add(new BubbleBlock(350+30*cos(getDirection()+5*PI/8), 350+30*sin(getDirection()+5*PI/8), 10, getDirection(), bullRed));
+      //Eyebrows
+      blocks.add(new BubbleBlock(350+55*cos(getDirection()-27*PI/36), 350+55*sin(getDirection()-27*PI/36), 5, getDirection(), eyebrow));
+      blocks.add(new BubbleBlock(350+55*cos(getDirection()+27*PI/36), 350+55*sin(getDirection()+27*PI/36), 5, getDirection(), eyebrow));
+      blocks.add(new BubbleBlock(350+27*cos(getDirection()-32*PI/36), 350+27*sin(getDirection()-32*PI/36), 5, getDirection(), eyebrow));
+      blocks.add(new BubbleBlock(350+27*cos(getDirection()+32*PI/36), 350+27*sin(getDirection()+32*PI/36), 5, getDirection(), eyebrow));
+      blocks.add(new BubbleBlock(350+42*cos(getDirection()-30*PI/36), 350+42*sin(getDirection()-30*PI/36), 5, getDirection(), eyebrow));
+      blocks.add(new BubbleBlock(350+42*cos(getDirection()+30*PI/36), 350+42*sin(getDirection()+30*PI/36), 5, getDirection(), eyebrow));
+      //Nose
+      blocks.add(new BubbleBlock(350+47*cos(getDirection()+6*PI/36), 350+47*sin(getDirection()+6*PI/36), 15, getDirection(), nose));
+      blocks.add(new BubbleBlock(350+47*cos(getDirection()-6*PI/36), 350+47*sin(getDirection()-6*PI/36), 15, getDirection(), nose));
+      //Horn 1
+      blocks.add(new BubbleBlock(350+92*cos(getDirection()+28*PI/36), 350+92*sin(getDirection()+28*PI/36), 17, getDirection(), horn1));
+      blocks.add(new BubbleBlock(350+92*cos(getDirection()-28*PI/36), 350+92*sin(getDirection()-28*PI/36), 17, getDirection(), horn1));
+      blocks.add(new BubbleBlock(350+92*cos(getDirection()+28*PI/36), 350+92*sin(getDirection()+28*PI/36), 12, getDirection(), horn2));
+      blocks.add(new BubbleBlock(350+92*cos(getDirection()-28*PI/36), 350+92*sin(getDirection()-28*PI/36), 12, getDirection(), horn2));
+      // Horn 2
+      blocks.add(new BubbleBlock(350+115*cos(getDirection()+27*PI/36), 350+115*sin(getDirection()+27*PI/36), 14, getDirection(), horn1));
+      blocks.add(new BubbleBlock(350+115*cos(getDirection()-27*PI/36), 350+115*sin(getDirection()-27*PI/36), 14, getDirection(), horn1));
+      blocks.add(new BubbleBlock(350+115*cos(getDirection()+27*PI/36), 350+115*sin(getDirection()+27*PI/36), 9, getDirection(), horn2));
+      blocks.add(new BubbleBlock(350+115*cos(getDirection()-27*PI/36), 350+115*sin(getDirection()-27*PI/36), 9, getDirection(), horn2));
+      // Horn 3
+      blocks.add(new BubbleBlock(350+132*cos(getDirection()+26*PI/36), 350+132*sin(getDirection()+26*PI/36), 12, getDirection(), horn1));
+      blocks.add(new BubbleBlock(350+132*cos(getDirection()-26*PI/36), 350+132*sin(getDirection()-26*PI/36), 12, getDirection(), horn1));
+      blocks.add(new BubbleBlock(350+132*cos(getDirection()+26*PI/36), 350+132*sin(getDirection()+26*PI/36), 7, getDirection(), horn2));
+      blocks.add(new BubbleBlock(350+132*cos(getDirection()-26*PI/36), 350+132*sin(getDirection()-26*PI/36), 7, getDirection(), horn2));
+      //horn 4
+      blocks.add(new BubbleBlock(350+142*cos(getDirection()+25*PI/36), 350+142*sin(getDirection()+25*PI/36), 10, getDirection(), horn1));
+      blocks.add(new BubbleBlock(350+142*cos(getDirection()-25*PI/36), 350+142*sin(getDirection()-25*PI/36), 10, getDirection(), horn1));
+      blocks.add(new BubbleBlock(350+142*cos(getDirection()+25*PI/36), 350+142*sin(getDirection()+25*PI/36), 5, getDirection(), horn2));
+      blocks.add(new BubbleBlock(350+142*cos(getDirection()-25*PI/36), 350+142*sin(getDirection()-25*PI/36), 5, getDirection(), horn2));
     }
     if (type == 1) {
-      blocks.add(new BubbleBlock(300, 275, 25, getDirection(), color(255,231,0)));
-      blocks.add(new BubbleBlock(400, 275, 25, getDirection(), color(255,231,0)));
-      blocks.add(new BubbleBlock(310, 290, 25, getDirection(), color(255,231,0)));
-      blocks.add(new BubbleBlock(390, 290, 25, getDirection(), color(255,231,0)));
-      blocks.add(new BubbleBlock(350, 425, 50, getDirection(), color(255,231,0)));
-      blocks.add(new BubbleBlock(350, 285, 50, getDirection(), color(255,231,0)));
-      
-      blocks.add(new BubbleBlock(350, 350, 75, 100, getDirection(), color(255,103,0)));
-      blocks.add(new BubbleBlock(395, 350, 35, 85, getDirection(), color(255,141,0)));
-      blocks.add(new BubbleBlock(305, 350, 35, 85, getDirection(), color(255,141,0)));
-      blocks.add(new BubbleBlock(375, 350, 35, 85, getDirection(), color(255,193,0)));
-      blocks.add(new BubbleBlock(325, 350, 35, 85, getDirection(), color(255,193,0)));
-      blocks.add(new BubbleBlock(350, 350, 25, 70, getDirection(), color(255,231,0)));
+      blocks.add(new BubbleBlock(350+cos(getDirection()), 350+sin(getDirection()), 60, getDirection(), base));
+      blocks.add(new BubbleBlock(350+65*cos(getDirection()), 350+65*sin(getDirection()), 75, getDirection(), base));
+      blocks.add(new BubbleBlock(350+75*cos(getDirection()+PI), 350+75*sin(getDirection()+PI), 60, getDirection(), base));
+      blocks.add(new BubbleBlock(350+115*cos(getDirection()+3*PI/10), 350+115*sin(getDirection()+3*PI/10), 30, getDirection(), base));
+      blocks.add(new BubbleBlock(350+115*cos(getDirection()-3*PI/10), 350+115*sin(getDirection()-3*PI/10), 30, getDirection(), base));
+      blocks.add(new BubbleBlock(350+90*cos(getDirection()+8*PI/18), 350+90*sin(getDirection()+8*PI/18), 30, getDirection(), base));
+      blocks.add(new BubbleBlock(350+90*cos(getDirection()-8*PI/18), 350+90*sin(getDirection()-8*PI/18), 30, getDirection(), base));
+      blocks.add(new BubbleBlock(350+80*cos(getDirection()+11*PI/18), 350+80*sin(getDirection()+11*PI/18), 30, getDirection(), base));
+      blocks.add(new BubbleBlock(350+80*cos(getDirection()-11*PI/18), 350+80*sin(getDirection()-11*PI/18), 30, getDirection(), base));  
+      blocks.add(new BubbleBlock(350+95*cos(getDirection()+7*PI/9), 350+95*sin(getDirection()+7*PI/9), 30, getDirection(), base));
+      blocks.add(new BubbleBlock(350+95*cos(getDirection()-7*PI/9), 350+95*sin(getDirection()-7*PI/9), 30, getDirection(), base));  
+      blocks.add(new BubbleBlock(350+105*cos(getDirection()+8*PI/9), 350+105*sin(getDirection()+8*PI/9), 30, getDirection(), base));
+      blocks.add(new BubbleBlock(350+105*cos(getDirection()-8*PI/9), 350+105*sin(getDirection()-8*PI/9), 30, getDirection(), base));  
+      blocks.add(new BubbleBlock(350+125*cos(getDirection()+PI), 350+125*sin(getDirection()+PI), 30, getDirection(), base));
     }
   }
-  
 }
