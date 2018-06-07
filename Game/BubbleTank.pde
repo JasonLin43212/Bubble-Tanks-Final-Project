@@ -1,5 +1,5 @@
 public class BubbleTank {
-  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed;
+  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed,shootingDown;
   private int id, transferX, transferY, transferDistance, transferedSoFar;
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
@@ -28,6 +28,7 @@ public class BubbleTank {
     transferSpeed = 0;
     transferedSoFar = 0;
     blocks = new ArrayList<BubbleBlock>();
+    shootingDown = 0;
   }
 
   public void move(Map m) {
@@ -109,8 +110,8 @@ public class BubbleTank {
   }
 
   public void display() {
-    if (coolDown > 0) {
-      coolDown--;
+    if (shootingDown > 0) {
+      shootingDown--;
     }
     if (preventControl) {
       transferTank();
@@ -130,8 +131,8 @@ public class BubbleTank {
   }
 
   public void spawnBullets(ArrayList<BubbleBullet> arr) {
-    if (isShooting == 1 && coolDown == 0) {
-      coolDown = 1;
+    if (isShooting == 1 && shootingDown == 0) {
+      shootingDown = coolDown;
       //radius,speed,tankRadius,x,y,direction,id
       arr.add(new BubbleBullet(10, 10, radius, x, y, direction, id));
     }
@@ -189,6 +190,9 @@ public class BubbleTank {
      return speed; 
   }
 
+public void setDirection(float x, float y){
+   direction =  atan2(y-this.y,x-this.x);
+}
   public void transferTank() {
     if (transferedSoFar >= transferDistance) {
       preventControl = false;

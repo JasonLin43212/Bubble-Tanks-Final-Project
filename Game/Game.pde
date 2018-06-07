@@ -50,8 +50,7 @@ void draw() {
   } else {
     background(200);
     fill(0);
-    strokeWeight(1);
-
+    strokeWeight(1);  
     if (tank.getHasTransfered()) {
       allBullets.clear();
     }
@@ -97,6 +96,32 @@ void drawBullets(float xOffset, float yOffset) {
     if (!current.move()) {
       allBullets.remove(i);
       i--;
+    } else if (current.getId()==0) {
+      ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
+      for (int j=0; j<enemies.size(); j++) {
+        EnemyTank currentEnemy = enemies.get(j);
+        for (int k=0; k<currentEnemy.getBlocks().size(); k++) {
+          BubbleBlock currentBlock = currentEnemy.getBlocks().get(k);
+          if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
+            currentEnemy.incrementHealth(-2*current.getRadius());
+            allBullets.remove(i);
+            i--;
+            k=currentEnemy.getBlocks().size();
+            j=enemies.size();
+          }
+        }
+      }
+    } else if (current.getId() != 0) {
+      for (int k=0; k<tank.getBlocks().size(); k++) {
+        BubbleBlock currentBlock = tank.getBlocks().get(k);
+        if (dist(current.getX(), current.getY(), currentBlock.getX()-350+tank.getX(), currentBlock.getY()-350+tank.getY())<current.getRadius()+currentBlock.getRadius()) {
+          println("killme");
+          tank.incrementHealth(-2*current.getRadius());
+          allBullets.remove(i);
+          i--;
+          k=tank.getBlocks().size();
+        }
+      }
     }
   }
   popMatrix();
@@ -107,9 +132,14 @@ void drawEnemies(float xOffset, float yOffset) {
   translate(-xOffset+350, -yOffset+350);
   ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
   for (int i=0; i<enemies.size(); i++) {
-    enemies.get(i).move();
-    enemies.get(i).display();
-    println(enemies.get(i));
+    EnemyTank currentEnemy = enemies.get(i);
+    currentEnemy.setDirection(tank.getX(),tank.getY());
+    currentEnemy.move();
+    currentEnemy.display();
+    if (currentEnemy.getHealth()<=0) {
+      enemies.remove(i);
+      i--;
+    }
   }
   popMatrix();
 }

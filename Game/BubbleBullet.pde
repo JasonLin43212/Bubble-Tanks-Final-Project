@@ -1,6 +1,7 @@
   public class BubbleBullet {
   float x, y, speed, direction, radius, tankRadius;
   int id;
+  BubbleBlock block;
 
   public BubbleBullet(float radius, float speed, float tankRadius, float x, float y, float direction, int id) {
     this.direction = direction;
@@ -10,6 +11,7 @@
     this.speed = speed;
     this.id=id;
     this.tankRadius = tankRadius;
+    
   }
 
   public boolean move() {
@@ -22,11 +24,27 @@
   }
 
   public void display() {
-    fill(255);
-    ellipse(x, y, radius*2, radius*2);
+    block = new BubbleBlock(x,y,radius,direction,color(195,144,163));
+    block.display();
   }
 
   public String toString() {
     return x + "  " + y;
+  }
+  
+  public float getX(){
+     return x; 
+  }
+  
+  public float getY(){
+     return y; 
+  }
+  
+  public float getRadius(){
+     return radius; 
+  }
+  
+  public int getId(){
+     return id; 
   }
 }

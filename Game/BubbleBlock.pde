@@ -23,4 +23,16 @@ public class BubbleBlock {
     ellipse(x+0.65*radius*cos(direction+7*PI/6), y+0.65*radius*sin(direction+7*PI/6), (1.0/3)*radius, (1.0/3)*radius);
     ellipse(x+0.65*radius*cos(direction+3.5*PI/2.5), y+0.65*radius*sin(direction+3.5*PI/2.5), (1.0/4)*radius, (1.0/4)*radius);
   }
+  
+  public float getX(){
+     return x; 
+  }
+  
+  public float getY(){
+     return y; 
+  }
+  
+  public float getRadius(){
+     return radius; 
+  }
 }
