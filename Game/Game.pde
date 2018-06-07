@@ -59,7 +59,7 @@ void draw() {
     fill(6, 153, 173);
     stroke(195, 234, 250);
     strokeWeight(5);
-    ellipse(350, 350, 7*tank.getRadius(), 7*tank.getRadius());
+    //ellipse(350, 350, 7*tank.getRadius(), 7*tank.getRadius());
     noStroke();
     pushMatrix();
     translate(-tank.getX()+350,-tank.getY()+350);

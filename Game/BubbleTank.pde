@@ -38,16 +38,17 @@ public class BubbleTank {
       direction += rotateLeft - rotateRight;
     }
     float distFromCenter = dist(x, y, 0, 0);
+    float angle = atan2(y, x);
     //if you are an enemy, don't allow it to move out of bounds
     if (id != 0) {
-      if (distFromCenter>750-radius) {
-        println("hi");
+      if (distFromCenter>1000-radius) {
+        x = (1000-radius)*cos(angle);
+        y = (1000-radius)*sin(angle);
       }
     }
     //if you are the player, handle changing rooms 
     else if (distFromCenter>1000 && preventControl == false) {
       preventControl = true;
-      float angle = atan2(y, x);
       //transfering right
       if (angle>=-PI/4 && angle<PI/4) {
         angle = abs(angle);
@@ -166,6 +167,10 @@ public class BubbleTank {
   
   public ArrayList<BubbleBlock> getBlocks() {
      return blocks; 
+  }
+  
+  public void setRadius(float val){
+     radius = val; 
   }
 
   public void transferTank() {

@@ -1,4 +1,4 @@
-public class MenuPages{ 
+  public class MenuPages{ 
 
   void title() {
     background(39, 150, 203);
