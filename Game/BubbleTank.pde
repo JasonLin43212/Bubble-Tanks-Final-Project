@@ -138,7 +138,7 @@ public class BubbleTank {
     if (isShooting == 1 && shootingDown == 0) {
       shootingDown = coolDown;
       //radius,speed,tankRadius,x,y,direction,id
-      arr.add(new BubbleBullet(10, 10, radius, x, y, direction, id));
+      arr.add(new BubbleBullet(5, 10, radius, x, y, direction, id));
     }
   }
 

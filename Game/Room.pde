@@ -22,14 +22,14 @@ public class Room {
       }
     }
     int manhattanDist = abs(row - ((mapSize-1)/2)) + abs(col - ((mapSize-1)/2));
-    int numEnemies = (int) (random(manhattanDist) + (manhattanDist+3)) * difficulty; 
+    int numEnemies = (int) (random(manhattanDist) + (manhattanDist+3))+ difficulty; 
     allEnemyTanks = new ArrayList<EnemyTank>();
     for (int i=0; i<numEnemies; i++){
        int type = (int) (random(manhattanDist/3) * difficulty);
        int id = maxID;
        maxID++;
        //health,radius,id,speed,type,coolDown
-       allEnemyTanks.add(new EnemyTank(random(100)*difficulty+60 + manhattanDist*10,manhattanDist*3 + difficulty*1.5 + 10,id,manhattanDist*0.7 + 2 + difficulty,0,140-difficulty*5-manhattanDist));
+       allEnemyTanks.add(new EnemyTank(random(10)*difficulty+60 + manhattanDist*10,manhattanDist*3 + difficulty*1.5 + 10,id,manhattanDist*0.7 + 2 + difficulty,0,160-difficulty*5-manhattanDist));
     }
   }
   

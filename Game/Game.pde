@@ -51,7 +51,6 @@ void draw() {
     background(200);
     fill(0);
     strokeWeight(1);  
-    println(tank.getHealth());
     if (tank.getHasTransfered()) {
       allBullets.clear();
     }
@@ -73,6 +72,7 @@ void draw() {
     if (useMouse) {
       tank.realignDirection(mouseX, mouseY);
     }
+    drawShading(tank.getX(),tank.getY());
     fill(200);
     rect(0, 700, 700, 100);
   }
@@ -87,6 +87,19 @@ void drawMap(float xOffset, float yOffset) {
   ellipse(0, 0, 2000, 2000);
   popMatrix();
 }  
+
+void drawShading(float xOffset, float yOffset){
+ pushMatrix();
+ translate(-xOffset+350,-yOffset+350);
+ strokeWeight(0);
+ fill(255,70);
+ ellipse(-563,-325,333,333);
+ ellipse(-201,-618,250,250);
+ fill(255,40);
+ ellipse(520,300,333,333);
+ ellipse(185,571,250,250);
+ popMatrix();
+}
 
 void drawBullets(float xOffset, float yOffset) {
   pushMatrix();
@@ -116,7 +129,6 @@ void drawBullets(float xOffset, float yOffset) {
       for (int k=0; k<tank.getBlocks().size(); k++) {
         BubbleBlock currentBlock = tank.getBlocks().get(k);
         if (dist(current.getX(), current.getY(), currentBlock.getX()-350+tank.getX(), currentBlock.getY()-350+tank.getY())<current.getRadius()+currentBlock.getRadius()) {
-          println("killme");
           tank.incrementHealth(-2*current.getRadius());
           allBullets.remove(i);
           i--;
