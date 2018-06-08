@@ -196,7 +196,7 @@ void keyPressed() {
     tank.setMovement(keyCode, 1);
   }
   if (keyCode == 76) {
-    difficulty = 7;
+    difficulty = 1;
     mapSize = 5;
     useMouse = true;
     m = new Map(19, difficulty);
