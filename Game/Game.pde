@@ -278,7 +278,7 @@ void title() {
   text("start", 350, 517); // starts at 488 ends at 517
 
   if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555) {
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -315,7 +315,7 @@ void difficulty() {
   text("easy", 350, 291); // starts at 262 ends at 291
 
   if (mouseX > 200 && mouseX < 500 && mouseY > 242 && mouseY < 321) { // for easy
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -340,7 +340,7 @@ void difficulty() {
   text("normal", 350, 380); // starts at 351 ends at 380
 
   if (mouseX > 200 && mouseX < 500 && mouseY > 331 && mouseY < 400) { // for normal
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -365,7 +365,7 @@ void difficulty() {
   text("hard", 350, 469); // starts at 440 ends at 469
 
   if (mouseX > 200 && mouseX < 500 && mouseY > 420 && mouseY < 489) { // for hard
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -390,7 +390,7 @@ void difficulty() {
   text("insane", 350, 558); // starts at 529 ends at 558
 
   if (mouseX > 200 && mouseX < 500 && mouseY > 511 && mouseY < 578) { // for insane
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -415,7 +415,7 @@ void difficulty() {
   text("back", 27, 55);
 
   if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -458,7 +458,7 @@ void mapsize() {
 
     fill(255); // little circle (changes colors and stuff)
     strokeWeight(6);
-    stroke(178, 207, 255);
+    stroke(168,213,234);
     ellipse(xsize, 225, 20, 20);
 
     fill(255); // size
@@ -470,7 +470,7 @@ void mapsize() {
 
   fill(39, 150, 203,225);
   strokeWeight(6);
-  stroke(178, 207, 255);
+  stroke(168,213,234);
   if (mouseX > 64.5 && mouseX < 110.5 && mouseY > 200 && mouseY < 250) { // 5
     ellipse(87.5, 225, 20, 20);
   }
@@ -506,7 +506,7 @@ void mapsize() {
   if (selected > 0) { // if you chose something
     fill(39, 150, 203); // little circle (changes color while hovering)
     strokeWeight(6);
-    stroke(224, 235, 255);
+    stroke(125,192,223);
     ellipse(selected, 225, 20, 20);
 
     fill(242, 245, 252); // button to move to next page
@@ -519,7 +519,7 @@ void mapsize() {
     text("ok", 350, 407);
 
     if (mouseX > 200 && mouseX < 500 && mouseY > 360 & mouseY < 429) { 
-      fill(224, 235, 255);
+      fill(211,234,244);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
@@ -545,7 +545,7 @@ void mapsize() {
   text("back", 27, 55);
 
   if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -580,7 +580,7 @@ void mouseuse() {
   text("yes", 350, 341); // starts at 262 ends at 291
 
   if (mouseX > 200 && mouseX < 500 && mouseY > 292 && mouseY < 371) { // for yes
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -604,7 +604,7 @@ void mouseuse() {
   text("no", 350, 430); // starts at 351 ends at 380
 
   if (mouseX > 200 && mouseX < 500 && mouseY > 381 && mouseY < 450) { // for no
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -629,7 +629,7 @@ void mouseuse() {
   text("back", 27, 55);
 
   if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -696,7 +696,7 @@ void mapsettings() {
   textSize(48); // 29
   text("start", 350, 567); // starts at 488 ends at 517
   if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 605) {
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
@@ -721,7 +721,7 @@ void mapsettings() {
   text("back", 27, 55);
 
   if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-    fill(224, 235, 255);
+    fill(211,234,244);
     strokeWeight(5);
     strokeJoin(MITER);
     strokeCap(SQUARE);
