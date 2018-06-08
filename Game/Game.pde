@@ -256,7 +256,7 @@ void keyPressed() {
   }
   if (keyCode == 76) {
     difficulty = 1;
-    mapSize = 17;
+    mapSize = 5;
     useMouse = true;
     m = new Map(5);
     menuSetting =6;
