@@ -480,6 +480,22 @@ public class MenuPages{
       text("back", 27, 55);
     }
   }
+
+  void instructions () {
+    background(39, 150, 203);
+    noStroke();
+    bubbles();
+  
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    text("instructions", 350, 150); // starts at 107 ends at 150
+    textSize(24);
+    text("to move, use\n\n\n\n\n\nuse your mouse to aim and click to shoot\n\nuse the map button to check\nwhere you've been and are\nthen click anywhere to exit\n\nyou're in the center of the screen,\nfight the other bubble tanks\n\n\nclick anywhere to start", 350, 225); 
+    textSize(36);
+    text("w\na  s  d\n", 350, 300);
+    textSize(24);
+  }
   
   void showmap () {
     fill(211,234,244);

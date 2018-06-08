@@ -48,6 +48,8 @@ void draw() {
     mt.mouseuse();
   } else if (menuSetting == 5) {
     mt.mapsettings();
+  } else if (menuSetting == 6) {
+    mt.instructions();
   } else {
     background(200);
     fill(0);
@@ -78,7 +80,7 @@ void draw() {
   }
   
   // map button 
-  if (menuSetting > 5) {
+  if (menuSetting > 6) {
     fill(242, 245, 252);
     noStroke();
     rect(575, 725, 100, 50);
@@ -280,11 +282,17 @@ void mouseClicked() {
   else if (menuSetting == 5) {
     if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 605) {
       menuSetting = 6;
-      m = new Map(mapSize);
     }
     //back
-    if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
+    if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
       menuSetting = 4;
+    }
+  }
+  else if (menuSetting == 6) {
+      menuSetting = 7;
+      m = new Map(mapSize);
+    if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
+      menuSetting = 5;
     }
   }
   else if (showMap) {
