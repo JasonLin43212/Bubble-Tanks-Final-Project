@@ -4,16 +4,13 @@ PFont ptmono;
 Player player = new Player();
 BubbleTank tank = player.getTank();
 
-float health = 15;
+float health = 25;
 float maxhealth = 100;
 float percentHealth = (health / maxhealth) * 200;
 
 float bubblepoints = 90;
 float maxbp = 100;
 float percentbp = (bubblepoints / maxbp) * 200;
-
-Boss boss = new Boss();
-BubbleTank bosst = boss.getTank();
 
 ArrayList<BubbleBullet> allBullets;
 boolean useMouse = false;
@@ -123,13 +120,13 @@ void draw() {
       textAlign(RIGHT);
       textFont(ptmono);
       textSize(12); 
-      text(percentHealth / 2 + "%", 20 + percentHealth, 736); 
+      text(int(percentHealth / 2) + "%", 20 + percentHealth, 736); 
     }
     else {
       textAlign(LEFT);
       textFont(ptmono);
       textSize(12); 
-      text(percentHealth / 2 + "%", 26.5 + percentHealth, 736); 
+      text(int(percentHealth / 2) + "%", 26.5 + percentHealth, 736); 
     }
     
     // text for bubble points
@@ -138,13 +135,13 @@ void draw() {
       textAlign(RIGHT);
       textFont(ptmono);
       textSize(12); 
-      text(percentbp / 2 + "%", 20 + percentbp, 776); 
+      text(int(percentbp / 2) + "%", 20 + percentbp, 776); 
     }
     else {
       textAlign(LEFT);
       textFont(ptmono);
       textSize(12); 
-      text(percentbp / 2 + "%", 26.5 + percentbp, 776); 
+      text(int(percentbp / 2) + "%", 26.5 + percentbp, 776); 
     }
     
     // map button 
@@ -226,9 +223,6 @@ void drawMap(float xOffset, float yOffset) {
   fill(6, 153, 173);
   ellipse(0, 0, 2000, 2000);
   popMatrix();
-  
-  bosst.display();
-  bosst.move(m);
 }  
 
 void drawBullets(float xOffset, float yOffset) {
