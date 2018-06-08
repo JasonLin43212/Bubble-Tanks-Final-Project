@@ -5,6 +5,8 @@ public class Player {
   //new
   private int maxPoints;
   private int level = 1; 
+  private int health = 100; 
+  private int maxhealth = 100; 
   
   private int blaster, cannon, machinegun, missile, stunburst, areaburst, superattack;
 
@@ -27,6 +29,14 @@ public class Player {
 
   public BubbleTank getTank() {
     return tank;
+  }
+  
+  public int getHealth () {
+    return health;
+  }
+  
+  public int maxHealth () {
+    return maxHealth ();
   }
   
   // levels

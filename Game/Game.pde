@@ -1,8 +1,16 @@
 Map m; 
 PFont bubble;
 PFont ptmono;
-Boss player = new Boss();
+Player player = new Player();
 BubbleTank tank = player.getTank();
+
+float health = 15;
+float maxhealth = 100;
+float percentHealth = (health / maxhealth) * 200;
+
+float bubblepoints = 90;
+float maxbp = 100;
+float percentbp = (bubblepoints / maxbp) * 200;
 
 Boss boss = new Boss();
 BubbleTank bosst = boss.getTank();
@@ -18,6 +26,8 @@ MenuPages mt = new MenuPages();
 ArrayList<TitleBubble> titleCircles;
 int mapSize;
 float selected;
+
+boolean showMap = false;
 
 void setup() {
   size(700, 800);
@@ -83,6 +93,109 @@ void draw() {
 
     fill(200);
     rect(0, 700, 700, 100);
+    
+    fill(46,89,47);
+    strokeWeight(3);
+    strokeJoin(MITER);
+    strokeCap(SQUARE);
+    stroke(46,89,47);
+    rect(25, 720, 200, 20);
+    
+    fill(1,24,45);
+    strokeWeight(3);
+    strokeJoin(MITER);
+    strokeCap(SQUARE);
+    stroke(1,24,45);
+    rect(25, 760, 200, 20);
+    
+    fill(72,139,73);
+    noStroke();
+    rect(26.5, 721.5, percentHealth - 2.5, 17.5);
+    
+    fill(3,64,120);
+    noStroke();
+    rect(26.5, 761.5, percentbp - 2.5, 17.5);
+    
+    // test for health
+    fill(255);
+    if (percentHealth > 66) {
+      textAlign(RIGHT);
+      textFont(ptmono);
+      textSize(12); 
+      text(percentHealth / 2 + "%", 20 + percentHealth, 736); 
+    }
+    else {
+      textAlign(LEFT);
+      textFont(ptmono);
+      textSize(12); 
+      text(percentHealth / 2 + "%", 26.5 + percentHealth, 736); 
+    }
+    
+    // text for bubble points
+    fill(255);
+    if (percentbp > 66) {
+      textAlign(RIGHT);
+      textFont(ptmono);
+      textSize(12); 
+      text(percentbp / 2 + "%", 20 + percentbp, 776); 
+    }
+    else {
+      textAlign(LEFT);
+      textFont(ptmono);
+      textSize(12); 
+      text(percentbp / 2 + "%", 26.5 + percentbp, 776); 
+    }
+    
+    // map button 
+    fill(242, 245, 252);
+    noStroke();
+    rect(575, 725, 100, 50);
+    fill(39, 150, 203);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(30);
+    text("map", 625, 759); 
+  
+    if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775) { // for easy
+      fill(211,234,244);
+      strokeWeight(5);
+      strokeJoin(MITER);
+      strokeCap(SQUARE);
+      stroke(255);
+      rect(575, 725, 100, 50);
+  
+      fill(255);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(30); 
+      text("map", 625, 759);
+    }
+    
+    if (showMap) {
+      fill(255,155);
+      noStroke();
+      rect(0,0,700,700);
+      
+      fill(255);
+      noStroke();
+      rect(100,100,500,500);
+            
+      float currentR = 170;
+      float currentC = 170;
+      
+      for (float r = 0; r < mapSize; r++) {
+        for (float c = 0; c < mapSize; c++) {
+          if (m.currentRoomR() == r && m.currentRoomC() == c) {
+            fill(39, 150, 203);
+          }
+          else {
+            fill(211,234,244);
+          }
+          ellipse(currentR + (20*r),currentC + (20*c),10,10);
+        }
+      }
+          
+    }
   }
 }
 
@@ -265,6 +378,11 @@ void mouseClicked() {
     //back
     if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
       menuSetting = 4;
+    }
+  }
+  else {
+    if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775) {
+      showMap = true;
     }
   }
 }
