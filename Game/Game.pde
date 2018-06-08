@@ -208,9 +208,6 @@ void draw() {
           if (r == 0) { System.out.println((currentR + (maprad*2*r)) + ", " + (currentC + (maprad*2*c)));}
         }
       }
-      if (mousePressed) {
-        showMap = false; 
-      }
     }
   }
 }
@@ -392,6 +389,9 @@ void mouseClicked() {
     if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
       menuSetting = 4;
     }
+  }
+  else if (showMap) {
+    showMap = false; 
   }
   else {
     if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775) {
