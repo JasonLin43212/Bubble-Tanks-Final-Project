@@ -289,8 +289,10 @@ void mouseClicked() {
     }
   }
   else if (menuSetting == 6) {
+    if (!(mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70)) {
       menuSetting = 7;
       m = new Map(mapSize);
+    }
     if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
       menuSetting = 5;
     }

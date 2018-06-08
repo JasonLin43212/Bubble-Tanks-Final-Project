@@ -149,30 +149,8 @@ public class MenuPages{
       text("insane", 350, 558); // starts at 529 ends at 558
     }
   
-    //back button
-    fill(242, 245, 252);
-    noStroke();
-    rect(20, 20, 100, 50);
-    fill(39, 150, 203);
-    textAlign(LEFT);
-    textFont(bubble);
-    textSize(30); // 29
-    text("back", 27, 55);
+  backbutton();
   
-    if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-      fill(211,234,244);
-      strokeWeight(5);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(255);
-      rect(20, 20, 100, 50);
-  
-      fill(255);
-      textAlign(LEFT);
-      textFont(bubble);
-      textSize(30); // 29
-      text("back", 27, 55);
-    }
   }
   
   void mapsize() {  
@@ -279,30 +257,8 @@ public class MenuPages{
       }
     }
   
-    //back button
-    fill(242, 245, 252);
-    noStroke();
-    rect(20, 20, 100, 50);
-    fill(39, 150, 203);
-    textAlign(LEFT);
-    textFont(bubble);
-    textSize(30); // 29
-    text("back", 27, 55);
+  backbutton();
   
-    if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-      fill(211,234,244);
-      strokeWeight(5);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(255);
-      rect(20, 20, 100, 50);
-  
-      fill(255);
-      textAlign(LEFT);
-      textFont(bubble);
-      textSize(30); // 29
-      text("back", 27, 55);
-    }
   }
   
   void mouseuse() {
@@ -363,31 +319,9 @@ public class MenuPages{
       text("no", 350, 430); // starts at 351 ends at 380
     }
   
-    //back button
-    fill(242, 245, 252);
-    noStroke();
-    rect(20, 20, 100, 50);
-    fill(39, 150, 203);
-    textAlign(LEFT);
-    textFont(bubble);
-    textSize(30); // 29
-    text("back", 27, 55);
-  
-    if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-      fill(211,234,244);
-      strokeWeight(5);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(255);
-      rect(20, 20, 100, 50);
-  
-      fill(255);
-      textAlign(LEFT);
-      textFont(bubble);
-      textSize(30); // 29
-      text("back", 27, 55);
-    }
-  }
+  backbutton();
+
+  } 
   
   void mapsettings() {  
     background(39, 150, 203);
@@ -455,30 +389,7 @@ public class MenuPages{
       text("start", 350, 567); // starts at 488 ends at 517
     }
   
-    //back button
-    fill(242, 245, 252);
-    noStroke();
-    rect(20, 20, 100, 50);
-    fill(39, 150, 203);
-    textAlign(LEFT);
-    textFont(bubble);
-    textSize(30); // 29
-    text("back", 27, 55);
-  
-    if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-      fill(211,234,244);
-      strokeWeight(5);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(255);
-      rect(20, 20, 100, 50);
-  
-      fill(255);
-      textAlign(LEFT);
-      textFont(bubble);
-      textSize(30); // 29
-      text("back", 27, 55);
-    }
+    backbutton();
   }
 
   void instructions () {
@@ -495,6 +406,8 @@ public class MenuPages{
     textSize(36);
     text("w\na  s  d\n", 350, 300);
     textSize(24);
+    
+    backbutton();
   }
   
   void showmap () {
@@ -548,6 +461,33 @@ public class MenuPages{
         ellipse(currentR + (maprad*2*r),currentC + (maprad*2*c),maprad,maprad);
         if (r == 0) { System.out.println((currentR + (maprad*2*r)) + ", " + (currentC + (maprad*2*c)));}
       }
+    }
+  }
+  
+  void backbutton () {
+    //back button
+    fill(242, 245, 252);
+    noStroke();
+    rect(20, 20, 100, 50);
+    fill(39, 150, 203);
+    textAlign(LEFT);
+    textFont(bubble);
+    textSize(30); // 29
+    text("back", 27, 55);
+  
+    if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
+      fill(211,234,244);
+      strokeWeight(5);
+      strokeJoin(MITER);
+      strokeCap(SQUARE);
+      stroke(255);
+      rect(20, 20, 100, 50);
+  
+      fill(255);
+      textAlign(LEFT);
+      textFont(bubble);
+      textSize(30); // 29
+      text("back", 27, 55);
     }
   }
   
