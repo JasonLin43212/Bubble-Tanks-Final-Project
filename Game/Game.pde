@@ -393,8 +393,7 @@ void mouseClicked() {
   else if (showMap) {
     showMap = false; 
   }
-  else {
-    if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775) {
+  else if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775 && !showMap) {
       showMap = true;
     }
   }
