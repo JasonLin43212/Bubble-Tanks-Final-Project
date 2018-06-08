@@ -211,7 +211,9 @@ void draw() {
           if (r == 0) { System.out.println((currentR + (maprad*2*r)) + ", " + (currentC + (maprad*2*c)));}
         }
       }
-          
+      if (mousePressed) {
+        showMap = false; 
+      }
     }
   }
 }
