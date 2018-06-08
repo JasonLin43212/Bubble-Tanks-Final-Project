@@ -28,6 +28,7 @@ int mapSize;
 float selected;
 
 boolean showMap = false;
+float maprad = 40;
 
 void setup() {
   size(700, 800);
@@ -174,7 +175,7 @@ void draw() {
     if (showMap) {
       fill(255,155);
       noStroke();
-      rect(0,0,700,700);
+      rect(0,0,700,800);
       
       fill(255);
       noStroke();
@@ -182,6 +183,21 @@ void draw() {
             
       float currentR = 170;
       float currentC = 170;
+      
+      if (mapSize == 5) { currentR += 20; currentC += 20; }
+      if (mapSize == 7) { maprad = 30; }
+      if (mapSize == 9) { currentR -= 20; currentC -= 20; maprad = 25; }
+      if (mapSize == 11) { currentR -= 20; currentC -= 20; maprad = 20; }
+      if (mapSize == 13) { maprad = 15; }
+      if (mapSize == 15) { currentR -= 30; currentC -= 30; maprad = 15; }
+      if (mapSize == 17) { currentR -= 20; currentC -= 20; maprad = 12.5; }
+      if (mapSize == 19) { maprad = 10; }
+      
+      /*
+      if (mapSize == 5) {
+        maprad = 40;
+      }
+      */
       
       for (float r = 0; r < mapSize; r++) {
         for (float c = 0; c < mapSize; c++) {
@@ -191,7 +207,8 @@ void draw() {
           else {
             fill(211,234,244);
           }
-          ellipse(currentR + (20*r),currentC + (20*c),10,10);
+          ellipse(currentR + (maprad*2*r),currentC + (maprad*2*c),maprad,maprad);
+          if (r == 0) { System.out.println((currentR + (maprad*2*r)) + ", " + (currentC + (maprad*2*c)));}
         }
       }
           
@@ -237,7 +254,7 @@ void keyPressed() {
   }
   if (keyCode == 76) {
     difficulty = 1;
-    mapSize = 5;
+    mapSize = 17;
     useMouse = true;
     m = new Map(5);
     menuSetting =6;
