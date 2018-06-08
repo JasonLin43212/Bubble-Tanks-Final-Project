@@ -1,4 +1,4 @@
-public class BubbleTank {
+public abstract class BubbleTank {
   private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed, shootingDown,maxHealth;
   private int id, transferX, transferY, transferDistance, transferedSoFar;
   private boolean preventControl, hasTransfered;
@@ -35,6 +35,8 @@ public class BubbleTank {
     blocks = new ArrayList<BubbleBlock>();
     shootingDown = 0;
   }
+  
+  public abstract void updatedType();
 
   public void move(Map m) {
     if (!preventControl && id==0) {

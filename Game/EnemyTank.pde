@@ -14,6 +14,10 @@ public class EnemyTank extends BubbleTank {
     setX(random(800)*cos(-goToAngle));
     setY(random(800)*sin(-goToAngle));
   }
+  
+  public void updatedType(){
+     return ; 
+  }
 
   public void display() {
     super.display();   

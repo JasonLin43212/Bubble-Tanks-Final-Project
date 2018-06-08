@@ -15,6 +15,13 @@ public class PlayerTank extends BubbleTank {
       blocks.get(i).display();
     }
   }
+  
+  public void updatedType(){
+    type++;
+     if (type > 12){
+       type =0;
+     }
+  }
 
   // creates the tank depending on what type it is
   public void buildBlocks() {

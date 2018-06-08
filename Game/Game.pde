@@ -80,8 +80,12 @@ void draw() {
     rect(0, 700, 700, 100);
     fill(0);
     rect(30, 720, 300, 35);  
+    rect(30, 760, 300, 35);  
     fill(251, 31, 50);
     rect(30, 720, 300*(tank.getHealth()/tank.getMaxHealth()), 35);
+    fill(20, 54, 129);
+    rect(30, 760, 300*((float)player.getPoints()/player.getMaxPoints()),35);
+    println(player.getPoints());
   }
 }
 
@@ -188,6 +192,10 @@ void drawEnemies(float xOffset, float yOffset) {
 }
 
 void keyPressed() {
+  println(keyCode);
+  if (keyCode==222){
+     tank.updatedType(); 
+  }
   if (useMouse) {
     if (keyCode != 37 && keyCode != 39) {
       tank.setMovement(keyCode, 1);

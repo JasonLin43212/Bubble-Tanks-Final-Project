@@ -15,6 +15,10 @@ public class BossTank extends BubbleTank {
       blocks.get(i).display();
     }
   }
+  
+  public void updatedType(){
+     return; 
+  }
 
   public void buildBlocks() {
     blocks.clear();
