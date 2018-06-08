@@ -67,4 +67,8 @@ public class EnemyTank extends BubbleTank {
   public String toString() {
     return distanceSoFar + " " +goToDistance;
   }
+  
+  public void spawnBubbles(ArrayList<Bubble> arr){
+     arr.add(new Bubble(getX()+random(20),getY()+random(20),getRadius()*0.5));
+  }
 }

@@ -8,7 +8,7 @@ public class Player {
   public Player() {
     bubblePoints = 0;
     //health,radius,id,speed,type,coolDown
-    tank = new EnemyTank(1000, 40,0, 10,0,5);
+    tank = new PlayerTank(1000, 40,0, 10,0,5);
   }
 
   public boolean canUpgrade() {
@@ -24,5 +24,9 @@ public class Player {
 
   public BubbleTank getTank() {
     return tank;
+  }
+  
+  public int getPoints(){
+     return bubblePoints; 
   }
 }

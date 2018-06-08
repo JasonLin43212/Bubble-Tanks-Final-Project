@@ -12,6 +12,7 @@ int difficulty = 0;
 int bubbleTick = 1;
 MenuPages mt = new MenuPages();
 ArrayList<TitleBubble> titleCircles;
+ArrayList<Bubble> allBubbles;
 int mapSize;
 float selected;
 int maxID=0;
@@ -24,6 +25,7 @@ void setup() {
   ptmono = createFont("ptmono.ttf", 12);
   allBullets = new ArrayList<BubbleBullet>();
   titleCircles = new ArrayList<TitleBubble>();
+  allBubbles = new ArrayList<Bubble>();
 }
 
 
@@ -72,13 +74,14 @@ void draw() {
     if (useMouse) {
       tank.realignDirection(mouseX, mouseY);
     }
-    drawShading(tank.getX(),tank.getY());
+    drawShading(tank.getX(), tank.getY());
+    drawBubbles(tank.getX(), tank.getY());
     fill(200);
     rect(0, 700, 700, 100);
     fill(0);
-    rect(30,720,300,35);  
-    fill(251,31,50);
-    rect(30,720,300*(tank.getHealth()/tank.getMaxHealth()),35);
+    rect(30, 720, 300, 35);  
+    fill(251, 31, 50);
+    rect(30, 720, 300*(tank.getHealth()/tank.getMaxHealth()), 35);
   }
 }
 
@@ -92,17 +95,33 @@ void drawMap(float xOffset, float yOffset) {
   popMatrix();
 }  
 
-void drawShading(float xOffset, float yOffset){
- pushMatrix();
- translate(-xOffset+350,-yOffset+350);
- strokeWeight(0);
- fill(255,70);
- ellipse(-563,-325,333,333);
- ellipse(-201,-618,250,250);
- fill(255,40);
- ellipse(520,300,333,333);
- ellipse(185,571,250,250);
- popMatrix();
+void drawShading(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  strokeWeight(0);
+  fill(255, 70);
+  ellipse(-563, -325, 333, 333);
+  ellipse(-201, -618, 250, 250);
+  fill(255, 40);
+  ellipse(520, 300, 333, 333);
+  ellipse(185, 571, 250, 250);
+  popMatrix();
+}
+
+void drawBubbles(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  for (int i=0; i<allBubbles.size(); i++) {
+    Bubble currentBubble = allBubbles.get(i);
+    currentBubble.move(tank.getX(), tank.getY());
+    currentBubble.display();
+    if (dist(currentBubble.getX(), currentBubble.getY(), tank.getX(), tank.getY())<tank.getRadius()+currentBubble.getRadius()) {
+      player.addPoints((int)currentBubble.getRadius());
+      allBubbles.remove(i);
+      i--;
+    }
+  }
+  popMatrix();
 }
 
 void drawBullets(float xOffset, float yOffset) {
@@ -148,13 +167,19 @@ void drawEnemies(float xOffset, float yOffset) {
   pushMatrix();
   translate(-xOffset+350, -yOffset+350);
   ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
+  if (enemies.size() == 0) {
+    for (Bubble b : allBubbles) {
+      b.setClearState(true);
+    }
+  }
   for (int i=0; i<enemies.size(); i++) {
     EnemyTank currentEnemy = enemies.get(i);
     currentEnemy.spawnBullets(allBullets);
-    currentEnemy.setDirection(tank.getX(),tank.getY());
+    currentEnemy.setDirection(tank.getX(), tank.getY());
     currentEnemy.move();
     currentEnemy.display();
     if (currentEnemy.getHealth()<=0) {
+      currentEnemy.spawnBubbles(allBubbles);
       enemies.remove(i);
       i--;
     }

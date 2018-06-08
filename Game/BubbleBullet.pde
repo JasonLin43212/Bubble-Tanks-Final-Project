@@ -7,7 +7,7 @@
     this.direction = direction;
     this.x = x+cos(direction)*tankRadius;
     this.y = y+sin(direction)*tankRadius;
-    this.radius = radius;
+    this.radius = 20;
     this.speed = speed;
     this.id=id;
     this.tankRadius = tankRadius;
