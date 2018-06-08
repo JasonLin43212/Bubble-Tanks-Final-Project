@@ -121,6 +121,7 @@ void drawBubbles(float xOffset, float yOffset) {
     currentBubble.display();
     if (dist(currentBubble.getX(), currentBubble.getY(), tank.getX(), tank.getY())<tank.getRadius()+currentBubble.getRadius()) {
       player.addPoints((int)currentBubble.getRadius());
+      tank.incrementHealth(currentBubble.getRadius());
       allBubbles.remove(i);
       i--;
     }
