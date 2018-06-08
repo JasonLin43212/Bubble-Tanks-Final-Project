@@ -170,6 +170,19 @@ void draw() {
     }
     
     if (showMap) {
+      fill(211,234,244);
+      strokeWeight(5);
+      strokeJoin(MITER);
+      strokeCap(SQUARE);
+      stroke(255);
+      rect(575, 725, 100, 50);
+  
+      fill(255);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(30); 
+      text("map", 625, 759);
+      
       fill(255,155);
       noStroke();
       rect(0,0,700,800);
@@ -395,7 +408,6 @@ void mouseClicked() {
   }
   else if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775 && !showMap) {
       showMap = true;
-    }
   }
 }
 
