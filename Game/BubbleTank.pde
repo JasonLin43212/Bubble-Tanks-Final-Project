@@ -184,6 +184,10 @@ public abstract class BubbleTank {
   public ArrayList<BubbleBlock> getBlocks() {
     return blocks;
   }
+  
+  public boolean getPreventControl(){
+     return preventControl; 
+  }
 
   public void setRadius(float val) {
     radius = val;

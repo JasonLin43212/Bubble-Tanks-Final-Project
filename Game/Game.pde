@@ -20,6 +20,10 @@ float selected;
 boolean showMap = false;
 float maprad = 40;
 int maxID=0;
+PImage imgUp;
+PImage imgDown;
+PImage imgLeft;
+PImage imgRight;
 
 void setup() {
   size(700, 800);
@@ -27,9 +31,14 @@ void setup() {
   fill(200);
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
+  imgUp = loadImage("sandUp.png");
+  imgDown = loadImage("sandDown.png");
+  imgLeft = loadImage("sandLeft.png");
+  imgRight = loadImage("sandRight.png");
   allBullets = new ArrayList<BubbleBullet>();
   titleCircles = new ArrayList<TitleBubble>();
   allBubbles = new ArrayList<Bubble>();
+  
 }
 
 
@@ -188,6 +197,21 @@ void drawMap(float xOffset, float yOffset) {
   strokeWeight(5);
   fill(6, 153, 173);
   ellipse(0, 0, 1500, 1500);
+  if (!tank.getPreventControl()){
+  boolean[] available = m.getCurrentRoom().getAvailable();
+  if (!available[0]){
+     image(imgRight,830,-1000,300,2000); 
+  }
+  if (!available[1]){
+     image(imgDown,-850,830,2000,300); 
+  }
+  if (!available[2]){
+     image(imgLeft,-1100,-850,300,2000); 
+  }
+  if (!available[3]){
+     image(imgUp,-850,-1100,2000,300); 
+  }
+  }
   popMatrix();
 }  
 
