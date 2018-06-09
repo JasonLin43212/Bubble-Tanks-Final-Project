@@ -23,7 +23,7 @@ public class MenuPages{
     text("start", 350, 517); // starts at 488 ends at 517
   
     if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555) {
-      fill(224, 235, 255);
+      fill(211,234,244);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
@@ -60,7 +60,7 @@ public class MenuPages{
     text("easy", 350, 291); // starts at 262 ends at 291
   
     if (mouseX > 200 && mouseX < 500 && mouseY > 242 && mouseY < 321) { // for easy
-      fill(224, 235, 255);
+      fill(211,234,244);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
@@ -85,7 +85,7 @@ public class MenuPages{
     text("normal", 350, 380); // starts at 351 ends at 380
   
     if (mouseX > 200 && mouseX < 500 && mouseY > 331 && mouseY < 400) { // for normal
-      fill(224, 235, 255);
+      fill(211,234,244);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
@@ -110,7 +110,7 @@ public class MenuPages{
     text("hard", 350, 469); // starts at 440 ends at 469
   
     if (mouseX > 200 && mouseX < 500 && mouseY > 420 && mouseY < 489) { // for hard
-      fill(224, 235, 255);
+      fill(211,234,244);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
@@ -135,7 +135,7 @@ public class MenuPages{
     text("insane", 350, 558); // starts at 529 ends at 558
   
     if (mouseX > 200 && mouseX < 500 && mouseY > 511 && mouseY < 578) { // for insane
-      fill(224, 235, 255);
+      fill(211,234,244);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
@@ -149,30 +149,8 @@ public class MenuPages{
       text("insane", 350, 558); // starts at 529 ends at 558
     }
   
-    //back button
-    fill(242, 245, 252);
-    noStroke();
-    rect(20, 20, 100, 50);
-    fill(39, 150, 203);
-    textAlign(LEFT);
-    textFont(bubble);
-    textSize(30); // 29
-    text("back", 27, 55);
+  backbutton();
   
-    if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-      fill(224, 235, 255);
-      strokeWeight(5);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(255);
-      rect(20, 20, 100, 50);
-  
-      fill(255);
-      textAlign(LEFT);
-      textFont(bubble);
-      textSize(30); // 29
-      text("back", 27, 55);
-    }
   }
   
   void mapsize() {  
@@ -203,7 +181,7 @@ public class MenuPages{
   
       fill(255); // little circle (changes colors and stuff)
       strokeWeight(6);
-      stroke(178, 207, 255);
+      stroke(168,213,234);
       ellipse(xsize, 225, 20, 20);
   
       fill(255); // size
@@ -215,7 +193,7 @@ public class MenuPages{
   
     fill(39, 150, 203,225);
     strokeWeight(6);
-    stroke(178, 207, 255);
+    stroke(168,213,234);
     if (mouseX > 64.5 && mouseX < 110.5 && mouseY > 200 && mouseY < 250) { // 5
       ellipse(87.5, 225, 20, 20);
     }
@@ -251,7 +229,7 @@ public class MenuPages{
     if (selected > 0) { // if you chose something
       fill(39, 150, 203); // little circle (changes color while hovering)
       strokeWeight(6);
-      stroke(224, 235, 255);
+      stroke(125,192,223);
       ellipse(selected, 225, 20, 20);
   
       fill(242, 245, 252); // button to move to next page
@@ -264,7 +242,7 @@ public class MenuPages{
       text("ok", 350, 407);
   
       if (mouseX > 200 && mouseX < 500 && mouseY > 360 & mouseY < 429) { 
-        fill(224, 235, 255);
+        fill(211,234,244);
         strokeWeight(5);
         strokeJoin(MITER);
         strokeCap(SQUARE);
@@ -279,30 +257,8 @@ public class MenuPages{
       }
     }
   
-    //back button
-    fill(242, 245, 252);
-    noStroke();
-    rect(20, 20, 100, 50);
-    fill(39, 150, 203);
-    textAlign(LEFT);
-    textFont(bubble);
-    textSize(30); // 29
-    text("back", 27, 55);
+  backbutton();
   
-    if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-      fill(224, 235, 255);
-      strokeWeight(5);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(255);
-      rect(20, 20, 100, 50);
-  
-      fill(255);
-      textAlign(LEFT);
-      textFont(bubble);
-      textSize(30); // 29
-      text("back", 27, 55);
-    }
   }
   
   void mouseuse() {
@@ -325,7 +281,7 @@ public class MenuPages{
     text("yes", 350, 341); // starts at 262 ends at 291
   
     if (mouseX > 200 && mouseX < 500 && mouseY > 292 && mouseY < 371) { // for yes
-      fill(224, 235, 255);
+      fill(211,234,244);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
@@ -349,7 +305,7 @@ public class MenuPages{
     text("no", 350, 430); // starts at 351 ends at 380
   
     if (mouseX > 200 && mouseX < 500 && mouseY > 381 && mouseY < 450) { // for no
-      fill(224, 235, 255);
+      fill(211,234,244);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
@@ -363,31 +319,9 @@ public class MenuPages{
       text("no", 350, 430); // starts at 351 ends at 380
     }
   
-    //back button
-    fill(242, 245, 252);
-    noStroke();
-    rect(20, 20, 100, 50);
-    fill(39, 150, 203);
-    textAlign(LEFT);
-    textFont(bubble);
-    textSize(30); // 29
-    text("back", 27, 55);
-  
-    if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-      fill(224, 235, 255);
-      strokeWeight(5);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(255);
-      rect(20, 20, 100, 50);
-  
-      fill(255);
-      textAlign(LEFT);
-      textFont(bubble);
-      textSize(30); // 29
-      text("back", 27, 55);
-    }
-  }
+  backbutton();
+
+  } 
   
   void mapsettings() {  
     background(39, 150, 203);
@@ -441,7 +375,7 @@ public class MenuPages{
     textSize(48); // 29
     text("start", 350, 567); // starts at 488 ends at 517
     if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 605) {
-      fill(224, 235, 255);
+      fill(211,234,244);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
@@ -455,6 +389,82 @@ public class MenuPages{
       text("start", 350, 567); // starts at 488 ends at 517
     }
   
+    backbutton();
+  }
+
+  void instructions () {
+    background(39, 150, 203);
+    noStroke();
+    bubbles();
+  
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    text("instructions", 350, 150); // starts at 107 ends at 150
+    textSize(24);
+    text("to move, use\n\n\n\n\n\nuse your mouse to aim and click to shoot\n\nuse the map button to check\nwhere you've been and are\nthen click anywhere to exit\n\nyou're in the center of the screen,\nfight the other bubble tanks\n\n\nclick anywhere to start", 350, 225); 
+    textSize(36);
+    text("w\na  s  d\n", 350, 300);
+    textSize(24);
+    
+    backbutton();
+  }
+  
+  void showmap () {
+    fill(211,234,244);
+    strokeWeight(5);
+    strokeJoin(MITER);
+    strokeCap(SQUARE);
+    stroke(255);
+    rect(575, 725, 100, 50);
+
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(30); 
+    text("map", 625, 759);
+    
+    fill(255,155);
+    noStroke();
+    rect(0,0,700,800);
+    
+    fill(255,240);
+    noStroke();
+    rect(100,100,500,500);
+          
+    float currentR = 170;
+    float currentC = 170;
+    
+    if (mapSize == 5) { currentR += 20; currentC += 20; }
+    if (mapSize == 7) { maprad = 30; }
+    if (mapSize == 9) { currentR -= 20; currentC -= 20; maprad = 25; }
+    if (mapSize == 11) { currentR -= 20; currentC -= 20; maprad = 20; }
+    if (mapSize == 13) { maprad = 15; }
+    if (mapSize == 15) { currentR -= 30; currentC -= 30; maprad = 15; }
+    if (mapSize == 17) { currentR -= 20; currentC -= 20; maprad = 12.5; }
+    if (mapSize == 19) { maprad = 10; }
+    
+    /*
+    if (mapSize == 5) {
+      maprad = 40;
+    }
+    */
+    
+    for (float r = 0; r < mapSize; r++) {
+      for (float c = 0; c < mapSize; c++) {
+        if (m.currentRoomR() == r && m.currentRoomC() == c) {
+          fill(39, 150, 203);
+        }
+        else {
+          fill(211,234,244);
+        }
+        ellipse(currentR + (maprad*2*r),currentC + (maprad*2*c),maprad,maprad);
+        if (r == 0) { System.out.println((currentR + (maprad*2*r)) + ", " + (currentC + (maprad*2*c)));}
+      }
+    }
+  }
+  
+  void backbutton () {
     //back button
     fill(242, 245, 252);
     noStroke();
@@ -465,8 +475,8 @@ public class MenuPages{
     textSize(30); // 29
     text("back", 27, 55);
   
-    if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
-      fill(224, 235, 255);
+    if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
+      fill(211,234,244);
       strokeWeight(5);
       strokeJoin(MITER);
       strokeCap(SQUARE);
@@ -479,240 +489,6 @@ public class MenuPages{
       textSize(30); // 29
       text("back", 27, 55);
     }
-  }
-  
-  void upgradeodd() {
-    fill(255,155);
-    noStroke();
-    rect(0,0,700,800);
-    
-    fill(255);
-    noStroke();
-    rect(100,100,500,500);
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    text("upgrade", 350, 200); 
-    
-    if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for blaster
-      fill(242, 245, 252);
-      strokeWeight(7);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(140,240,140,277);
-    }
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); // 29
-    text("blaster", 210, 300); 
-    
-    textAlign(CENTER);
-    textSize(18); 
-    text("a gun\nthat\nshoots\nmultiple\nbullets in\nmultiple\ndirections",210,350);
-    
-    if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
-      fill(242, 245, 252);
-      strokeWeight(7);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(280,240,140,277);
-    }
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); // 29
-    text("cannon", 350, 300); 
-    
-    textAlign(CENTER);
-    textSize(18); 
-    text("a gun\nthat\nshoots\nlarge\nbullets",350,350);
-    
-    if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for machine gun
-      fill(242, 245, 252);
-      strokeWeight(7);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(420,240,140,277);
-    }
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); // 29
-    text("machine\ngun", 490, 280);
-    
-    textAlign(CENTER);
-    textSize(18); 
-    text("a gun\nthat\nrapidly\nshoots\na lot of\nbullets",490,350);
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(48); 
-    text("level: " + playerlevel, 350, 575); 
-  }
-  
-  void upgradeeven() {
-    fill(255,155);
-    noStroke();
-    rect(0,0,700,800);
-    
-    fill(255);
-    noStroke();
-    rect(100,100,500,500);
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    text("upgrade", 350, 200); 
-    
-    if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for blaster
-      fill(242, 245, 252);
-      strokeWeight(7);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(140,240,140,277);
-    }
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); // 29
-    text("missile", 210, 300); 
-    
-    textAlign(CENTER);
-    textSize(18); 
-    text("bullets\nthat follow\nenemies",210,350);
-    
-    if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
-      fill(242, 245, 252);
-      strokeWeight(7);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(280,240,140,277);
-    }
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); // 29
-    text("stun\nburst", 350, 280); 
-    
-    textAlign(CENTER);
-    textSize(18); 
-    text("bullets\nthat\nstun\nenemies",350,350);
-    
-    if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for machine gun
-      fill(242, 245, 252);
-      strokeWeight(7);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(420,240,140,277);
-    }
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); // 29
-    text("area\nblast", 490, 280);
-    
-    textAlign(CENTER);
-    textSize(18); 
-    text("bullets\nthat\nexplode",490,350);
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(48);
-    text("level: " + playerlevel, 350, 575); 
-  }
-  
-  void upgradeSuper() { 
-    fill(255,155);
-    noStroke();
-    rect(0,0,700,800);
-    
-    fill(255);
-    noStroke();
-    rect(100,100,500,500);
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    text("upgrade", 350, 200); 
-    
-    if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for blaster
-      fill(242, 245, 252);
-      strokeWeight(7);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(140,240,140,277);
-    }
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); // 29
-    text("super\nmissile", 210, 280); 
-    
-    textAlign(CENTER);
-    textSize(18); 
-    text("bullets\nthat\nfollow\nenemies\nlike they\nowe them\nmoney",210,350);
-    
-    if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
-      fill(242, 245, 252);
-      strokeWeight(7);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(280,240,140,277);
-    }
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); // 29
-    text("super\nblaster", 350, 280); 
-    
-    textAlign(CENTER);
-    textSize(18); 
-    text("just\nlike the\noriginal\nblaster,\nbut better",350,350);
-    
-    if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for machine gun
-      fill(242, 245, 252);
-      strokeWeight(7);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(420,240,140,277);
-    }
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); // 29
-    text("super\ncannon", 490, 280);
-    
-    textAlign(CENTER);
-    textSize(18); 
-    text("bigger,\nbetter,\neven\nmore\nbullets",490,350);
-    
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(48);
-    text("level: " + playerlevel, 350, 575); 
   }
   
 }

@@ -3,13 +3,14 @@ public class PlayerTank extends BubbleTank {
   color base = color(20, 54, 129);
   color internal = color(214, 149, 9);
 
-  private int blaster, cannon, machinegun, missile, stunburst, areaburst, superattack;
+  // private int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
 
   public PlayerTank(float health, float radius, int id, float speed, int numBullets, int type, 
     int blaster, int cannon, int machinegun, int missile, int stunburst, 
-    int areaburst, int superattack) {
-    super(health, radius, id, speed, numBullets, blaster, cannon, machinegun, missile, stunburst, areaburst, superattack);
+    int areablast, int superattack) {
+    super(health, radius, id, speed, numBullets, blaster, cannon, machinegun, missile, stunburst, areablast, superattack);
     this.type = type;
+    
   }
 
   public void display() {
@@ -247,6 +248,7 @@ public class PlayerTank extends BubbleTank {
       blocks.add(new BubbleBlock(350+1*getRadius()*cos(getDirection()), 350+1*getRadius()*sin(getDirection()), getRadius()/4.5, getDirection(), internal));
     }
   }
-
+  
   // buildGuns
+  
 }

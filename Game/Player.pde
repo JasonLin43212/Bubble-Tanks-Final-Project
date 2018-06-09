@@ -4,15 +4,15 @@ public class Player {
   private BubbleTank tank;
   //new
   private int maxPoints;
-  private int level = 1; 
+  private int level = 0; 
   private int health = 100; 
   private int maxhealth = 100; 
   
-  private int blaster, cannon, machinegun, missile, stunburst, areaburst, superattack;
+  // private int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
 
   public Player() {
     bubblePoints = 0;
-    //health,radius,id,speed,numBullets,type
+    //health,radius,id,speed,numBullets,type,blaster, cannon, machinegun, missile, stunburst, areablast, superattack
     tank = new PlayerTank(100, 40, 0, 5, 1, 12, 0, 0, 0, 0, 0, 0, 0);
   }
 
@@ -39,5 +39,14 @@ public class Player {
     return maxHealth ();
   }
   
-  // levels
+  public void levelUp () {
+    if (bubblePoints >= maxPoints && level < 25) {
+      level++;
+    }
+  }
+    
+  public int getLevel () {
+    return level;  
+  }
+  
 }

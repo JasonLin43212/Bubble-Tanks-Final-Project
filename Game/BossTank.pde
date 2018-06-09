@@ -5,8 +5,8 @@ public class BossTank extends BubbleTank {
 
   public BossTank(float health, float radius, int id, float speed, int numBullets, int type, 
                   int blaster, int cannon, int machinegun, int missile, int stunburst, 
-                  int areaburst, int superattack) {
-    super(health, radius, id, speed, numBullets, blaster, cannon, machinegun, missile, stunburst, areaburst, superattack);
+                  int areablast, int superattack) {
+    super(health, radius, id, speed, numBullets, blaster, cannon, machinegun, missile, stunburst, areablast, superattack);
     this.type = type;
   }
 

@@ -4,11 +4,11 @@ public class BubbleTank {
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
   
-  private int blaster, cannon, machinegun, missile, stunburst, areaburst, superattack;
+  private int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
 
   public BubbleTank(float health, float radius, int id, float speed, int numBullets, 
                     int blaster, int cannon, int machinegun, int missile, int stunburst, 
-                    int areaburst, int superattack) {
+                    int areablast, int superattack) {
     this.health = health;
     this.id = id;
     this.speed = speed;
@@ -35,14 +35,14 @@ public class BubbleTank {
     blocks = new ArrayList<BubbleBlock>();
     
     // array with all of these + cool down (2d array) 
-    // make something to show cool downs in bottom + health (later) 
-    this.blaster = blaster;
-    this.cannon = cannon;
-    this.machinegun = machinegun;
-    this.missile = missile;
-    this.stunburst = stunburst;
-    this.areaburst = areaburst;
-    this.superattack = superattack;
+    // make something to show cool downs in bottom
+    this.blaster = blaster; // 0
+    this.cannon = cannon; // 1
+    this.machinegun = machinegun; // 2
+    this.missile = missile; // 3
+    this.stunburst = stunburst; // 4
+    this.areablast = areablast; // 5
+    this.superattack = superattack; // 6
   }
 
   public void move(Map m) {
@@ -202,5 +202,68 @@ public class BubbleTank {
       transferedSoFar += abs(transferSpeed);
       transferSpeed -= 0.9;
     }
+  }
+  
+  public void addBlaster () {
+    System.out.println("blasters: " + blaster + " > " + (blaster + 1));
+    blaster++;
+  }
+  
+  public int getBlaster () {
+    return blaster;
+  }
+  
+  public void addCannon () {
+    System.out.println("cannons: " + cannon + " > " + (cannon + 1));
+    cannon++;
+  }
+  
+  public int getCannon () {
+    return cannon;
+  }
+  
+  public void addMachineGun () {
+    System.out.println("machine guns: " + machinegun + " > " + (machinegun + 1));
+    machinegun++;
+  }
+  
+  public int getMachineGun () {
+    return machinegun;
+  }
+  
+  public void addMissile () {
+    System.out.println("missile: " + missile + " > " + (missile + 1));
+    missile++;
+  }
+  
+  public int getMissile () {
+    return missile;
+  }
+  
+  public void addStunBurst () {
+    System.out.println("stun burst: " + stunburst + " > " + (stunburst + 1));
+    stunburst++;
+  }
+  
+  public int getStunBurst () {
+    return stunburst;
+  }
+  
+  public void addAreaBlast () {
+    System.out.println("area burst: " + areablast + " > " + (areablast + 1));
+    areablast++;
+  }
+  
+  public int getAreaBlast () {
+    return areablast;
+  }
+  
+  public void addSuperAttack (int n) {
+    System.out.println("super attack: " + n);
+    superattack = n; // 1 = super missile        2 = super blaster        3 = super cannon
+  }
+  
+  public int getAttack() {
+    return superattack;
   }
 }
