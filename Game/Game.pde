@@ -325,9 +325,9 @@ void keyPressed() {
   if (keyCode == 76) {
     difficulty = 1;
       mapSize = 19;
-      useMouse = true;
+      useMouse = false;
       m = new Map(19, difficulty);
-      menuSetting =6;
+      menuSetting =7;
     }
   if (keyCode == 86) {
     showMap = !showMap;
