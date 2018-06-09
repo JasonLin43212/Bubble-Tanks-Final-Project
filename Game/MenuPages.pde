@@ -480,4 +480,91 @@ public class MenuPages{
       text("back", 27, 55);
     }
   }
+  
+  void upgrade () {
+    fill(255,155);
+    noStroke();
+    rect(0,0,700,800);
+    
+    fill(255);
+    noStroke();
+    rect(100,100,500,500);
+    
+    fill(39, 150, 203);
+    textAlign(CENTER);
+    textFont(bubble);
+    text("upgrade", 350, 200); // starts at 107 ends at 150
+    
+    fill(242, 245, 252);
+    noStroke();
+    rect(200, 272, 300, 75);
+    fill(39, 150, 203);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("cannon", 350, 324); // starts at 262 ends at 291
+  
+    if (mouseX > 200 && mouseX < 500 && mouseY > 272 && mouseY < 347) { // for yes
+      fill(224, 235, 255);
+      strokeWeight(5);
+      strokeJoin(MITER);
+      strokeCap(SQUARE);
+      stroke(242, 245, 252);
+      rect(200, 272, 300, 75);
+  
+      fill(255);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(48); // 29
+      text("cannon", 350, 324);
+    }
+  
+    fill(242, 245, 252);
+    noStroke();
+    rect(200, 361, 300, 75);
+    fill(39, 150, 203);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("blaster", 350, 414); // starts at 351 ends at 380
+  
+    if (mouseX > 200 && mouseX < 500 && mouseY > 361 && mouseY < 436) { // for no
+      fill(224, 235, 255);
+      strokeWeight(5);
+      strokeJoin(MITER);
+      strokeCap(SQUARE);
+      stroke(242, 245, 252);
+      rect(200, 361, 300, 75);
+  
+      fill(255);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(48); // 29
+      text("blaster", 350, 414); // starts at 351 ends at 380
+    }
+    
+    fill(242, 245, 252);
+    noStroke();
+    rect(200, 450, 300, 75);
+    fill(39, 150, 203);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(36); // 29
+    text("machine gun", 350, 497); // starts at 351 ends at 380
+  
+    if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 525) { // for no
+      fill(224, 235, 255);
+      strokeWeight(5);
+      strokeJoin(MITER);
+      strokeCap(SQUARE);
+      stroke(242, 245, 252);
+      rect(200, 450, 300, 75);
+  
+      fill(255);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(36); // 29
+      text("machine gun", 350, 497); // starts at 351 ends at 380
+    }
+  }
 }

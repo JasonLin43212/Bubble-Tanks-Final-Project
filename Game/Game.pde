@@ -203,12 +203,6 @@ void draw() {
       if (mapSize == 17) { currentR -= 20; currentC -= 20; maprad = 12.5; }
       if (mapSize == 19) { maprad = 10; }
       
-      /*
-      if (mapSize == 5) {
-        maprad = 40;
-      }
-      */
-      
       for (float r = 0; r < mapSize; r++) {
         for (float c = 0; c < mapSize; c++) {
           if (m.currentRoomR() == r && m.currentRoomC() == c) {
@@ -222,6 +216,7 @@ void draw() {
         }
       }
     }
+    mt.upgrade();
   }
 }
 
