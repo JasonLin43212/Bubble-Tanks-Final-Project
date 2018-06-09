@@ -8,7 +8,7 @@ public class Player {
   public Player() {
     bubblePoints = 0;
     //health,radius,id,speed,type,coolDown
-    tank = new BossTank(1000, 40,0, 20,3,5);
+    tank = new PlayerTank(1000, 40, 0, 20, 3, 5);
     maxPoints = 500;
   }
 
@@ -26,12 +26,12 @@ public class Player {
   public BubbleTank getTank() {
     return tank;
   }
-  
-  public int getPoints(){
-     return bubblePoints; 
+
+  public int getPoints() {
+    return bubblePoints;
   }
-  
-  public int getMaxPoints(){
-     return maxPoints; 
+
+  public int getMaxPoints() {
+    return maxPoints;
   }
 }

@@ -26,7 +26,6 @@ PImage imgRight;
 
 void setup() {
   size(700, 800);
-  background(0,72,110);
   fill(200);
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
@@ -63,7 +62,7 @@ void draw() {
   } else if (menuSetting == 6) {
     pages.instructions();
   } else {
-    background(0,72,110);
+    background(0, 72, 110);
     fill(0);
     strokeWeight(1);  
     if (tank.getHasTransfered()) {
@@ -198,15 +197,27 @@ void drawMap(float xOffset, float yOffset) {
     boolean[] available = m.getCurrentRoom().getAvailable();
     if (!available[0]) {
       image(imgRight, 830, -1000, 300, 2000);
+      fill(0, 72, 110);
+      noStroke();
+      rect(800, -1000, 100, 1400);
     }
     if (!available[1]) {
       image(imgDown, -850, 830, 2000, 300);
+      fill(0, 72, 110);
+      noStroke();
+      rect(-800, 800, 1400, 100);
     }
     if (!available[2]) {
       image(imgLeft, -1100, -850, 300, 2000);
+      fill(0, 72, 110);
+      noStroke();
+      rect(-900, -1000, 100, 1400);
     }
     if (!available[3]) {
       image(imgUp, -850, -1100, 2000, 300);
+      fill(0, 72, 110);
+      noStroke();
+      rect(-800, -900, 1400, 100);
     }
   }
   popMatrix();
@@ -324,11 +335,11 @@ void keyPressed() {
   }
   if (keyCode == 76) {
     difficulty = 1;
-      mapSize = 19;
-      useMouse = false;
-      m = new Map(19, difficulty);
-      menuSetting =7;
-    }
+    mapSize = 5;
+    useMouse = false;
+    m = new Map(mapSize, difficulty);
+    menuSetting =7;
+  }
   if (keyCode == 86) {
     showMap = !showMap;
   }
