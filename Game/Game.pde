@@ -15,18 +15,8 @@ ArrayList<TitleBubble> titleCircles;
 ArrayList<Bubble> allBubbles;
 int mapSize;
 float selected;
-
 boolean showMap = false;
 float maprad = 40;
-
-// stuff for health and bubblepoints 
-float health = 25;
-float maxhealth = 100;
-float percentHealth = (health / maxhealth) * 200;
-float bubblepoints = 90;
-float maxbp = 100;
-float percentbp = (bubblepoints / maxbp) * 200;
-
 int maxID=0;
 
 void setup() {
@@ -98,94 +88,94 @@ void draw() {
     fill(251, 31, 50);
     rect(30, 720, 300*(tank.getHealth()/tank.getMaxHealth()), 35);
     fill(20, 54, 129);
-    rect(30, 760, 300*((float)player.getPoints()/player.getMaxPoints()),35);
+    rect(30, 760, 300*((float)player.getPoints()/player.getMaxPoints()), 35);
     fill(200);
     rect(0, 700, 700, 100);
-    
-    fill(46,89,47);
+
+    fill(46, 89, 47);
     strokeWeight(3);
     strokeJoin(MITER);
     strokeCap(SQUARE);
-    stroke(46,89,47);
+    stroke(46, 89, 47);
     rect(25, 720, 200, 20);
-    
-    fill(1,24,45);
+
+    fill(1, 24, 45);
     strokeWeight(3);
     strokeJoin(MITER);
     strokeCap(SQUARE);
-    stroke(1,24,45);
+    stroke(1, 24, 45);
     rect(25, 760, 200, 20);
-    
-    fill(72,139,73);
+
+    float percentPoint = (float)player.getPoints()/ player.getMaxPoints();
+    float percentHealth = tank.getHealth() / tank.getMaxHealth();
+
+    fill(72, 139, 73);
     noStroke();
-    rect(26.5, 721.5, percentHealth - 2.5, 17.5);
-    
-    fill(3,64,120);
+    rect(26.5, 721.5, percentHealth*197, 17.5);
+
+    fill(3, 64, 120);
     noStroke();
-    rect(26.5, 761.5, percentbp - 2.5, 17.5);
-    
+    rect(26.5, 761.5, percentPoint *197, 17.5);
+
     // test for health
     fill(255);
-    if (percentHealth > 66) {
+    if (percentHealth > 0.66) {
       textAlign(RIGHT);
       textFont(ptmono);
       textSize(12); 
-      text(int(percentHealth / 2) + "%", 20 + percentHealth, 736); 
-    }
-    else {
+      text((int)(percentHealth*100) + "%", 20 + (int)(percentHealth*200), 736);
+    } else {
       textAlign(LEFT);
       textFont(ptmono);
       textSize(12); 
-      text(int(percentHealth / 2) + "%", 26.5 + percentHealth, 736); 
+      text((int)(percentHealth*100) + "%", 26.5 + (int)(percentHealth*200), 736);
     }
-    
+
     // text for bubble points
     fill(255);
-    if (percentbp > 66) {
+    if (percentPoint > 0.66) {
       textAlign(RIGHT);
       textFont(ptmono);
       textSize(12); 
-      text(int(percentbp / 2) + "%", 20 + percentbp, 776); 
-    }
-    else {
+      text((int)(percentPoint*100) + "%", 20 + (int)(percentPoint*200), 776);
+    } else {
       textAlign(LEFT);
       textFont(ptmono);
-      textSize(12); 
-      text(int(percentbp / 2) + "%", 26.5 + percentbp, 776); 
+      textSize(12);
+      text((int)(percentPoint*100) + "%", 26.5 + (int)(percentPoint*200), 776);
     }
-  
-  // map button 
-  if (menuSetting > 6) {
-    fill(242, 245, 252);
-    noStroke();
-    rect(575, 725, 100, 50);
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(30);
-    text("map", 625, 759); 
-  
-    if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775) { // for easy
-      fill(211,234,244);
-      strokeWeight(5);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(255);
+
+    // map button 
+    if (menuSetting > 6) {
+      fill(242, 245, 252);
+      noStroke();
       rect(575, 725, 100, 50);
-  
-      fill(255);
+      fill(39, 150, 203);
       textAlign(CENTER);
       textFont(bubble);
-      textSize(30); 
-      text("map", 625, 759);
-    }
-    
-    if (showMap) {
-      mt.showmap();
+      textSize(30);
+      text("map", 625, 759); 
+
+      if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775) { // for easy
+        fill(211, 234, 244);
+        strokeWeight(5);
+        strokeJoin(MITER);
+        strokeCap(SQUARE);
+        stroke(255);
+        rect(575, 725, 100, 50);
+
+        fill(255);
+        textAlign(CENTER);
+        textFont(bubble);
+        textSize(30); 
+        text("map", 625, 759);
+      }
+
+      if (showMap) {
+        mt.showmap();
+      }
     }
   }
-  }
-  
 }
 
 void drawMap(float xOffset, float yOffset) {
@@ -204,7 +194,7 @@ void drawShading(float xOffset, float yOffset) {
   strokeWeight(0);
   fill(255, 70);
   ellipse(-151, -464, 187.5, 187.5);
-  ellipse(-422,-244, 250, 250);
+  ellipse(-422, -244, 250, 250);
   fill(255, 40);
   ellipse(390, 225, 250, 250);
   ellipse(139, 428, 187.5, 187.5);
@@ -292,8 +282,8 @@ void drawEnemies(float xOffset, float yOffset) {
 }
 
 void keyPressed() {
-  if (keyCode==222){
-     tank.updatedType(); 
+  if (keyCode==222) {
+    tank.updatedType();
   }
   if (useMouse) {
     if (keyCode != 37 && keyCode != 39) {
@@ -304,7 +294,7 @@ void keyPressed() {
   }
   if (keyCode == 76) {
     difficulty = 1;
-    mapSize = 5;
+    mapSize = 19;
     useMouse = true;
     m = new Map(19, difficulty);
     menuSetting =6;
@@ -440,14 +430,12 @@ void mouseClicked() {
   else if (menuSetting == 5) {
     if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 605) {
       menuSetting = 6;
-      
     }
     //back
     if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
       menuSetting = 4;
     }
-  }
-  else if (menuSetting == 6) {
+  } else if (menuSetting == 6) {
     if (!(mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70)) {
       menuSetting = 7;
       m = new Map(mapSize, difficulty);
@@ -455,12 +443,10 @@ void mouseClicked() {
     if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
       menuSetting = 5;
     }
-  }
-  else if (showMap) {
-    showMap = false; 
-  }
-  else if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775 && !showMap) {
-      showMap = true;
+  } else if (showMap) {
+    showMap = false;
+  } else if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775 && !showMap) {
+    showMap = true;
   }
 }
 

@@ -183,6 +183,12 @@ public abstract class BubbleTank {
 
   public void incrementHealth(float val) {
     health += val;
+    if (health>maxHealth){
+        health = maxHealth;
+    }
+    if (health < 0){
+       health = 0; 
+    }
   }
 
   public float getHealth() {
