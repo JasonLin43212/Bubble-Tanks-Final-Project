@@ -47,14 +47,14 @@ public abstract class BubbleTank {
     float distFromCenter = dist(x, y, 0, 0);
     float angle = atan2(y, x);
     //if you are the player, handle changing rooms 
-    if (id==0 && distFromCenter>1000 && preventControl == false) {
+    if (id==0 && distFromCenter>750 && preventControl == false) {
       preventControl = true;
       //transfering right
       if (angle>=-PI/4 && angle<PI/4) {
         angle = abs(angle);
         transferX = 1;
         transferY = 0;
-        transferDistance = (int) (4200+ radius - 1000*cos(asin(y/1000)) - distFromCenter*cos(angle));
+        transferDistance = (int) (3200+ radius - 750*cos(asin(y/750)) - distFromCenter*cos(angle));
         m.changeRooms(0);
       } 
       //transfering down
@@ -62,7 +62,7 @@ public abstract class BubbleTank {
         angle = abs(angle-(PI/2));
         transferX = 0;
         transferY = 1;
-        transferDistance = (int) (4200 + radius - 1000*cos(asin(x/1000)) - distFromCenter*cos(angle));
+        transferDistance = (int) (3200 + radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
         m.changeRooms(1);
       } 
       //transfering up
@@ -70,7 +70,7 @@ public abstract class BubbleTank {
         angle = abs(angle+(PI/2));
         transferX = 0;
         transferY = -1;
-        transferDistance = (int) (4200 +radius - 1000*cos(asin(x/1000)) - distFromCenter*cos(angle));
+        transferDistance = (int) (3200 +radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
         m.changeRooms(3);
       } 
       //transfering left
@@ -78,10 +78,10 @@ public abstract class BubbleTank {
         angle = PI - abs(angle);
         transferX = -1;
         transferY = 0;
-        transferDistance = (int) (4200 + radius - (1000*cos(asin(y/1000))) - (distFromCenter*cos(angle)));
+        transferDistance = (int) (3200 + radius - (750*cos(asin(y/750))) - (distFromCenter*cos(angle)));
         m.changeRooms(2);
       }
-      transferSpeed = 70;
+      transferSpeed = 60;
     }
   }
 
@@ -210,7 +210,7 @@ public abstract class BubbleTank {
       hasTransfered = false;
       transferedSoFar = 0;
       transferSpeed = 20;
-    } else if ((abs(x) > 2000 || abs(y) > 2000) && !hasTransfered) {
+    } else if ((abs(x) > 1500 || abs(y) > 1500) && !hasTransfered) {
       if (abs(transferX) == 1) {
         x = -x + transferX*transferSpeed;
       } else if (abs(transferY) == 1) {
@@ -222,7 +222,7 @@ public abstract class BubbleTank {
       x += transferSpeed * transferX;
       y += transferSpeed * transferY;
       transferedSoFar += abs(transferSpeed);
-      transferSpeed -= 0.9;
+      transferSpeed -= 0.6;
     }
   }
 }

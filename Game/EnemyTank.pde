@@ -11,8 +11,8 @@ public class EnemyTank extends BubbleTank {
     goToAngle = random(2*PI);
     goToDistance = 1;
     distanceSoFar = 1;
-    setX(random(800)*cos(-goToAngle));
-    setY(random(800)*sin(-goToAngle));
+    setX(random(600)*cos(-goToAngle));
+    setY(random(600)*sin(-goToAngle));
   }
 
   public void updatedType() {
@@ -157,6 +157,11 @@ public class EnemyTank extends BubbleTank {
       blocks.add(new BubbleBlock(x+2.5*getRadius()*cos(getDirection()-7.5*PI/13), y+2.5*getRadius()*sin(getDirection()-7.5*PI/13), getRadius()/4, getDirection(), base));
     }
     if (type == 12) {
+      blocks.add(new BubbleBlock(x+cos(getDirection()), y+sin(getDirection()), getRadius(), getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.3*getRadius()*cos(getDirection()), y+1.3*getRadius()*sin(getDirection()), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.25*getRadius()*cos(getDirection()+PI), y+1.25*getRadius()*sin(getDirection()+PI), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.25*getRadius()*cos(getDirection()+PI/3), y+1.25*getRadius()*sin(getDirection()+PI/3), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.25*getRadius()*cos(getDirection()-PI/3), y+1.25*getRadius()*sin(getDirection()-PI/3), getRadius()/5, getDirection(), base));
     }
     if (type == 13) {
     }
@@ -174,10 +179,10 @@ public class EnemyTank extends BubbleTank {
     float angle = atan2(getY(), getX());
     //Once you are at your destination, pick a new destination.
     //If enemy reaches bounds of bubble, pick a new destination.
-    if (distanceSoFar >= goToDistance || distFromCenter>1000-getRadius()) {
-      if (distFromCenter>1000-getRadius()) {
-        setX((1000-getRadius())*cos(angle));
-        setY((1000-getRadius())*sin(angle));
+    if (distanceSoFar >= goToDistance || distFromCenter>750-getRadius()) {
+      if (distFromCenter>750-getRadius()) {
+        setX((750-getRadius())*cos(angle));
+        setY((750-getRadius())*sin(angle));
       }
       selectNewPath();
     }

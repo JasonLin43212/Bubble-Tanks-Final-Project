@@ -65,7 +65,7 @@ void draw() {
     noStroke();
     pushMatrix();
     translate(-tank.getX()+350, -tank.getY()+350);
-    ellipse(0, 0, 1995, 1995);
+    ellipse(0, 0, 1495, 1495);
     popMatrix();
     drawEnemies(tank.getX(), tank.getY());
     tank.display();
@@ -94,7 +94,7 @@ void drawMap(float xOffset, float yOffset) {
   stroke(195, 234, 250);
   strokeWeight(5);
   fill(6, 153, 173);
-  ellipse(0, 0, 2000, 2000);
+  ellipse(0, 0, 1500, 1500);
   popMatrix();
 }  
 
@@ -103,11 +103,11 @@ void drawShading(float xOffset, float yOffset) {
   translate(-xOffset+350, -yOffset+350);
   strokeWeight(0);
   fill(255, 70);
-  ellipse(-563, -325, 333, 333);
-  ellipse(-201, -618, 250, 250);
+  ellipse(-151, -464, 187.5, 187.5);
+  ellipse(-422,-244, 250, 250);
   fill(255, 40);
-  ellipse(520, 300, 333, 333);
-  ellipse(185, 571, 250, 250);
+  ellipse(390, 225, 250, 250);
+  ellipse(139, 428, 187.5, 187.5);
   popMatrix();
 }
 
