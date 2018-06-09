@@ -39,7 +39,7 @@ public abstract class BubbleTank {
   public abstract void updatedType();
 
   public void move(Map m) {
-    if (!preventControl && id==0) {
+    if (!preventControl && id==0 && !showMap) {
       x += (right-left)*speed;
       y += (down-up)*speed;
       direction += rotateLeft - rotateRight;
@@ -111,7 +111,7 @@ public abstract class BubbleTank {
       rotateLeft = state*radians(5);
     }
     // Spacebar
-    if (code == 32) {
+    if (code == 32 && (!showMap || state == 0) && mouseX > 0 && mouseX<700 && mouseY>0 && mouseY<700) {
       isShooting = state;
     }
   }
