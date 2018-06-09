@@ -279,7 +279,7 @@ public class EnemyTank extends BubbleTank {
     setX(getX()+cos(goToAngle)*getSpeed());
     setY(getY()+sin(goToAngle)*getSpeed());
     distanceSoFar += getSpeed();
-  }
+}
 
   public void selectNewPath() {
     distanceSoFar = 0;

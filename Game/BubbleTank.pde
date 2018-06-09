@@ -117,7 +117,7 @@ public abstract class BubbleTank {
   }
 
   public void display() {
-    if (shootingDown > 0) {
+    if (shootingDown > 0 && !showMap) {
       shootingDown--;
     }
     if (preventControl) {

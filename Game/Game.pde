@@ -206,7 +206,9 @@ void drawBubbles(float xOffset, float yOffset) {
   translate(-xOffset+350, -yOffset+350);
   for (int i=0; i<allBubbles.size(); i++) {
     Bubble currentBubble = allBubbles.get(i);
-    currentBubble.move(tank.getX(), tank.getY());
+    if (!showMap) {
+      currentBubble.move(tank.getX(), tank.getY());
+    }
     currentBubble.display();
     if (dist(currentBubble.getX(), currentBubble.getY(), tank.getX(), tank.getY())<tank.getRadius()+currentBubble.getRadius()) {
       player.addPoints((int)currentBubble.getRadius());
@@ -224,32 +226,34 @@ void drawBullets(float xOffset, float yOffset) {
   for (int i = 0; i<allBullets.size(); i++) {
     BubbleBullet current = allBullets.get(i);
     current.display();
-    if (!current.move()) {
-      allBullets.remove(i);
-      i--;
-    } else if (current.getId()==0) {
-      ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
-      for (int j=0; j<enemies.size(); j++) {
-        EnemyTank currentEnemy = enemies.get(j);
-        for (int k=0; k<currentEnemy.getBlocks().size(); k++) {
-          BubbleBlock currentBlock = currentEnemy.getBlocks().get(k);
-          if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
-            currentEnemy.incrementHealth(-2*current.getRadius());
-            allBullets.remove(i);
-            i--;
-            k=currentEnemy.getBlocks().size();
-            j=enemies.size();
+    if (!showMap) {
+      if (!current.move()) {
+        allBullets.remove(i);
+        i--;
+      } else if (current.getId()==0) {
+        ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
+        for (int j=0; j<enemies.size(); j++) {
+          EnemyTank currentEnemy = enemies.get(j);
+          for (int k=0; k<currentEnemy.getBlocks().size(); k++) {
+            BubbleBlock currentBlock = currentEnemy.getBlocks().get(k);
+            if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
+              currentEnemy.incrementHealth(-2*current.getRadius());
+              allBullets.remove(i);
+              i--;
+              k=currentEnemy.getBlocks().size();
+              j=enemies.size();
+            }
           }
         }
-      }
-    } else if (current.getId() != 0) {
-      for (int k=0; k<tank.getBlocks().size(); k++) {
-        BubbleBlock currentBlock = tank.getBlocks().get(k);
-        if (dist(current.getX(), current.getY(), currentBlock.getX()-350+tank.getX(), currentBlock.getY()-350+tank.getY())<current.getRadius()+currentBlock.getRadius()) {
-          tank.incrementHealth(-2*current.getRadius());
-          allBullets.remove(i);
-          i--;
-          k=tank.getBlocks().size();
+      } else if (current.getId() != 0) {
+        for (int k=0; k<tank.getBlocks().size(); k++) {
+          BubbleBlock currentBlock = tank.getBlocks().get(k);
+          if (dist(current.getX(), current.getY(), currentBlock.getX()-350+tank.getX(), currentBlock.getY()-350+tank.getY())<current.getRadius()+currentBlock.getRadius()) {
+            tank.incrementHealth(-2*current.getRadius());
+            allBullets.remove(i);
+            i--;
+            k=tank.getBlocks().size();
+          }
         }
       }
     }
@@ -268,9 +272,11 @@ void drawEnemies(float xOffset, float yOffset) {
   }
   for (int i=0; i<enemies.size(); i++) {
     EnemyTank currentEnemy = enemies.get(i);
+    if (!showMap){
     currentEnemy.spawnBullets(allBullets);
     currentEnemy.setDirection(tank.getX(), tank.getY());
     currentEnemy.move();
+    }
     currentEnemy.display();
     if (currentEnemy.getHealth()<=0) {
       currentEnemy.spawnBubbles(allBubbles);
@@ -298,6 +304,9 @@ void keyPressed() {
     useMouse = true;
     m = new Map(19, difficulty);
     menuSetting =6;
+  }
+  if (keyCode == 86){
+     showMap = !showMap; 
   }
 }
 

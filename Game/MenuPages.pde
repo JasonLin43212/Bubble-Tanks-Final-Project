@@ -398,12 +398,12 @@ public class MenuPages{
     text("instructions", 350, 150); // starts at 107 ends at 150
     textSize(24);
     if (useMouse){
-    text("to move, use\n\n\n\n\nuse your MOUSE to aim and CLICK to shoot",350,225);
+    text("to move, use\n\n\n\n\nuse your MOUSE to aim and CLICK to shoot\n\nclick the map button to check\nwhere you've been\nthen click anywhere to exit",350,225);
     }
     else{
-      text("to move, use\n\n\n\n\nuse LEFT and RIGHT arrows to aim and SPACE to shoot",350,225);
+      text("to move, use\n\n\n\n\nuse LEFT and RIGHT arrows to aim\n and SPACE to shoot\n\nclick the V button to toggle the map\n to checkwhere you've been",350,225);
     }
-    text("use the map button to check\nwhere you've been and are\nthen click anywhere to exit\n\nyou're in the center of the screen,\nfight the other bubble tanks\n\n\nclick anywhere to start", 350, 450); 
+    text("you're in the center of the screen,\nfight the other bubble tanks\n\n\nclick anywhere to start", 350, 590); 
     textSize(36);
     text("w\na  s  d\n", 350, 300);
     textSize(24);
@@ -460,7 +460,6 @@ public class MenuPages{
           fill(211,234,244);
         }
         ellipse(currentR + (maprad*2*r),currentC + (maprad*2*c),maprad,maprad);
-        if (r == 0) { System.out.println((currentR + (maprad*2*r)) + ", " + (currentC + (maprad*2*c)));}
       }
     }
   }
