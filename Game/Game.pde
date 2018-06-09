@@ -18,7 +18,6 @@ ArrayList<Bubble> allBubbles;
 int mapSize;
 float selected;
 boolean showMap = false;
-float maprad = 40;
 int maxID=0;
 PImage imgUp;
 PImage imgDown;
@@ -27,7 +26,7 @@ PImage imgRight;
 
 void setup() {
   size(700, 800);
-  background(39, 150, 203);
+  background(0,72,110);
   fill(200);
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
@@ -38,7 +37,6 @@ void setup() {
   allBullets = new ArrayList<BubbleBullet>();
   titleCircles = new ArrayList<TitleBubble>();
   allBubbles = new ArrayList<Bubble>();
-  
 }
 
 
@@ -65,8 +63,7 @@ void draw() {
   } else if (menuSetting == 6) {
     pages.instructions();
   } else {
-    //println("---\n"+ Arrays.deepToString(m.rooms));
-    background(200);
+    background(0,72,110);
     fill(0);
     strokeWeight(1);  
     if (tank.getHasTransfered()) {
@@ -197,20 +194,20 @@ void drawMap(float xOffset, float yOffset) {
   strokeWeight(5);
   fill(6, 153, 173);
   ellipse(0, 0, 1500, 1500);
-  if (!tank.getPreventControl()){
-  boolean[] available = m.getCurrentRoom().getAvailable();
-  if (!available[0]){
-     image(imgRight,830,-1000,300,2000); 
-  }
-  if (!available[1]){
-     image(imgDown,-850,830,2000,300); 
-  }
-  if (!available[2]){
-     image(imgLeft,-1100,-850,300,2000); 
-  }
-  if (!available[3]){
-     image(imgUp,-850,-1100,2000,300); 
-  }
+  if (!tank.getPreventControl()) {
+    boolean[] available = m.getCurrentRoom().getAvailable();
+    if (!available[0]) {
+      image(imgRight, 830, -1000, 300, 2000);
+    }
+    if (!available[1]) {
+      image(imgDown, -850, 830, 2000, 300);
+    }
+    if (!available[2]) {
+      image(imgLeft, -1100, -850, 300, 2000);
+    }
+    if (!available[3]) {
+      image(imgUp, -850, -1100, 2000, 300);
+    }
   }
   popMatrix();
 }  
@@ -299,10 +296,10 @@ void drawEnemies(float xOffset, float yOffset) {
   }
   for (int i=0; i<enemies.size(); i++) {
     EnemyTank currentEnemy = enemies.get(i);
-    if (!showMap){
-    currentEnemy.spawnBullets(allBullets);
-    currentEnemy.setDirection(tank.getX(), tank.getY());
-    currentEnemy.move();
+    if (!showMap) {
+      currentEnemy.spawnBullets(allBullets);
+      currentEnemy.setDirection(tank.getX(), tank.getY());
+      currentEnemy.move();
     }
     currentEnemy.display();
     if (currentEnemy.getHealth()<=0) {
@@ -327,13 +324,13 @@ void keyPressed() {
   }
   if (keyCode == 76) {
     difficulty = 1;
-    mapSize = 5;
-    useMouse = true;
-    m = new Map(19, difficulty);
-    menuSetting =6;
-  }
-  if (keyCode == 86){
-     showMap = !showMap; 
+      mapSize = 19;
+      useMouse = true;
+      m = new Map(19, difficulty);
+      menuSetting =6;
+    }
+  if (keyCode == 86) {
+    showMap = !showMap;
   }
 }
 

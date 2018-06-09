@@ -19,7 +19,13 @@ public abstract class BubbleTank {
     down = 0;
     rotateLeft = 0;
     rotateRight = 0;
-    this.coolDown = coolDown;
+    if (id!=0){
+     this.coolDown = coolDown; 
+    }
+    else {
+    this.coolDown = 1;
+    
+    }
     if (id!=0) {
       isShooting = 1;
     } else {

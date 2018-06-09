@@ -1,5 +1,5 @@
 public class Map {
-  public Room[][] rooms;
+  private Room[][] rooms;
   private Room currentRoom;
 
   private int[][] coordRooms = {{0,1},{1,0},{0,-1},{-1,0}};
@@ -44,4 +44,7 @@ public class Map {
      return currentRoom; 
   }
   
+  public Room[][] getRooms(){
+     return rooms; 
+  }
 }
