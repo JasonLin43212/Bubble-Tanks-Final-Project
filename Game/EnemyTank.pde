@@ -39,6 +39,23 @@ public class EnemyTank extends BubbleTank {
       blocks.add(new BubbleBlock(x+1.3*getRadius()*cos(getDirection()+2*PI/3), y+1.3*getRadius()*sin(getDirection()+2*PI/3), 5*getRadius()/8, getDirection(), base));
       blocks.add(new BubbleBlock(x+1.3*getRadius()*cos(getDirection()-2*PI/3), y+1.3*getRadius()*sin(getDirection()-2*PI/3), 5*getRadius()/8, getDirection(), base));
     }
+    if (type == 1){
+        blocks.add(new BubbleBlock(x+cos(getDirection()), y+sin(getDirection()), getRadius(), getDirection(), base));
+        for (int i=0; i<5; i++){
+         blocks.add(new BubbleBlock(x+1.5*getRadius()*cos(getDirection()+i*PI/2.5), y+1.5*getRadius()*sin(getDirection()+i*PI/2.5), getRadius()/2, getDirection(), base));
+        }
+    }
+    if (type == 2){
+        for (int i=0; i<3; i++){
+            blocks.add(new BubbleBlock(x+0.6*getRadius()*cos(getDirection()+i*PI/1.5), y+0.6*getRadius()*sin(getDirection()+i*PI/1.5), getRadius()/2, getDirection(), base));
+        }
+        for (int i=0; i<3; i++){
+           blocks.add(new BubbleBlock(x+1.45*getRadius()*cos(getDirection()+i*PI/1.5), y+1.45*getRadius()*sin(getDirection()+i*PI/1.5), getRadius()/3, getDirection(), base));
+           blocks.add(new BubbleBlock(x+1.3*getRadius()*cos(getDirection()+i*PI/1.5+PI/6), y+1.3*getRadius()*sin(getDirection()+i*PI/1.5+PI/6), getRadius()/3, getDirection(), base));
+           blocks.add(new BubbleBlock(x+1.1*getRadius()*cos(getDirection()+i*PI/1.5+PI/3), y+1.2*getRadius()*sin(getDirection()+i*PI/1.5+PI/3), getRadius()/3, getDirection(), base));
+           blocks.add(new BubbleBlock(x+1.3*getRadius()*cos(getDirection()+i*PI/1.5+PI/2), y+1.3*getRadius()*sin(getDirection()+i*PI/1.5+PI/2), getRadius()/3, getDirection(), base));
+        }
+    }
     if (type > 12) {
     }
   }

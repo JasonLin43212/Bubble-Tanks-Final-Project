@@ -85,7 +85,6 @@ void draw() {
     rect(30, 720, 300*(tank.getHealth()/tank.getMaxHealth()), 35);
     fill(20, 54, 129);
     rect(30, 760, 300*((float)player.getPoints()/player.getMaxPoints()),35);
-    println(player.getPoints());
   }
 }
 
@@ -193,7 +192,6 @@ void drawEnemies(float xOffset, float yOffset) {
 }
 
 void keyPressed() {
-  println(keyCode);
   if (keyCode==222){
      tank.updatedType(); 
   }
