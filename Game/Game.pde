@@ -12,8 +12,10 @@ int difficulty = 0;
 int bubbleTick = 1;
 MenuPages mt = new MenuPages();
 ArrayList<TitleBubble> titleCircles;
+ArrayList<Bubble> allBubbles;
 int mapSize;
 float selected;
+
 boolean showMap = false;
 float maprad = 40;
 
@@ -25,6 +27,8 @@ float bubblepoints = 90;
 float maxbp = 100;
 float percentbp = (bubblepoints / maxbp) * 200;
 
+int maxID=0;
+
 void setup() {
   size(700, 800);
   background(39, 150, 203);
@@ -33,6 +37,7 @@ void setup() {
   ptmono = createFont("ptmono.ttf", 12);
   allBullets = new ArrayList<BubbleBullet>();
   titleCircles = new ArrayList<TitleBubble>();
+  allBubbles = new ArrayList<Bubble>();
 }
 
 
@@ -61,10 +66,9 @@ void draw() {
   } else {
     background(200);
     fill(0);
-    strokeWeight(1);
-    
-    if(tank.getHasTransfered()){
-       allBullets.clear(); 
+    strokeWeight(1);  
+    if (tank.getHasTransfered()) {
+      allBullets.clear();
     }
     tank.spawnBullets(allBullets);
     drawMap(tank.getX(), tank.getY());
@@ -74,16 +78,27 @@ void draw() {
     ellipse(350, 350, 7*tank.getRadius(), 7*tank.getRadius());
     noStroke();
     pushMatrix();
-    translate(-tank.getX()+350,-tank.getY()+350);
-    ellipse(0,0,1995,1995);
+    translate(-tank.getX()+350, -tank.getY()+350);
+    ellipse(0, 0, 1495, 1495);
     popMatrix();
+    drawEnemies(tank.getX(), tank.getY());
     tank.display();
     tank.move(m);
     drawBullets(tank.getX(), tank.getY());
     if (useMouse) {
       tank.realignDirection(mouseX, mouseY);
     }
-    
+    drawShading(tank.getX(), tank.getY());
+    drawBubbles(tank.getX(), tank.getY());
+    fill(200);
+    rect(0, 700, 700, 100);
+    fill(0);
+    rect(30, 720, 300, 35);  
+    rect(30, 760, 300, 35);  
+    fill(251, 31, 50);
+    rect(30, 720, 300*(tank.getHealth()/tank.getMaxHealth()), 35);
+    fill(20, 54, 129);
+    rect(30, 760, 300*((float)player.getPoints()/player.getMaxPoints()),35);
     fill(200);
     rect(0, 700, 700, 100);
     
@@ -179,9 +194,39 @@ void drawMap(float xOffset, float yOffset) {
   stroke(195, 234, 250);
   strokeWeight(5);
   fill(6, 153, 173);
-  ellipse(0, 0, 2000, 2000);
+  ellipse(0, 0, 1500, 1500);
   popMatrix();
 }  
+
+void drawShading(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  strokeWeight(0);
+  fill(255, 70);
+  ellipse(-151, -464, 187.5, 187.5);
+  ellipse(-422,-244, 250, 250);
+  fill(255, 40);
+  ellipse(390, 225, 250, 250);
+  ellipse(139, 428, 187.5, 187.5);
+  popMatrix();
+}
+
+void drawBubbles(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  for (int i=0; i<allBubbles.size(); i++) {
+    Bubble currentBubble = allBubbles.get(i);
+    currentBubble.move(tank.getX(), tank.getY());
+    currentBubble.display();
+    if (dist(currentBubble.getX(), currentBubble.getY(), tank.getX(), tank.getY())<tank.getRadius()+currentBubble.getRadius()) {
+      player.addPoints((int)currentBubble.getRadius());
+      tank.incrementHealth(currentBubble.getRadius());
+      allBubbles.remove(i);
+      i--;
+    }
+  }
+  popMatrix();
+}
 
 void drawBullets(float xOffset, float yOffset) {
   pushMatrix();
@@ -192,13 +237,64 @@ void drawBullets(float xOffset, float yOffset) {
     if (!current.move()) {
       allBullets.remove(i);
       i--;
+    } else if (current.getId()==0) {
+      ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
+      for (int j=0; j<enemies.size(); j++) {
+        EnemyTank currentEnemy = enemies.get(j);
+        for (int k=0; k<currentEnemy.getBlocks().size(); k++) {
+          BubbleBlock currentBlock = currentEnemy.getBlocks().get(k);
+          if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
+            currentEnemy.incrementHealth(-2*current.getRadius());
+            allBullets.remove(i);
+            i--;
+            k=currentEnemy.getBlocks().size();
+            j=enemies.size();
+          }
+        }
+      }
+    } else if (current.getId() != 0) {
+      for (int k=0; k<tank.getBlocks().size(); k++) {
+        BubbleBlock currentBlock = tank.getBlocks().get(k);
+        if (dist(current.getX(), current.getY(), currentBlock.getX()-350+tank.getX(), currentBlock.getY()-350+tank.getY())<current.getRadius()+currentBlock.getRadius()) {
+          tank.incrementHealth(-2*current.getRadius());
+          allBullets.remove(i);
+          i--;
+          k=tank.getBlocks().size();
+        }
+      }
     }
   }
   popMatrix();
 }
 
+void drawEnemies(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
+  if (enemies.size() == 0) {
+    for (Bubble b : allBubbles) {
+      b.setClearState(true);
+    }
+  }
+  for (int i=0; i<enemies.size(); i++) {
+    EnemyTank currentEnemy = enemies.get(i);
+    currentEnemy.spawnBullets(allBullets);
+    currentEnemy.setDirection(tank.getX(), tank.getY());
+    currentEnemy.move();
+    currentEnemy.display();
+    if (currentEnemy.getHealth()<=0) {
+      currentEnemy.spawnBubbles(allBubbles);
+      enemies.remove(i);
+      i--;
+    }
+  }
+  popMatrix();
+}
 
 void keyPressed() {
+  if (keyCode==222){
+     tank.updatedType(); 
+  }
   if (useMouse) {
     if (keyCode != 37 && keyCode != 39) {
       tank.setMovement(keyCode, 1);
@@ -210,7 +306,7 @@ void keyPressed() {
     difficulty = 1;
     mapSize = 5;
     useMouse = true;
-    m = new Map(5);
+    m = new Map(19, difficulty);
     menuSetting =6;
   }
 }
@@ -344,6 +440,7 @@ void mouseClicked() {
   else if (menuSetting == 5) {
     if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 605) {
       menuSetting = 6;
+      
     }
     //back
     if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
@@ -353,7 +450,7 @@ void mouseClicked() {
   else if (menuSetting == 6) {
     if (!(mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70)) {
       menuSetting = 7;
-      m = new Map(mapSize);
+      m = new Map(mapSize, difficulty);
     }
     if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
       menuSetting = 5;

@@ -1,3 +1,4 @@
+
 public class MenuPages{ 
 
   void title() {
@@ -148,9 +149,7 @@ public class MenuPages{
       textSize(48); // 29
       text("insane", 350, 558); // starts at 529 ends at 558
     }
-  
   backbutton();
-  
   }
   
   void mapsize() {  
@@ -256,9 +255,7 @@ public class MenuPages{
         text("ok", 350, 407);
       }
     }
-  
   backbutton();
-  
   }
   
   void mouseuse() {
@@ -318,7 +315,6 @@ public class MenuPages{
       textSize(48); // 29
       text("no", 350, 430); // starts at 351 ends at 380
     }
-  
   backbutton();
 
   } 
@@ -388,7 +384,6 @@ public class MenuPages{
       textSize(48); // 29
       text("start", 350, 567); // starts at 488 ends at 517
     }
-  
     backbutton();
   }
 
@@ -402,7 +397,13 @@ public class MenuPages{
     textFont(bubble);
     text("instructions", 350, 150); // starts at 107 ends at 150
     textSize(24);
-    text("to move, use\n\n\n\n\n\nuse your mouse to aim and click to shoot\n\nuse the map button to check\nwhere you've been and are\nthen click anywhere to exit\n\nyou're in the center of the screen,\nfight the other bubble tanks\n\n\nclick anywhere to start", 350, 225); 
+    if (useMouse){
+    text("to move, use\n\n\n\n\nuse your MOUSE to aim and CLICK to shoot",350,225);
+    }
+    else{
+      text("to move, use\n\n\n\n\nuse LEFT and RIGHT arrows to aim and SPACE to shoot",350,225);
+    }
+    text("use the map button to check\nwhere you've been and are\nthen click anywhere to exit\n\nyou're in the center of the screen,\nfight the other bubble tanks\n\n\nclick anywhere to start", 350, 450); 
     textSize(36);
     text("w\na  s  d\n", 350, 300);
     textSize(24);
@@ -474,7 +475,6 @@ public class MenuPages{
     textFont(bubble);
     textSize(30); // 29
     text("back", 27, 55);
-  
     if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) { // for back
       fill(211,234,244);
       strokeWeight(5);
@@ -490,5 +490,4 @@ public class MenuPages{
       text("back", 27, 55);
     }
   }
-  
 }

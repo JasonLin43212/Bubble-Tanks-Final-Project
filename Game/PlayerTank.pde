@@ -3,8 +3,8 @@ public class PlayerTank extends BubbleTank {
   color base = color(20, 54, 129);
   color internal = color(214, 149, 9);
 
-  public PlayerTank(float health, float radius, int id, float speed, int numBullets, int type) {
-    super(health, radius, id, speed, numBullets);
+  public PlayerTank(float health, float radius, int id, float speed, int type,float coolDown) {
+    super(health, radius, id, speed, coolDown);
     this.type = type;
   }
 
@@ -14,6 +14,13 @@ public class PlayerTank extends BubbleTank {
     for (int i=0; i<blocks.size(); i++) {
       blocks.get(i).display();
     }
+  }
+  
+  public void updatedType(){
+    type++;
+     if (type > 12){
+       type =0;
+     }
   }
 
   // creates the tank depending on what type it is
