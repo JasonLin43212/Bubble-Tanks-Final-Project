@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 Map m; 
 PFont bubble;
 PFont ptmono;
@@ -10,7 +12,7 @@ float centerX = 350;
 float centerY = 350;
 int difficulty = 0;
 int bubbleTick = 1;
-MenuPages mt = new MenuPages();
+MenuPages pages = new MenuPages();
 ArrayList<TitleBubble> titleCircles;
 ArrayList<Bubble> allBubbles;
 int mapSize;
@@ -42,18 +44,19 @@ void setup() {
  */
 void draw() {
   if (menuSetting == 1) {
-    mt.title();
+    pages.title();
   } else if (menuSetting == 2) {
-    mt.difficulty();
+    pages.difficulty();
   } else if (menuSetting == 3) {
-    mt.mapsize();
+    pages.mapsize();
   } else if (menuSetting == 4) {
-    mt.mouseuse();
+    pages.mouseuse();
   } else if (menuSetting == 5) {
-    mt.mapsettings();
+    pages.mapsettings();
   } else if (menuSetting == 6) {
-    mt.instructions();
+    pages.instructions();
   } else {
+    //println("---\n"+ Arrays.deepToString(m.rooms));
     background(200);
     fill(0);
     strokeWeight(1);  
@@ -172,7 +175,7 @@ void draw() {
       }
 
       if (showMap) {
-        mt.showmap();
+        pages.showmap();
       }
     }
   }
@@ -300,7 +303,7 @@ void keyPressed() {
   }
   if (keyCode == 76) {
     difficulty = 1;
-    mapSize = 19;
+    mapSize = 5;
     useMouse = true;
     m = new Map(19, difficulty);
     menuSetting =6;

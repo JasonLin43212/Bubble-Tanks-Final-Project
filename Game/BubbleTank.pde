@@ -1,5 +1,5 @@
 public abstract class BubbleTank {
-  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed, shootingDown,maxHealth;
+  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed, shootingDown, maxHealth;
   private int id, transferX, transferY, transferDistance, transferedSoFar;
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
@@ -35,7 +35,7 @@ public abstract class BubbleTank {
     blocks = new ArrayList<BubbleBlock>();
     shootingDown = 0;
   }
-  
+
   public abstract void updatedType();
 
   public void move(Map m) {
@@ -48,9 +48,9 @@ public abstract class BubbleTank {
     float angle = atan2(y, x);
     //if you are the player, handle changing rooms 
     if (id==0 && distFromCenter>750 && preventControl == false) {
-      preventControl = true;
       //transfering right
-      if (angle>=-PI/4 && angle<PI/4) {
+      if (angle>=-PI/4 && angle<PI/4 && m.canChangeRoom(0)) {
+        preventControl = true;
         angle = abs(angle);
         transferX = 1;
         transferY = 0;
@@ -58,7 +58,8 @@ public abstract class BubbleTank {
         m.changeRooms(0);
       } 
       //transfering down
-      else if (angle>=PI/4 && angle<3*PI/4) {
+      else if (angle>=PI/4 && angle<3*PI/4&&m.canChangeRoom(1)) {
+        preventControl = true;
         angle = abs(angle-(PI/2));
         transferX = 0;
         transferY = 1;
@@ -66,7 +67,8 @@ public abstract class BubbleTank {
         m.changeRooms(1);
       } 
       //transfering up
-      else if (angle>=-3*PI/4 && angle<-PI/4) {
+      else if (angle>=-3*PI/4 && angle<-PI/4&&m.canChangeRoom(3)) {
+        preventControl = true;
         angle = abs(angle+(PI/2));
         transferX = 0;
         transferY = -1;
@@ -74,14 +76,20 @@ public abstract class BubbleTank {
         m.changeRooms(3);
       } 
       //transfering left
-      else {
+      else if (abs(angle)>3*PI/4&&m.canChangeRoom(2)) {
+        preventControl = true;
         angle = PI - abs(angle);
         transferX = -1;
         transferY = 0;
         transferDistance = (int) (3200 + radius - (750*cos(asin(y/750))) - (distFromCenter*cos(angle)));
         m.changeRooms(2);
+      } else {
+        x=750*cos(angle);
+        y=750*sin(angle);
       }
-      transferSpeed = 60;
+      if (preventControl) {
+        transferSpeed = 60;
+      }
     }
   }
 
@@ -183,20 +191,20 @@ public abstract class BubbleTank {
 
   public void incrementHealth(float val) {
     health += val;
-    if (health>maxHealth){
-        health = maxHealth;
+    if (health>maxHealth) {
+      health = maxHealth;
     }
-    if (health < 0){
-       health = 0; 
+    if (health < 0) {
+      health = 0;
     }
   }
 
   public float getHealth() {
     return health;
   }
-  
-  public float getMaxHealth(){
-     return maxHealth; 
+
+  public float getMaxHealth() {
+    return maxHealth;
   }
 
   public int getId() {

@@ -1,4 +1,3 @@
-
 public class MenuPages{ 
 
   void title() {
@@ -459,7 +458,7 @@ public class MenuPages{
         else {
           fill(211,234,244);
         }
-        ellipse(currentR + (maprad*2*r),currentC + (maprad*2*c),maprad,maprad);
+        ellipse(currentC + (maprad*2*c),currentR + (maprad*2*r),maprad,maprad);
       }
     }
   }

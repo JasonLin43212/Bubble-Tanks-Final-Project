@@ -13,14 +13,14 @@ public class Room {
     this.col = col;
     
     availableRooms = new boolean[4];
-    for (int i = 0; i < 4; i++) {
-      if (row + 1 >= mapSize || row -1 < 0 || col + 1 >= mapSize || col -1 < 0) {
-        availableRooms[i] = false; // can't move to
-      }
-      else { // if within bounds
-        availableRooms[i] = true; // can move to
-      }
-    }
+    //check going right
+    availableRooms[0] = col+1<mapSize;
+    //checking down
+    availableRooms[1] = row+1<mapSize;
+    //checking left
+    availableRooms[2] = col-1>=0;
+    //checkning up
+    availableRooms[3] = row-1>=0;
     int manhattanDist = abs(row - ((mapSize-1)/2)) + abs(col - ((mapSize-1)/2));
     int numEnemies = (int) (random(manhattanDist) + (manhattanDist+3))+ difficulty; 
     numEnemies = 10;
@@ -57,4 +57,7 @@ public class Room {
     //
   //}
   
+  public String toString(){
+     return row + " " + col; 
+  }
 }

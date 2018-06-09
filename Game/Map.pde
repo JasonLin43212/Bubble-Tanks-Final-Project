@@ -1,8 +1,8 @@
 public class Map {
-  private Room[][] rooms;
+  public Room[][] rooms;
   private Room currentRoom;
 
-  private int[][] coordRooms = {{1,0},{0,1},{-1,0},{0,-1}};
+  private int[][] coordRooms = {{0,1},{1,0},{0,-1},{-1,0}};
   private int n;
 
   public Map (int num, int difficulty) {
@@ -25,9 +25,11 @@ public class Map {
 *  3: up
 */
   private void changeRooms (int changeTo) { // lets you actually change rooms
-    if (currentRoom.getAvailable()[changeTo]){
       currentRoom = rooms[currentRoomR()+coordRooms[changeTo][0]][currentRoomC()+coordRooms[changeTo][1]];
-    }
+  }
+  
+  public boolean canChangeRoom(int changeTo){
+      return currentRoom.getAvailable()[changeTo];
   }
 
   public int currentRoomR () { 
@@ -41,4 +43,5 @@ public class Map {
   public Room getCurrentRoom(){
      return currentRoom; 
   }
+  
 }
