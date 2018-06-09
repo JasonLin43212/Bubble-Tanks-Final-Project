@@ -8,7 +8,7 @@ public class Player {
   public Player() {
     bubblePoints = 0;
     //health,radius,id,speed,type,coolDown
-    tank = new PlayerTank(1000, 40,0, 10,12,5);
+    tank = new EnemyTank(1000, 40,0, 10,12,5);
     maxPoints = 500;
   }
 
