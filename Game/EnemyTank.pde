@@ -202,10 +202,26 @@ public class EnemyTank extends BubbleTank {
       blocks.add(new BubbleBlock(x+3*getRadius()*cos(getDirection()+PI), y+3*getRadius()*sin(getDirection()+PI), getRadius()/4, getDirection(), base));
     }
     if (type == 14) {
+      blocks.add(new BubbleBlock(x+cos(getDirection()), y+sin(getDirection()), getRadius(), getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.4*getRadius()*cos(getDirection()), y+1.4*getRadius()*sin(getDirection()), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.4*getRadius()*cos(getDirection()+PI), y+1.4*getRadius()*sin(getDirection()+PI), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.65*getRadius()*cos(getDirection()+2*PI/11), y+1.65*getRadius()*sin(getDirection()+2*PI/11), getRadius()/1.7, getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.65*getRadius()*cos(getDirection()-2*PI/11), y+1.65*getRadius()*sin(getDirection()-2*PI/11), getRadius()/1.7, getDirection(), base));
+      blocks.add(new BubbleBlock(x+2.3*getRadius()*cos(getDirection()), y+2.3*getRadius()*sin(getDirection()), getRadius()/1.8, getDirection(), base));
+      blocks.add(new BubbleBlock(x+2.3*getRadius()*cos(getDirection()+7*PI/66), y+2.3*getRadius()*sin(getDirection()+7*PI/66), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(x+2.7*getRadius()*cos(getDirection()+6*PI/66), y+2.7*getRadius()*sin(getDirection()+6*PI/66), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(x+3*getRadius()*cos(getDirection()+4*PI/66), y+3*getRadius()*sin(getDirection()+4*PI/66), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(x+2.3*getRadius()*cos(getDirection()-7*PI/66), y+2.3*getRadius()*sin(getDirection()-7*PI/66), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(x+2.7*getRadius()*cos(getDirection()-6*PI/66), y+2.7*getRadius()*sin(getDirection()-6*PI/66), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(x+3*getRadius()*cos(getDirection()-4*PI/66), y+3*getRadius()*sin(getDirection()-4*PI/66), getRadius()/5, getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.65*getRadius()*cos(getDirection()+5*PI/11), y+1.65*getRadius()*sin(getDirection()+5*PI/11), getRadius()/1.5, getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.65*getRadius()*cos(getDirection()-5*PI/11), y+1.65*getRadius()*sin(getDirection()-5*PI/11), getRadius()/1.5, getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.65*getRadius()*cos(getDirection()+8*PI/11), y+1.65*getRadius()*sin(getDirection()+8*PI/11), getRadius()/1.7, getDirection(), base));
+      blocks.add(new BubbleBlock(x+1.65*getRadius()*cos(getDirection()-8*PI/11), y+1.65*getRadius()*sin(getDirection()-8*PI/11), getRadius()/1.7, getDirection(), base));
+      blocks.add(new BubbleBlock(x+2.6*getRadius()*cos(getDirection()+8*PI/11), y+2.6*getRadius()*sin(getDirection()+8*PI/11), getRadius()/3, getDirection(), base));
+      blocks.add(new BubbleBlock(x+2.6*getRadius()*cos(getDirection()-8*PI/11), y+2.6*getRadius()*sin(getDirection()-8*PI/11), getRadius()/3, getDirection(), base));
     }
     if (type == 15) {
-    }
-    if (type == 16) {
     }
   }
 
