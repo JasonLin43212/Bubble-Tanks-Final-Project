@@ -1,13 +1,9 @@
-public class BossTank extends BubbleTank {
+/*public abstract class BossTank extends BubbleTank {
   private int type;
   color base = color(20, 54, 129);
   color internal = color(214, 149, 9);
 
-  public BossTank(float health, float radius, int id, float speed, int coolDown, int type, 
-                  int blaster, int cannon, int machinegun, int missile, int stunburst, 
-                  int areablast, int superattack) {
-    super(health, radius, id, speed, coolDown, blaster, cannon, machinegun, missile, stunburst, areablast, superattack);
-
+  public BossTank(int difficulty,int type) {
     this.type = type;
   }
 
@@ -251,3 +247,4 @@ public class BossTank extends BubbleTank {
     }
   }
 }
+*/

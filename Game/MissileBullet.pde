@@ -10,6 +10,7 @@ public class MissileBullet extends BubbleBullet {
   }
 
   public void switchDirection() {
+    if (id==0){
     ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
     for (int i=0; i<enemies.size(); i++) {
       EnemyTank cur = enemies.get(i);
@@ -20,6 +21,16 @@ public class MissileBullet extends BubbleBullet {
     }
     if (enemies.size()!=0) {
       followId = enemies.get((int) (random(enemies.size()))).getId();
+    }
+    if (m.getCurrentRoom().toString().equals("boss")) {
+      BossRoom bRoom = (BossRoom)m.getCurrentRoom();
+      if (m.getHasBoss()){
+      direction = atan2(bRoom.getBoss().getY()-y, bRoom.getBoss().getX()-x);
+      }
+    }
+    }
+    else {
+      direction = atan2(tank.getY()-y, tank.getX()-x);
     }
   }
 

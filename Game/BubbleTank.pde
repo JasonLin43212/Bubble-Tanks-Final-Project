@@ -405,4 +405,8 @@ public abstract class BubbleTank {
        allBullets.add(new SuperBullet(27,5,radius,x,y,direction,id,getAttack())); 
     }
   }
+  
+  public void spawnBubbles(ArrayList<Bubble> arr){
+     return; 
+  }
 }

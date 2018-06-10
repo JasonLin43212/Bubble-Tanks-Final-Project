@@ -4,7 +4,8 @@ Map m;
 PFont bubble;
 PFont ptmono;
 Player player = new Player();
-BubbleTank tank = player.getTank();
+PlayerTank tank = player.getTank();
+int bossesKilled = 0;
 
 float health = 25;
 float maxhealth = 100;
@@ -90,7 +91,9 @@ void draw() {
     }
     player.levelUp();
     tank.spawnBullets(allBullets);
+    
     drawMap(tank.getX(), tank.getY());
+    
 
     fill(6, 153, 173);
     stroke(195, 234, 250);
@@ -103,9 +106,9 @@ void draw() {
     ellipse(0, 0, 1495, 1495);
     popMatrix();
     drawEnemies(tank.getX(), tank.getY());
+    m.spawnBoss();
     tank.display();
     tank.move(m);
-
     drawBullets(tank.getX(), tank.getY());
     if (useMouse) {
       tank.realignDirection(mouseX, mouseY);
@@ -141,8 +144,8 @@ void draw() {
 
     float percentPoint = (float)player.getPoints()/ player.getMaxPoints();
     float percentHealth = tank.getHealth() / tank.getMaxHealth();
-    if (player.getLevel()==25){
-       percentPoint = 1; 
+    if (player.getLevel()==25) {
+      percentPoint = 1;
     }
 
     fill(72, 139, 73);
@@ -169,13 +172,12 @@ void draw() {
 
     // text for bubble points
     fill(255);
-    if (player.getLevel()==25){
+    if (player.getLevel()==25) {
       textAlign(RIGHT);
       textFont(ptmono);
       textSize(12); 
       text("MAX", 20 + (int)(percentPoint*200), 776);
-    }
-    else if (percentPoint > 0.66) {
+    } else if (percentPoint > 0.66) {
       textAlign(RIGHT);
       textFont(ptmono);
       textSize(12); 
@@ -188,105 +190,105 @@ void draw() {
     }
     /*
     fill(242, 245, 252);
-    noStroke();
-    rect(260, 720, 100, 12.5);
-    
-    fill(242, 245, 252);
-    noStroke();
-    rect(260, 743.75, 100, 12.5);
-    
-    fill(242, 245, 252);
-    noStroke();
-    rect(260, 767.5, 100, 12.5);
-    */
-    
+     noStroke();
+     rect(260, 720, 100, 12.5);
+     
+     fill(242, 245, 252);
+     noStroke();
+     rect(260, 743.75, 100, 12.5);
+     
+     fill(242, 245, 252);
+     noStroke();
+     rect(260, 767.5, 100, 12.5);
+     */
+
     // fill in style
-    
+
     percentageTime = ((endms - millis()) / (1000 * 15));
     opacitymult = 1 - percentageTime;
     remainingTime = (endms - millis()) / 1000;
-    
+
     // first
-    fill(147,202,229);
+    fill(147, 202, 229);
     strokeWeight(2.5);
-    stroke(179,217,236);
-    ellipse(276,730,30,30);
-    
+    stroke(179, 217, 236);
+    ellipse(276, 730, 30, 30);
+
     // fill(147,202,229,opacityone * 255);
-    fill(255,255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
+    fill(255, 255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
     strokeWeight(2.5);
-    stroke(179,217,236);
-    ellipse(276,730,30,30);
-    
-    fill(147,202,229);
+    stroke(179, 217, 236);
+    ellipse(276, 730, 30, 30);
+
+    fill(147, 202, 229);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
     text("1", 277, 730 + 7.5);
-    
-    fill(255,100 + (opacitymult * 155));
+
+    fill(255, 100 + (opacitymult * 155));
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
     text("1", 277, 730 + 7.5);
-    
+
     // second
-    fill(147,202,229);
+    fill(147, 202, 229);
     strokeWeight(2.5);
-    stroke(179,217,236);
-    ellipse(335,730,30,30);
+    stroke(179, 217, 236);
+    ellipse(335, 730, 30, 30);
 
     // fill(147,202,229,opacityone * 255);
-    fill(255,255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
+    fill(255, 255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
     strokeWeight(2.5);
-    stroke(179,217,236);
-    ellipse(335,730,30,30);
-    
-    fill(147,202,229);
+    stroke(179, 217, 236);
+    ellipse(335, 730, 30, 30);
+
+    fill(147, 202, 229);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
     text("2", 336, 730 + 7.5);
-    
-    fill(255,100 + (opacitymult * 155));
+
+    fill(255, 100 + (opacitymult * 155));
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
     text("2", 336, 730 + 7.5);
-    
+
     // third
-    fill(147,202,229);
+    fill(147, 202, 229);
     strokeWeight(2.5);
-    stroke(179,217,236);
-    ellipse(394,730,30,30);
+    stroke(179, 217, 236);
+    ellipse(394, 730, 30, 30);
 
     // fill(147,202,229,opacityone * 255);
-    fill(255,255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
+    fill(255, 255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
     strokeWeight(2.5);
-    stroke(179,217,236);
-    ellipse(394,730,30,30);
-    
-    fill(147,202,229);
+    stroke(179, 217, 236);
+    ellipse(394, 730, 30, 30);
+
+    fill(147, 202, 229);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
     text("3", 395, 730 + 7.5);
-    
-    fill(255,100 + (opacitymult * 155));
+
+    fill(255, 100 + (opacitymult * 155));
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
     text("3", 395, 730 + 7.5);
 
     // super attack
-    fill(147,202,229);
+    fill(147, 202, 229);
     strokeWeight(3);
     strokeJoin(MITER);
     strokeCap(SQUARE);
-    stroke(147,202,229);
+    stroke(147, 202, 229);
     rect(260, 760, 150, 20); 
-    
-    fill(179,217,236);
+
+    fill(179, 217, 236);
     noStroke();
     rect(261.5, 761.5, opacitymult*141.5, 18);
 
@@ -450,22 +452,41 @@ void drawBullets(float xOffset, float yOffset) {
         allBullets.remove(i);
         i--;
       } else if (current.getId()==0) {
+        if (m.getCurrentRoom().toString().equals("boss")&&m.getHasBoss()){
+          BossRoom bRoom = (BossRoom)m.getCurrentRoom();
+          BubbleTank boss = bRoom.getBoss();
+          for (int k=0; k<boss.getBlocks().size();k++){
+            BubbleBlock currentBlock = boss.getBlocks().get(k);
+            if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
+              if (current.toString().equals("stun")) {
+                StunBullet stunner = (StunBullet)current;
+                boss.stun(stunner.getStunTime());
+              }
+              if (!current.toString().equals("super")) {
+                boss.incrementHealth(-2*current.getRadius());
+                allBullets.remove(i);
+                i--;
+                k=boss.getBlocks().size();
+              }
+            }
+          }
+        }
         ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
         for (int j=0; j<enemies.size(); j++) {
           EnemyTank currentEnemy = enemies.get(j);
           for (int k=0; k<currentEnemy.getBlocks().size(); k++) {
             BubbleBlock currentBlock = currentEnemy.getBlocks().get(k);
             if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
-              if (current.toString().equals("stun")){
+              if (current.toString().equals("stun")) {
                 StunBullet stunner = (StunBullet)current;
-                 currentEnemy.stun(stunner.getStunTime()); 
+                currentEnemy.stun(stunner.getStunTime());
               }
-              if (!current.toString().equals("super")){
-              currentEnemy.incrementHealth(-2*current.getRadius());
-              allBullets.remove(i);
-              i--;
-              k=currentEnemy.getBlocks().size();
-              j=enemies.size();
+              if (!current.toString().equals("super")) {
+                currentEnemy.incrementHealth(-2*current.getRadius());
+                allBullets.remove(i);
+                i--;
+                k=currentEnemy.getBlocks().size();
+                j=enemies.size();
               }
             }
           }
@@ -475,10 +496,10 @@ void drawBullets(float xOffset, float yOffset) {
           BubbleBlock currentBlock = tank.getBlocks().get(k);
           if (dist(current.getX(), current.getY(), currentBlock.getX()-350+tank.getX(), currentBlock.getY()-350+tank.getY())<current.getRadius()+currentBlock.getRadius()) {
             tank.incrementHealth(-2*current.getRadius());
-            if (current.toString().equals("stun")){
-                StunBullet stunner = (StunBullet)current;
-                tank.stun(stunner.getStunTime()); 
-              }
+            if (current.toString().equals("stun")) {
+              StunBullet stunner = (StunBullet)current;
+              tank.stun(stunner.getStunTime());
+            }
             allBullets.remove(i);
             i--;
             k=tank.getBlocks().size();
@@ -493,7 +514,23 @@ void drawBullets(float xOffset, float yOffset) {
 void drawEnemies(float xOffset, float yOffset) {
   pushMatrix();
   translate(-xOffset+350, -yOffset+350);
-  ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
+  Room currentRoom = m.getCurrentRoom();
+  ArrayList<EnemyTank> enemies = currentRoom.getEnemies();
+  BubbleTank boss;
+  BossRoom bRoom;
+  if (currentRoom.toString().equals("boss") &&m.getHasBoss()) {
+    bRoom = (BossRoom)currentRoom;
+    boss = bRoom.getBoss();
+    if (boss.getHealth() == 0) {
+      for (Bubble b : allBubbles) {
+        b.setClearState(true);
+      }
+    }
+    if (!showMap&& !playerLevelUp) {
+      boss.move(m);
+    }
+    boss.display();
+  }
   if (enemies.size() == 0) {
     for (Bubble b : allBubbles) {
       b.setClearState(true);
@@ -528,7 +565,7 @@ void keyPressed() {
     tank.setMovement(keyCode, 1);
   }
   if (keyCode == 76) {
-    difficulty = 1;
+    difficulty = 3;
     mapSize = 5;
     useMouse = true;
     m = new Map(mapSize, difficulty);
@@ -550,13 +587,12 @@ void keyPressed() {
   if (keyCode == 52) { // 4
     tank.activateSuper();
   }
-  
+
   if (keyCode == 61) { // ' + '
     if (player.getLevel() < 25) {
       player.addPoints(90000);
     }
   }
-  
 }
 
 void keyReleased() {

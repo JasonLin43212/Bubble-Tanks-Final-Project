@@ -28,6 +28,9 @@ public class PlayerTank extends BubbleTank {
     }
   }
 
+public void setType(int val){
+   type = val; 
+}
   // creates the tank depending on what type it is
   public void buildBlocks() {
     blocks.clear();

@@ -2,12 +2,17 @@ public class Map {
   private Room[][] rooms;
   private Room currentRoom;
 
-  private int[][] coordRooms = {{0,1},{1,0},{0,-1},{-1,0}};
+  private int[][] coordRooms = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
   private int n;
+  private boolean hasBoss;
+  private int bossRow, bossCol;
 
   public Map (int num, int difficulty) {
     n = num;
     rooms = new Room[n][n];
+    hasBoss = false;
+    bossRow = -1;
+    bossCol = -1;
 
     for (int r = 0; r < n; r++) {
       for (int c = 0; c < n; c++) {
@@ -19,17 +24,17 @@ public class Map {
     currentRoom = rooms[(n - 1) / 2][(n - 1) / 2];
   }  
 
-/* 0: right
-*  1: down
-*  2: left
-*  3: up
-*/
+  /* 0: right
+   *  1: down
+   *  2: left
+   *  3: up
+   */
   private void changeRooms (int changeTo) { // lets you actually change rooms
-      currentRoom = rooms[currentRoomR()+coordRooms[changeTo][0]][currentRoomC()+coordRooms[changeTo][1]];
+    currentRoom = rooms[currentRoomR()+coordRooms[changeTo][0]][currentRoomC()+coordRooms[changeTo][1]];
   }
-  
-  public boolean canChangeRoom(int changeTo){
-      return currentRoom.getAvailable()[changeTo];
+
+  public boolean canChangeRoom(int changeTo) {
+    return currentRoom.getAvailable()[changeTo];
   }
 
   public int currentRoomR () { 
@@ -39,12 +44,52 @@ public class Map {
   public int currentRoomC () {
     return currentRoom.getC();
   }
-  
-  public Room getCurrentRoom(){
-     return currentRoom; 
+
+  public Room getCurrentRoom() {
+    return currentRoom;
+  }
+
+  public Room[][] getRooms() {
+    return rooms;
+  }
+
+  public void spawnBoss() {
+    if (!hasBoss) {
+      int cleared=0;
+      for (int i=0; i<rooms.length; i++) {
+        for (int j=0; j<rooms.length; j++) {
+          if (rooms[i][j].getEnemies().size()==0) {
+            cleared++;
+          }
+        }
+      }
+      if (bossesKilled == 0 && cleared>=1) {
+        println("spawn");
+        while (bossRow==currentRoomR() &&bossCol==currentRoomC() || bossRow==-1 || bossCol==-1) {
+          bossRow = (int)(random(n));
+          bossCol = (int)(random(n));
+        }
+        rooms[bossRow][bossCol] = new BossRoom(n, bossRow, bossCol, difficulty, 0);
+        hasBoss = true;
+        println(bossRow+ " " +bossCol);
+      }
+    }
+    if (hasBoss) {
+      BossRoom bRoom = (BossRoom) rooms[bossRow][bossCol];
+      if (bRoom.getBoss().getHealth() <=0) {
+        bRoom.getBoss().spawnBubbles(allBubbles);
+        bRoom.setBoss(null);
+        hasBoss = false;
+        rooms[bossRow][bossCol] = new Room(n, bossRow, bossCol, difficulty);
+        rooms[bossRow][bossCol].getEnemies().clear();
+        bossRow = -1;
+        bossCol = -1;
+        bossesKilled++;
+      }
+    }
   }
   
-  public Room[][] getRooms(){
-     return rooms; 
+  public boolean getHasBoss(){
+     return hasBoss; 
   }
 }
