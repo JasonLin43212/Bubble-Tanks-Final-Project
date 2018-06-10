@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 Map m; 
 PFont bubble;
 PFont ptmono;
@@ -21,10 +23,17 @@ float centerX = 350;
 float centerY = 350;
 int difficulty = 0;
 int bubbleTick = 1;
-MenuPages mt = new MenuPages();
+MenuPages pages = new MenuPages();
 ArrayList<TitleBubble> titleCircles;
+ArrayList<Bubble> allBubbles;
 int mapSize;
 float selected;
+boolean showMap = false;
+int maxID=0;
+PImage imgUp;
+PImage imgDown;
+PImage imgLeft;
+PImage imgRight;
 
 boolean showMap = false;
 float maprad = 40;
@@ -33,12 +42,16 @@ boolean playerlevelup = false;
 
 void setup() {
   size(700, 800);
-  background(39, 150, 203);
   fill(200);
   bubble = createFont("silkscreen.ttf", 72);
   ptmono = createFont("ptmono.ttf", 12);
+  imgUp = loadImage("sandUp.png");
+  imgDown = loadImage("sandDown.png");
+  imgLeft = loadImage("sandLeft.png");
+  imgRight = loadImage("sandRight.png");
   allBullets = new ArrayList<BubbleBullet>();
   titleCircles = new ArrayList<TitleBubble>();
+  allBubbles = new ArrayList<Bubble>();
 }
 
 
@@ -53,22 +66,23 @@ void setup() {
  */
 void draw() {
   if (menuSetting == 1) {
-    mt.title();
+    pages.title();
   } else if (menuSetting == 2) {
-    mt.difficulty();
+    pages.difficulty();
   } else if (menuSetting == 3) {
-    mt.mapsize();
+    pages.mapsize();
   } else if (menuSetting == 4) {
-    mt.mouseuse();
+    pages.mouseuse();
   } else if (menuSetting == 5) {
-    mt.mapsettings();
+    pages.mapsettings();
+  } else if (menuSetting == 6) {
+    pages.instructions();
   } else {
-    background(200);
+    background(0, 72, 110);
     fill(0);
-    strokeWeight(1);
-    
-    if(tank.getHasTransfered()){
-       allBullets.clear(); 
+    strokeWeight(1);  
+    if (tank.getHasTransfered()) {
+      allBullets.clear();
     }
     
     tank.spawnBullets(allBullets);
@@ -81,10 +95,10 @@ void draw() {
     
     noStroke();
     pushMatrix();
-    translate(-tank.getX()+350,-tank.getY()+350);
-    ellipse(0,0,1995,1995);
+    translate(-tank.getX()+350, -tank.getY()+350);
+    ellipse(0, 0, 1495, 1495);
     popMatrix();
-    
+    drawEnemies(tank.getX(), tank.getY());
     tank.display();
     tank.move(m);
         
@@ -92,136 +106,101 @@ void draw() {
     if (useMouse) {
       tank.realignDirection(mouseX, mouseY);
     }
-
+    
+    drawShading(tank.getX(), tank.getY());
+    drawBubbles(tank.getX(), tank.getY());
     fill(200);
     rect(0, 700, 700, 100);
-    
-    fill(46,89,47);
+    fill(0);
+    rect(30, 720, 300, 35);  
+    rect(30, 760, 300, 35);  
+    fill(251, 31, 50);
+    rect(30, 720, 300*(tank.getHealth()/tank.getMaxHealth()), 35);
+    fill(20, 54, 129);
+    rect(30, 760, 300*((float)player.getPoints()/player.getMaxPoints()), 35);
+    fill(200);
+    rect(0, 700, 700, 100);
+
+    fill(46, 89, 47);
     strokeWeight(3);
     strokeJoin(MITER);
     strokeCap(SQUARE);
-    stroke(46,89,47);
+    stroke(46, 89, 47);
     rect(25, 720, 200, 20);
-    
-    fill(1,24,45);
+
+    fill(1, 24, 45);
     strokeWeight(3);
     strokeJoin(MITER);
     strokeCap(SQUARE);
-    stroke(1,24,45);
+    stroke(1, 24, 45);
     rect(25, 760, 200, 20);
-    
-    fill(72,139,73);
+
+    float percentPoint = (float)player.getPoints()/ player.getMaxPoints();
+    float percentHealth = tank.getHealth() / tank.getMaxHealth();
+
+    fill(72, 139, 73);
     noStroke();
-    rect(26.5, 721.5, percentHealth - 2.5, 17.5);
-    
-    fill(3,64,120);
+    rect(26.5, 721.5, percentHealth*197.5, 17.5);
+
+    fill(3, 64, 120);
     noStroke();
-    rect(26.5, 761.5, percentbp - 2.5, 17.5);
-    
+    rect(26.5, 761.5, percentPoint *197.5, 17.5);
+
     // test for health
     fill(255);
-    if (percentHealth > 66) {
+    if (percentHealth > 0.66) {
       textAlign(RIGHT);
       textFont(ptmono);
       textSize(12); 
-      text(int(percentHealth / 2) + "%", 20 + percentHealth, 736); 
-    }
-    else {
+      text((int)(percentHealth*100) + "%", 20 + (int)(percentHealth*200), 736);
+    } else {
       textAlign(LEFT);
       textFont(ptmono);
       textSize(12); 
-      text(int(percentHealth / 2) + "%", 26.5 + percentHealth, 736); 
+      text((int)(percentHealth*100) + "%", 26.5 + (int)(percentHealth*200), 736);
     }
-    
+
     // text for bubble points
     fill(255);
-    if (percentbp > 66) {
+    if (percentPoint > 0.66) {
       textAlign(RIGHT);
       textFont(ptmono);
       textSize(12); 
-      text(int(percentbp / 2) + "%", 20 + percentbp, 776); 
-    }
-    else {
+      text((int)(percentPoint*100) + "%", 20 + (int)(percentPoint*200), 776);
+    } else {
       textAlign(LEFT);
       textFont(ptmono);
-      textSize(12); 
-      text(int(percentbp / 2) + "%", 26.5 + percentbp, 776); 
+      textSize(12);
+      text((int)(percentPoint*100) + "%", 26.5 + (int)(percentPoint*200), 776);
     }
-    
+
     // map button 
-    fill(242, 245, 252);
-    noStroke();
-    rect(575, 725, 100, 50);
-    fill(39, 150, 203);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(30);
-    text("map", 625, 759); 
-  
-    if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775) { // for easy
-      fill(211,234,244);
-      strokeWeight(5);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(255);
+    if (menuSetting > 6) {
+      fill(242, 245, 252);
+      noStroke();
       rect(575, 725, 100, 50);
-  
-      fill(255);
+      fill(39, 150, 203);
       textAlign(CENTER);
       textFont(bubble);
-      textSize(30); 
-      text("map", 625, 759);
-    }
-    
-    if (showMap) {
-      fill(211,234,244);
-      strokeWeight(5);
-      strokeJoin(MITER);
-      strokeCap(SQUARE);
-      stroke(255);
-      rect(575, 725, 100, 50);
-  
-      fill(255);
-      textAlign(CENTER);
-      textFont(bubble);
-      textSize(30); 
-      text("map", 625, 759);
-      
-      fill(255,155);
-      noStroke();
-      rect(0,0,700,800);
-      
-      fill(255);
-      noStroke();
-      rect(100,100,500,500);
-            
-      float currentR = 170;
-      float currentC = 170;
-      
-      if (mapSize == 5) { currentR += 20; currentC += 20; }
-      if (mapSize == 7) { maprad = 30; }
-      if (mapSize == 9) { currentR -= 20; currentC -= 20; maprad = 25; }
-      if (mapSize == 11) { currentR -= 20; currentC -= 20; maprad = 20; }
-      if (mapSize == 13) { maprad = 15; }
-      if (mapSize == 15) { currentR -= 30; currentC -= 30; maprad = 15; }
-      if (mapSize == 17) { currentR -= 20; currentC -= 20; maprad = 12.5; }
-      if (mapSize == 19) { maprad = 10; }
-      
-      for (float r = 0; r < mapSize; r++) {
-        for (float c = 0; c < mapSize; c++) {
-          if (m.currentRoomR() == r && m.currentRoomC() == c) {
-            fill(39, 150, 203);
-          }
-          else {
-            fill(211,234,244);
-          }
-          ellipse(currentR + (maprad*2*r),currentC + (maprad*2*c),maprad,maprad);
-          if (r == 0) { System.out.println((currentR + (maprad*2*r)) + ", " + (currentC + (maprad*2*c)));}
-        }
+      textSize(30);
+      text("map", 625, 759); 
+
+      if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775) { // for easy
+        fill(211, 234, 244);
+        strokeWeight(5);
+        strokeJoin(MITER);
+        strokeCap(SQUARE);
+        stroke(255);
+        rect(575, 725, 100, 50);
+
+        fill(255);
+        textAlign(CENTER);
+        textFont(bubble);
+        textSize(30); 
+        text("map", 625, 759);
       }
-    }
-    
-    /* for making cool downs or something, idk
+      
+      /* for making cool downs or something, idk
     fill(242, 245, 252);
     noStroke();
     rect(275, 720, 100, 20);
@@ -248,6 +227,9 @@ void draw() {
       }
       if (playerlevel == 10) {
         mt.upgradeSuper();
+
+      if (showMap) {
+        pages.showmap();
       }
     }
   }
@@ -259,9 +241,68 @@ void drawMap(float xOffset, float yOffset) {
   stroke(195, 234, 250);
   strokeWeight(5);
   fill(6, 153, 173);
-  ellipse(0, 0, 2000, 2000);
+  ellipse(0, 0, 1500, 1500);
+  if (!tank.getPreventControl()) {
+    boolean[] available = m.getCurrentRoom().getAvailable();
+    if (!available[0]) {
+      image(imgRight, 830, -1000, 300, 2000);
+      fill(0, 72, 110);
+      noStroke();
+      rect(800, -1000, 100, 1400);
+    }
+    if (!available[1]) {
+      image(imgDown, -850, 830, 2000, 300);
+      fill(0, 72, 110);
+      noStroke();
+      rect(-800, 800, 1400, 100);
+    }
+    if (!available[2]) {
+      image(imgLeft, -1100, -850, 300, 2000);
+      fill(0, 72, 110);
+      noStroke();
+      rect(-900, -1000, 100, 1400);
+    }
+    if (!available[3]) {
+      image(imgUp, -850, -1100, 2000, 300);
+      fill(0, 72, 110);
+      noStroke();
+      rect(-800, -900, 1400, 100);
+    }
+  }
   popMatrix();
 }  
+
+void drawShading(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  strokeWeight(0);
+  fill(255, 70);
+  ellipse(-151, -464, 187.5, 187.5);
+  ellipse(-422, -244, 250, 250);
+  fill(255, 40);
+  ellipse(390, 225, 250, 250);
+  ellipse(139, 428, 187.5, 187.5);
+  popMatrix();
+}
+
+void drawBubbles(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  for (int i=0; i<allBubbles.size(); i++) {
+    Bubble currentBubble = allBubbles.get(i);
+    if (!showMap) {
+      currentBubble.move(tank.getX(), tank.getY());
+    }
+    currentBubble.display();
+    if (dist(currentBubble.getX(), currentBubble.getY(), tank.getX(), tank.getY())<tank.getRadius()+currentBubble.getRadius()) {
+      player.addPoints((int)currentBubble.getRadius());
+      tank.incrementHealth(currentBubble.getRadius());
+      allBubbles.remove(i);
+      i--;
+    }
+  }
+  popMatrix();
+}
 
 void drawBullets(float xOffset, float yOffset) {
   pushMatrix();
@@ -269,16 +310,71 @@ void drawBullets(float xOffset, float yOffset) {
   for (int i = 0; i<allBullets.size(); i++) {
     BubbleBullet current = allBullets.get(i);
     current.display();
-    if (!current.move()) {
-      allBullets.remove(i);
+    if (!showMap) {
+      if (!current.move()) {
+        allBullets.remove(i);
+        i--;
+      } else if (current.getId()==0) {
+        ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
+        for (int j=0; j<enemies.size(); j++) {
+          EnemyTank currentEnemy = enemies.get(j);
+          for (int k=0; k<currentEnemy.getBlocks().size(); k++) {
+            BubbleBlock currentBlock = currentEnemy.getBlocks().get(k);
+            if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
+              currentEnemy.incrementHealth(-2*current.getRadius());
+              allBullets.remove(i);
+              i--;
+              k=currentEnemy.getBlocks().size();
+              j=enemies.size();
+            }
+          }
+        }
+      } else if (current.getId() != 0) {
+        for (int k=0; k<tank.getBlocks().size(); k++) {
+          BubbleBlock currentBlock = tank.getBlocks().get(k);
+          if (dist(current.getX(), current.getY(), currentBlock.getX()-350+tank.getX(), currentBlock.getY()-350+tank.getY())<current.getRadius()+currentBlock.getRadius()) {
+            tank.incrementHealth(-2*current.getRadius());
+            allBullets.remove(i);
+            i--;
+            k=tank.getBlocks().size();
+          }
+        }
+      }
+    }
+  }
+  popMatrix();
+}
+
+void drawEnemies(float xOffset, float yOffset) {
+  pushMatrix();
+  translate(-xOffset+350, -yOffset+350);
+  ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
+  if (enemies.size() == 0) {
+    for (Bubble b : allBubbles) {
+      b.setClearState(true);
+    }
+  }
+  for (int i=0; i<enemies.size(); i++) {
+    EnemyTank currentEnemy = enemies.get(i);
+    if (!showMap) {
+      currentEnemy.spawnBullets(allBullets);
+      currentEnemy.setDirection(tank.getX(), tank.getY());
+      currentEnemy.move();
+    }
+    currentEnemy.display();
+    if (currentEnemy.getHealth()<=0) {
+      currentEnemy.spawnBubbles(allBubbles);
+      enemies.remove(i);
       i--;
     }
   }
   popMatrix();
 }
 
-
 void keyPressed() {
+  if (keyCode==222) {
+    tank.updatedType();
+  }
   if (useMouse) {
     if (keyCode != 37 && keyCode != 39) {
       tank.setMovement(keyCode, 1);
@@ -289,9 +385,16 @@ void keyPressed() {
   if (keyCode == 76) {
     difficulty = 1;
     mapSize = 5;
-    useMouse = true;
-    m = new Map(5);
-    menuSetting =6;
+    useMouse = false;
+    m = new Map(mapSize, difficulty);
+    menuSetting =7;
+  }
+  if (keyCode == 86) {
+    showMap = !showMap;
+  }
+  /*
+  if (keyCode == 49) { // 1
+    // stuff for cannon
   }
   if (keyCode == 61) { // ' + '
     if (playerlevel < 25) {
@@ -301,6 +404,16 @@ void keyPressed() {
   }
   
   //System.out.println(keyCode);
+  if (keyCode == 50) { // 2
+    // stuff for blaster
+  }
+  if (keyCode == 51) { // 3
+    // stuff for machine gun
+  }
+  if (keyCode == 52) { // 4
+    // stuff for super attack
+  }
+  */
 }
 
 void keyReleased() {
@@ -432,12 +545,23 @@ void mouseClicked() {
   else if (menuSetting == 5) {
     if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 605) {
       menuSetting = 6;
-      m = new Map(mapSize);
     }
     //back
-    if  (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
+    if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
       menuSetting = 4;
     }
+  } else if (menuSetting == 6) {
+    if (!(mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70)) {
+      menuSetting = 7;
+      m = new Map(mapSize, difficulty);
+    }
+    if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 70) {
+      menuSetting = 5;
+    }
+  } else if (showMap) {
+    showMap = false;
+  } else if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775 && !showMap) {
+    showMap = true;
   }
   else if (showMap) {
     showMap = false; 
