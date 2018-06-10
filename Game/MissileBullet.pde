@@ -3,7 +3,7 @@ public class MissileBullet extends BubbleBullet {
   private int followId;
   private BubbleBlock[] blocks;
 
-  public MissileBullet(float radius, float speed, float tankRadius, float x, float y, float direction, int id, int followId) {
+  public MissileBullet(float radius, float speed, float tankRadius, float x, float y, float direction, int id) {
     super(radius, speed, tankRadius, x, y, direction, id);
     this.followId = followId;
     blocks = new BubbleBlock[3];

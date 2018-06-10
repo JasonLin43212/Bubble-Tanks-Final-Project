@@ -456,15 +456,17 @@ void drawBullets(float xOffset, float yOffset) {
           for (int k=0; k<currentEnemy.getBlocks().size(); k++) {
             BubbleBlock currentBlock = currentEnemy.getBlocks().get(k);
             if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
-              currentEnemy.incrementHealth(-2*current.getRadius());
               if (current.toString().equals("stun")){
                 StunBullet stunner = (StunBullet)current;
                  currentEnemy.stun(stunner.getStunTime()); 
               }
+              if (!current.toString().equals("super")){
+              currentEnemy.incrementHealth(-2*current.getRadius());
               allBullets.remove(i);
               i--;
               k=currentEnemy.getBlocks().size();
               j=enemies.size();
+              }
             }
           }
         }
@@ -545,15 +547,16 @@ void keyPressed() {
   if (keyCode == 51) { // 3
     tank.activateAreaBurst();
   }
+  if (keyCode == 52) { // 4
+    tank.activateSuper();
+  }
+  
   if (keyCode == 61) { // ' + '
     if (player.getLevel() < 25) {
       player.addPoints(90000);
     }
   }
   
-  if (keyCode == 52) { // 4
-    // stuff for super attack
-  }
 }
 
 void keyReleased() {

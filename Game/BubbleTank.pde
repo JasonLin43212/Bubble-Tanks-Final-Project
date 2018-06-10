@@ -376,28 +376,22 @@ public abstract class BubbleTank {
 
   public void activateMissile() {
     //if statement about cooldown
-    //then turn on a variable to shoot 5 + 2*level missiles
     if (missile>0) {
       for (int i=0; i<5+2*missile; i++) {
-        ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
-        if (enemies.size()!=0) {
-          allBullets.add(new MissileBullet(17, 3+missile*1.5, radius, x, y, direction+i*2*PI/(5+2*missile), id, enemies.get((int) (random(enemies.size()))).getId()));
-        }
+        allBullets.add(new MissileBullet(17, 3+missile*1.5, radius, x, y, direction+i*2*PI/(5+2*missile), id));
       }
     }
   }
   public void activateStun() {
     //if statement about cooldown
-    //then turn on a variable to shoot 5 + 3*level missiles
-    if (stunburst>0){
-    for (int i=0; i<10+12*stunburst; i++) {
-      allBullets.add(new StunBullet(6, 3+stunburst*1.5, radius, x, y, direction+i*2*PI/(10+12*stunburst), id, 120+stunburst*30));
-    }
+    if (stunburst>0) {
+      for (int i=0; i<10+12*stunburst; i++) {
+        allBullets.add(new StunBullet(6, 3+stunburst*1.5, radius, x, y, direction+i*2*PI/(10+12*stunburst), id, 120+stunburst*30));
+      }
     }
   }
   public void activateAreaBurst() {
     //if statement about cooldown
-    //then turn on a variable to shoot 5 + 4*level missiles
     if (areablast>0) {
       for (int i=0; i<5+8*areablast; i++) {
         allBullets.add(new BubbleBullet(13, 3+areablast*1.2, radius, x, y, direction+i*2*PI/(5+8*areablast), id));
@@ -407,5 +401,8 @@ public abstract class BubbleTank {
   public void activateSuper() {
     //if statement about cooldown
     //then turn on a variable to shoot 1 missiles
+    if (getAttack() > 0){
+       allBullets.add(new SuperBullet(27,5,radius,x,y,direction,id,getAttack())); 
+    }
   }
 }
