@@ -4,7 +4,7 @@ public abstract class BubbleTank {
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
   
-  private int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
+  public int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
 
   public BubbleTank(float health, float radius, int id, float speed, int coolDown, 
                     int blaster, int cannon, int machinegun, int missile, int stunburst, 
@@ -26,6 +26,8 @@ public abstract class BubbleTank {
     rotateRight = 0;
     if (id!=0){
      this.coolDown = coolDown; 
+     isShooting = 1;
+     shootingDown = coolDown;
     }
     else {
     this.coolDown = 30;
@@ -101,7 +103,7 @@ public abstract class BubbleTank {
         y=750*sin(angle);
       }
       if (preventControl) {
-        transferSpeed = 60;
+        transferSpeed = 70;
       }
     }
   }
@@ -151,7 +153,7 @@ public abstract class BubbleTank {
   }
 
   public void spawnBullets(ArrayList<BubbleBullet> arr) {
-    if (isShooting == 1 && shootingDown == 0) {
+    if (isShooting == 1 && shootingDown == 0 &&!preventControl) {
       shootingDown = coolDown;
       //radius,speed,tankRadius,x,y,direction,id
       //for machine gun (cooldowns, 14,12,10,8)
@@ -330,5 +332,22 @@ public abstract class BubbleTank {
   
   public int getAttack() {
     return superattack;
+  }
+  
+  public void activateMissile(){
+      //if statement about cooldown
+      //then turn on a variable to shoot 5 + 2*level missiles
+  }
+  public void activateStun(){
+      //if statement about cooldown
+      //then turn on a variable to shoot 5 + 3*level missiles
+  }
+  public void activateAreaBurst(){
+      //if statement about cooldown
+      //then turn on a variable to shoot 5 + 4*level missiles
+  }
+  public void activateSuper(){
+      //if statement about cooldown
+      //then turn on a variable to shoot 1 missiles
   }
 }
