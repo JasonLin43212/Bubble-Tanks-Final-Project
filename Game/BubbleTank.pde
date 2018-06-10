@@ -3,12 +3,12 @@ public abstract class BubbleTank {
   private int id, transferX, transferY, transferDistance, transferedSoFar;
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
-  
+
   public int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
 
   public BubbleTank(float health, float radius, int id, float speed, int coolDown, 
-                    int blaster, int cannon, int machinegun, int missile, int stunburst, 
-                    int areablast, int superattack) {
+    int blaster, int cannon, int machinegun, int missile, int stunburst, 
+    int areablast, int superattack) {
 
     this.health = health;
     this.maxHealth = health;
@@ -24,13 +24,12 @@ public abstract class BubbleTank {
     down = 0;
     rotateLeft = 0;
     rotateRight = 0;
-    if (id!=0){
-     this.coolDown = coolDown; 
-     isShooting = 1;
-     shootingDown = coolDown;
-    }
-    else {
-    this.coolDown = 30;
+    if (id!=0) {
+      this.coolDown = coolDown; 
+      isShooting = 1;
+      shootingDown = coolDown;
+    } else {
+      this.coolDown = 30;
     }
     preventControl = false;
     hasTransfered = false;
@@ -149,7 +148,7 @@ public abstract class BubbleTank {
   }
 
   public void realignDirection(float _x, float _y) {
-    direction = atan2(_y-350,_x-350);
+    direction = atan2(_y-350, _x-350);
   }
 
   public void spawnBullets(ArrayList<BubbleBullet> arr) {
@@ -157,25 +156,24 @@ public abstract class BubbleTank {
       shootingDown = coolDown;
       //radius,speed,tankRadius,x,y,direction,id
       //for machine gun (cooldowns, 14,12,10,8)
-      for (int i=0; i<machinegun; i++){
+      for (int i=0; i<machinegun; i++) {
         float offSet;
-        if (i%2==0){
-           offSet = (i+2)/2*40; 
-        }
-        else {
-         offSet= -(i+2)/2*40;
+        if (i%2==0) {
+          offSet = (i+2)/2*40;
+        } else {
+          offSet= -(i+2)/2*40;
         }
         arr.add(new BubbleBullet(5, 15, radius, x+cos(direction+PI/2)*offSet, y+sin(direction+PI/2)*offSet, direction, id));
       }
       //for blaster (cooldowns: 22,20,18,16)
-      for (int i=0; i<blaster+1; i++){
-         float angle = 2*PI/(blaster+1);
-         arr.add(new BubbleBullet(10, 15, radius, x, y, direction+i*angle, id));
+      for (int i=0; i<blaster+1; i++) {
+        float angle = 2*PI/(blaster+1);
+        arr.add(new BubbleBullet(10, 15, radius, x, y, direction+i*angle, id));
       }
       //for canon
-      for (int i=0; i<cannon; i++){
-         float angle = PI/(cannon+1);
-         arr.add(new BubbleBullet(20, 15, radius, x, y, direction-(PI/2)+(i+1)*angle, id));
+      for (int i=0; i<cannon; i++) {
+        float angle = PI/(cannon+1);
+        arr.add(new BubbleBullet(20, 15, radius, x, y, direction-(PI/2)+(i+1)*angle, id));
       }
     }
   }
@@ -211,9 +209,9 @@ public abstract class BubbleTank {
   public ArrayList<BubbleBlock> getBlocks() {
     return blocks;
   }
-  
-  public boolean getPreventControl(){
-     return preventControl; 
+
+  public boolean getPreventControl() {
+    return preventControl;
   }
 
   public void setRadius(float val) {
@@ -270,84 +268,119 @@ public abstract class BubbleTank {
       transferSpeed -= 0.6;
     }
   }
-  
+
   public void addBlaster () {
     System.out.println("blasters: " + blaster + " > " + (blaster + 1));
     blaster++;
   }
-  
+
   public int getBlaster () {
     return blaster;
   }
-  
+
+  public void setBlaster(int val) {
+    blaster = val;
+  }
+
   public void addCannon () {
     System.out.println("cannons: " + cannon + " > " + (cannon + 1));
     cannon++;
   }
-  
+
   public int getCannon () {
     return cannon;
   }
-  
+
+  public void setCannon(int val) {
+    cannon = val;
+  }
+
+
   public void addMachineGun () {
     System.out.println("machine guns: " + machinegun + " > " + (machinegun + 1));
     machinegun++;
   }
-  
+
   public int getMachineGun () {
     return machinegun;
   }
-  
+
+  public void setMachineGun(int val) {
+    machinegun = val;
+  }
+
+
   public void addMissile () {
     System.out.println("missile: " + missile + " > " + (missile + 1));
     missile++;
   }
-  
+
   public int getMissile () {
     return missile;
   }
-  
+
+  public void setMissile(int val) {
+    missile = val;
+  }
+
+
   public void addStunBurst () {
     System.out.println("stun burst: " + stunburst + " > " + (stunburst + 1));
     stunburst++;
   }
-  
+
   public int getStunBurst () {
     return stunburst;
   }
-  
+
+  public void setStunBurst(int val) {
+    stunburst = val;
+  }
+
+
   public void addAreaBlast () {
     System.out.println("area burst: " + areablast + " > " + (areablast + 1));
     areablast++;
   }
-  
+
   public int getAreaBlast () {
     return areablast;
   }
-  
+
+  public void setAreaBlast(int val) {
+    areablast = val;
+  }
+
+
   public void addSuperAttack (int n) {
     System.out.println("super attack: " + n);
     superattack = n; // 1 = super missile        2 = super blaster        3 = super cannon
   }
-  
+
   public int getAttack() {
     return superattack;
   }
-  
-  public void activateMissile(){
-      //if statement about cooldown
-      //then turn on a variable to shoot 5 + 2*level missiles
+
+  public void activateMissile() {
+    //if statement about cooldown
+    //then turn on a variable to shoot 5 + 2*level missiles
+    for (int i=0; i<5+2*missile; i++) {
+      ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
+      if (enemies.size()!=0) {
+        allBullets.add(new MissileBullet(17, 3+missile*1.5, radius, x, y, direction+i*2*PI/(5+2*missile), id, enemies.get((int) (random(enemies.size()))).getId()));
+      }
+    }
   }
-  public void activateStun(){
-      //if statement about cooldown
-      //then turn on a variable to shoot 5 + 3*level missiles
+  public void activateStun() {
+    //if statement about cooldown
+    //then turn on a variable to shoot 5 + 3*level missiles
   }
-  public void activateAreaBurst(){
-      //if statement about cooldown
-      //then turn on a variable to shoot 5 + 4*level missiles
+  public void activateAreaBurst() {
+    //if statement about cooldown
+    //then turn on a variable to shoot 5 + 4*level missiles
   }
-  public void activateSuper(){
-      //if statement about cooldown
-      //then turn on a variable to shoot 1 missiles
+  public void activateSuper() {
+    //if statement about cooldown
+    //then turn on a variable to shoot 1 missiles
   }
 }

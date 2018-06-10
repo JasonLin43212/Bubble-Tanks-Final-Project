@@ -529,7 +529,7 @@ void keyPressed() {
   }
 
   if (keyCode == 49) { // 1
-    // stuff for cannon
+    tank.activateMissile();
   }
   if (keyCode == 61) { // ' + '
     if (player.getLevel() < 25) {

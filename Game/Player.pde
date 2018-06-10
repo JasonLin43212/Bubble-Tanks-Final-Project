@@ -13,7 +13,7 @@ public class Player {
   public Player() {
     bubblePoints = 0;
     //health,radius,id,speed,coolDown,type,blaster, cannon, machinegun, missile, stunburst, areablast, superattack
-    tank = new PlayerTank(1000, 40, 0, 20, 1, 12, 0, 0, 0, 0, 0, 0, 0);
+    tank = new PlayerTank(5000, 40, 0, 20, 1, 12, 0, 0, 0, 0, 0, 0, 0);
 
     maxPoints = 100;
   }
