@@ -363,7 +363,6 @@ void draw() {
       }
     }
   }
-  System.out.println(opacitymult);
 }
 
 void drawMap(float xOffset, float yOffset) {
