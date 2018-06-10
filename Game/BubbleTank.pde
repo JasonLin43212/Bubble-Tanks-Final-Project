@@ -28,13 +28,7 @@ public abstract class BubbleTank {
      this.coolDown = coolDown; 
     }
     else {
-    this.coolDown = 1;
-    
-    }
-    if (id!=0) {
-      isShooting = 1;
-    } else {
-      isShooting = 0;
+    this.coolDown = 30;
     }
     preventControl = false;
     hasTransfered = false;
@@ -153,23 +147,34 @@ public abstract class BubbleTank {
   }
 
   public void realignDirection(float _x, float _y) {
-    float mouseRatio = (_y-350)/(_x-350);
-    // "first" and "fourth" quadrant according to Processing
-    if (_x>=350) {
-      direction = atan(mouseRatio);
-    }
-    // "second" and "third" quadrant
-    else {
-      direction = PI + atan(mouseRatio);
-    }
+    direction = atan2(_y-350,_x-350);
   }
 
   public void spawnBullets(ArrayList<BubbleBullet> arr) {
     if (isShooting == 1 && shootingDown == 0) {
       shootingDown = coolDown;
       //radius,speed,tankRadius,x,y,direction,id
-      //for machine gun
-      arr.add(new BubbleBullet(5, 15, radius, x, y, direction, id));
+      //for machine gun (cooldowns, 14,12,10,8)
+      for (int i=0; i<machinegun; i++){
+        float offSet;
+        if (i%2==0){
+           offSet = (i+2)/2*40; 
+        }
+        else {
+         offSet= -(i+2)/2*40;
+        }
+        arr.add(new BubbleBullet(5, 15, radius, x+cos(direction+PI/2)*offSet, y+sin(direction+PI/2)*offSet, direction, id));
+      }
+      //for blaster (cooldowns: 22,20,18,16)
+      for (int i=0; i<blaster+1; i++){
+         float angle = 2*PI/(blaster+1);
+         arr.add(new BubbleBullet(10, 15, radius, x, y, direction+i*angle, id));
+      }
+      //for canon
+      for (int i=0; i<cannon; i++){
+         float angle = PI/(cannon+1);
+         arr.add(new BubbleBullet(20, 15, radius, x, y, direction-(PI/2)+(i+1)*angle, id));
+      }
     }
   }
 
