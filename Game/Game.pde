@@ -37,6 +37,13 @@ float maprad = 40;
 
 boolean playerLevelUp = false; 
 
+boolean paused = false;
+
+float endms = millis() + (1000 * 15);
+float percentageTime = ((endms - millis()) / (1000 * 15));
+float remainingTime = (endms - millis()) / 1000;
+float opacitymult = 1 - percentageTime;
+
 void setup() {
   size(700, 800);
   fill(200);
@@ -178,6 +185,127 @@ void draw() {
       textFont(ptmono);
       textSize(12);
       text((int)(percentPoint*100) + "%", 26.5 + (int)(percentPoint*200), 776);
+    }
+    /*
+    fill(242, 245, 252);
+    noStroke();
+    rect(260, 720, 100, 12.5);
+    
+    fill(242, 245, 252);
+    noStroke();
+    rect(260, 743.75, 100, 12.5);
+    
+    fill(242, 245, 252);
+    noStroke();
+    rect(260, 767.5, 100, 12.5);
+    */
+    
+    // fill in style
+    
+    percentageTime = ((endms - millis()) / (1000 * 15));
+    opacitymult = 1 - percentageTime;
+    remainingTime = (endms - millis()) / 1000;
+    
+    // first
+    fill(147,202,229);
+    strokeWeight(2.5);
+    stroke(179,217,236);
+    ellipse(276,730,30,30);
+    
+    // fill(147,202,229,opacityone * 255);
+    fill(255,255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
+    strokeWeight(2.5);
+    stroke(179,217,236);
+    ellipse(276,730,30,30);
+    
+    fill(147,202,229);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(24); 
+    text("1", 277, 730 + 7.5);
+    
+    fill(255,100 + (opacitymult * 155));
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(24); 
+    text("1", 277, 730 + 7.5);
+    
+    // second
+    fill(147,202,229);
+    strokeWeight(2.5);
+    stroke(179,217,236);
+    ellipse(335,730,30,30);
+
+    // fill(147,202,229,opacityone * 255);
+    fill(255,255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
+    strokeWeight(2.5);
+    stroke(179,217,236);
+    ellipse(335,730,30,30);
+    
+    fill(147,202,229);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(24); 
+    text("2", 336, 730 + 7.5);
+    
+    fill(255,100 + (opacitymult * 155));
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(24); 
+    text("2", 336, 730 + 7.5);
+    
+    // third
+    fill(147,202,229);
+    strokeWeight(2.5);
+    stroke(179,217,236);
+    ellipse(394,730,30,30);
+
+    // fill(147,202,229,opacityone * 255);
+    fill(255,255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
+    strokeWeight(2.5);
+    stroke(179,217,236);
+    ellipse(394,730,30,30);
+    
+    fill(147,202,229);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(24); 
+    text("3", 395, 730 + 7.5);
+    
+    fill(255,100 + (opacitymult * 155));
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(24); 
+    text("3", 395, 730 + 7.5);
+
+    // super attack
+    fill(147,202,229);
+    strokeWeight(3);
+    strokeJoin(MITER);
+    strokeCap(SQUARE);
+    stroke(147,202,229);
+    rect(260, 760, 150, 20); 
+    
+    fill(179,217,236);
+    noStroke();
+    rect(261.5, 761.5, opacitymult*141.5, 18);
+
+    fill(255);
+    if (opacitymult > 0.66) {
+      textAlign(RIGHT);
+      textFont(ptmono);
+      textSize(12); 
+      text((int)(remainingTime) + "s", 250 + (int)(opacitymult*150), 775);
+    } else {
+      textAlign(LEFT);
+      textFont(ptmono);
+      textSize(12); 
+      text((int)(remainingTime) + "s", 261.5 + (int)(opacitymult*150), 775);
+    }
+
+    if (150 + (opacitymult * 100) >= 255) {
+      System.out.println("bwoop");
+      endms += (1000 * 15);
     }
 
     // map button 
@@ -408,6 +536,11 @@ void keyPressed() {
       player.addPoints(90000);
     }
   }
+  if (keyCode == 32) {
+    paused = true;
+    System.out.println(frameRate);
+  }
+  
 
   //System.out.println(keyCode);
   if (keyCode == 50) { // 2
