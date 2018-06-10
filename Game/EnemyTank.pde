@@ -6,8 +6,8 @@ public class EnemyTank extends BubbleTank {
   color internal = color(214, 149, 9);
   private float goToAngle, goToDistance, distanceSoFar;
 
-  public EnemyTank(float health, float radius, int id, float speed, int type, float coolDown) {
-    super(health, radius, id, speed, coolDown);
+  public EnemyTank(float health, float radius, int id, float speed, int type, int coolDown) {
+    super(health, radius, id, speed, coolDown,0,0,0,0,0,0,0);
     this.type = type;
     goToAngle = random(2*PI);
     goToDistance = 1;

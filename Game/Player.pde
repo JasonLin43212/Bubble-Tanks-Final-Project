@@ -6,7 +6,7 @@ public class Player {
   private int maxPoints;
   private int level = 0; 
   private int health = 100; 
-  private int maxhealth = 100; 
+  private int maxHealth = 100; 
   
   // private int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
 
@@ -37,12 +37,15 @@ public class Player {
   }
   
   public int maxHealth () {
-    return maxHealth ();
+    return maxHealth;
   }
   
   public void levelUp () {
     if (bubblePoints >= maxPoints && level < 25) {
       level++;
+      playerLevelUp = true;
+      bubblePoints = 0;
+      maxPoints += maxPoints*((float)difficulty/2);
     }
   }
     
@@ -50,7 +53,6 @@ public class Player {
     return level;  
   }
   
-
   public int getPoints() {
     return bubblePoints;
   }

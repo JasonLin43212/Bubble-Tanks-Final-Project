@@ -168,6 +168,7 @@ public abstract class BubbleTank {
     if (isShooting == 1 && shootingDown == 0) {
       shootingDown = coolDown;
       //radius,speed,tankRadius,x,y,direction,id
+      //for machine gun
       arr.add(new BubbleBullet(5, 15, radius, x, y, direction, id));
     }
   }

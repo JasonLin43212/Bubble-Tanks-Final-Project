@@ -603,7 +603,7 @@ public class MenuPages {
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); 
-    text("level: " + playerlevel, 350, 575); 
+    text("level: " + player.getLevel(), 350, 575); 
   }
   
   void upgradeeven() {
@@ -681,7 +681,7 @@ public class MenuPages {
     textAlign(CENTER);
     textFont(bubble);
     textSize(48);
-    text("level: " + playerlevel, 350, 575); 
+    text("level: " + player.getLevel(), 350, 575); 
   }
   
   void upgradeSuper() { 
@@ -759,7 +759,7 @@ public class MenuPages {
     textAlign(CENTER);
     textFont(bubble);
     textSize(48);
-    text("level: " + playerlevel, 350, 575); 
+    text("level: " + player.getLevel(), 350, 575); 
   }
   
 }
