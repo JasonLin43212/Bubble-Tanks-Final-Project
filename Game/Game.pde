@@ -193,7 +193,7 @@ void draw() {
     textSize(24); 
     text("1", 277, 730 + 7.5);
     
-    fill(255,opacitymult * 255);
+    fill(255,100 + (opacitymult * 155));
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
@@ -217,7 +217,7 @@ void draw() {
     textSize(24); 
     text("2", 336, 730 + 7.5);
     
-    fill(255,opacitymult * 255);
+    fill(255,100 + (opacitymult * 155));
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
@@ -241,7 +241,7 @@ void draw() {
     textSize(24); 
     text("3", 395, 730 + 7.5);
     
-    fill(255,opacitymult * 255);
+    fill(255,100 + (opacitymult * 155));
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); 
@@ -264,12 +264,12 @@ void draw() {
       textAlign(RIGHT);
       textFont(ptmono);
       textSize(12); 
-      text((int)(remainingTime), 250 + (int)(opacitymult*150), 775);
+      text((int)(remainingTime) + "s", 250 + (int)(opacitymult*150), 775);
     } else {
       textAlign(LEFT);
       textFont(ptmono);
       textSize(12); 
-      text((int)(remainingTime), 261.5 + (int)(opacitymult*150), 775);
+      text((int)(remainingTime) + "s", 261.5 + (int)(opacitymult*150), 775);
     }
 
     if (150 + (opacitymult * 100) >= 255) {
