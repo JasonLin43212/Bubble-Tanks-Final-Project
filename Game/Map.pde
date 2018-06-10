@@ -2,16 +2,16 @@ public class Map {
   private Room[][] rooms;
   private Room currentRoom;
 
-  private int[][] coordRooms = {{1,0},{0,1},{-1,0},{0,-1}};
+  private int[][] coordRooms = {{0,1},{1,0},{0,-1},{-1,0}};
   private int n;
 
-  public Map (int num) {
+  public Map (int num, int difficulty) {
     n = num;
     rooms = new Room[n][n];
 
     for (int r = 0; r < n; r++) {
       for (int c = 0; c < n; c++) {
-        rooms[r][c] = new Room (n, r, c);
+        rooms[r][c] = new Room (n, r, c, difficulty);
       }
     }
 
@@ -25,9 +25,11 @@ public class Map {
 *  3: up
 */
   private void changeRooms (int changeTo) { // lets you actually change rooms
-    if (currentRoom.getAvailable()[changeTo]){
       currentRoom = rooms[currentRoomR()+coordRooms[changeTo][0]][currentRoomC()+coordRooms[changeTo][1]];
-    }
+  }
+  
+  public boolean canChangeRoom(int changeTo){
+      return currentRoom.getAvailable()[changeTo];
   }
 
   public int currentRoomR () { 
@@ -36,5 +38,13 @@ public class Map {
 
   public int currentRoomC () {
     return currentRoom.getC();
+  }
+  
+  public Room getCurrentRoom(){
+     return currentRoom; 
+  }
+  
+  public Room[][] getRooms(){
+     return rooms; 
   }
 }

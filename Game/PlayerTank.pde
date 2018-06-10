@@ -5,10 +5,11 @@ public class PlayerTank extends BubbleTank {
 
   // private int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
 
-  public PlayerTank(float health, float radius, int id, float speed, int numBullets, int type, 
+  public PlayerTank(float health, float radius, int id, float speed, int coolDown, int type, 
     int blaster, int cannon, int machinegun, int missile, int stunburst, 
     int areablast, int superattack) {
-    super(health, radius, id, speed, numBullets, blaster, cannon, machinegun, missile, stunburst, areablast, superattack);
+    super(health, radius, id, speed, coolDown, blaster, cannon, machinegun, missile, stunburst, areablast, superattack);
+
     this.type = type;
     
   }
@@ -19,6 +20,13 @@ public class PlayerTank extends BubbleTank {
     for (int i=0; i<blocks.size(); i++) {
       blocks.get(i).display();
     }
+  }
+  
+  public void updatedType(){
+    type++;
+     if (type > 12){
+       type =0;
+     }
   }
 
   // creates the tank depending on what type it is

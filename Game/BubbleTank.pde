@@ -1,19 +1,20 @@
-public class BubbleTank {
-  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed;
-  private int id, numBullets, transferX, transferY, transferDistance, transferedSoFar;
+public abstract class BubbleTank {
+  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed, shootingDown, maxHealth;
+  private int id, transferX, transferY, transferDistance, transferedSoFar;
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
   
   private int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
 
-  public BubbleTank(float health, float radius, int id, float speed, int numBullets, 
+  public BubbleTank(float health, float radius, int id, float speed, int coolDown, 
                     int blaster, int cannon, int machinegun, int missile, int stunburst, 
                     int areablast, int superattack) {
+
     this.health = health;
+    this.maxHealth = health;
     this.id = id;
     this.speed = speed;
     this.radius = radius;
-    this.numBullets = numBullets;
     x = 0;
     y = 0;
     direction = 0;
@@ -23,9 +24,19 @@ public class BubbleTank {
     down = 0;
     rotateLeft = 0;
     rotateRight = 0;
-    coolDown = 30;
-    isShooting = 0;
-    preventControl = false; // use this when upgrading to prevent user from moving, also for pause button 
+    if (id!=0){
+     this.coolDown = coolDown; 
+    }
+    else {
+    this.coolDown = 1;
+    
+    }
+    if (id!=0) {
+      isShooting = 1;
+    } else {
+      isShooting = 0;
+    }
+    preventControl = false;
     hasTransfered = false;
     transferX = 0;
     transferY = 0;
@@ -33,7 +44,6 @@ public class BubbleTank {
     transferSpeed = 0;
     transferedSoFar = 0;
     blocks = new ArrayList<BubbleBlock>();
-    
     // array with all of these + cool down (2d array) 
     // make something to show cool downs in bottom
     this.blaster = blaster; // 0
@@ -45,56 +55,60 @@ public class BubbleTank {
     this.superattack = superattack; // 6
   }
 
+  public abstract void updatedType();
+
   public void move(Map m) {
-    if (!preventControl) {
+    if (!preventControl && id==0 && !showMap) {
       x += (right-left)*speed;
       y += (down-up)*speed;
       direction += rotateLeft - rotateRight;
     }
     float distFromCenter = dist(x, y, 0, 0);
-    //if you are an enemy, don't allow it to move out of bounds
-    if (id != 0) {
-      if (distFromCenter>750-radius) {
-        println("hi");
-      }
-    }
+    float angle = atan2(y, x);
     //if you are the player, handle changing rooms 
-    else if (distFromCenter>1000 && preventControl == false) {
-      preventControl = true;
-      float angle = atan2(y, x);
+    if (id==0 && distFromCenter>750 && preventControl == false) {
       //transfering right
-      if (angle>=-PI/4 && angle<PI/4) {
+      if (angle>=-PI/4 && angle<PI/4 && m.canChangeRoom(0)) {
+        preventControl = true;
         angle = abs(angle);
         transferX = 1;
         transferY = 0;
-        transferDistance = (int) (4200+ radius - 1000*cos(asin(y/1000)) - distFromCenter*cos(angle));
+        transferDistance = (int) (3200+ radius - 750*cos(asin(y/750)) - distFromCenter*cos(angle));
         m.changeRooms(0);
       } 
       //transfering down
-      else if (angle>=PI/4 && angle<3*PI/4) {
+      else if (angle>=PI/4 && angle<3*PI/4&&m.canChangeRoom(1)) {
+        preventControl = true;
         angle = abs(angle-(PI/2));
         transferX = 0;
         transferY = 1;
-        transferDistance = (int) (4200 + radius - 1000*cos(asin(x/1000)) - distFromCenter*cos(angle));
+        transferDistance = (int) (3200 + radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
         m.changeRooms(1);
       } 
       //transfering up
-      else if (angle>=-3*PI/4 && angle<-PI/4) {
+      else if (angle>=-3*PI/4 && angle<-PI/4&&m.canChangeRoom(3)) {
+        preventControl = true;
         angle = abs(angle+(PI/2));
         transferX = 0;
         transferY = -1;
-        transferDistance = (int) (4200 +radius - 1000*cos(asin(x/1000)) - distFromCenter*cos(angle));
+        transferDistance = (int) (3200 +radius - 750*cos(asin(x/750)) - distFromCenter*cos(angle));
         m.changeRooms(3);
       } 
       //transfering left
-      else {
+      else if (abs(angle)>3*PI/4&&m.canChangeRoom(2)) {
+        preventControl = true;
         angle = PI - abs(angle);
         transferX = -1;
         transferY = 0;
-        transferDistance = (int) (4200 + radius - (1000*cos(asin(y/1000))) - (distFromCenter*cos(angle)));
+        transferDistance = (int) (3200 + radius - (750*cos(asin(y/750))) - (distFromCenter*cos(angle)));
         m.changeRooms(2);
+      } else {
+        x=750*cos(angle);
+        y=750*sin(angle);
       }
-      transferSpeed = 70;
+      if (preventControl) {
+        transferSpeed = 60;
+      }
     }
   }
 
@@ -124,14 +138,14 @@ public class BubbleTank {
       rotateLeft = state*radians(5);
     }
     // Spacebar
-    if (code == 32) {
+    if (code == 32 && (!showMap || state == 0) && mouseX > 0 && mouseX<700 && mouseY>0 && mouseY<700) {
       isShooting = state;
     }
   }
 
   public void display() {
-    if (coolDown > 0) {
-      coolDown--;
+    if (shootingDown > 0 && !showMap) {
+      shootingDown--;
     }
     if (preventControl) {
       transferTank();
@@ -151,10 +165,11 @@ public class BubbleTank {
   }
 
   public void spawnBullets(ArrayList<BubbleBullet> arr) {
-    if (isShooting == 1 && coolDown == 0) {
-      coolDown = 1;
+    if (isShooting == 1 && shootingDown == 0) {
+      shootingDown = coolDown;
       //radius,speed,tankRadius,x,y,direction,id
-      arr.add(new BubbleBullet(10, 10, radius, x, y, direction, id));
+      //for machine gun
+      arr.add(new BubbleBullet(5, 15, radius, x, y, direction, id));
     }
   }
 
@@ -165,30 +180,75 @@ public class BubbleTank {
   public float getY() {
     return y;
   }
-  
-  public float getRadius(){
-     return radius; 
-  }
-  
-  public float getDirection(){
-     return direction; 
-  }
-  
-  public boolean getHasTransfered(){
-    return hasTransfered;
-  }  
-  
-  public ArrayList<BubbleBlock> getBlocks() {
-     return blocks; 
+
+  public void setX(float newX) {
+    x = newX;
   }
 
+  public void setY(float newY) {
+    y = newY;
+  }
+
+  public float getRadius() {
+    return radius;
+  }
+
+  public float getDirection() {
+    return direction;
+  }
+
+  public boolean getHasTransfered() {
+    return hasTransfered;
+  }  
+
+  public ArrayList<BubbleBlock> getBlocks() {
+    return blocks;
+  }
+  
+  public boolean getPreventControl(){
+     return preventControl; 
+  }
+
+  public void setRadius(float val) {
+    radius = val;
+  }
+
+  public void incrementHealth(float val) {
+    health += val;
+    if (health>maxHealth) {
+      health = maxHealth;
+    }
+    if (health < 0) {
+      health = 0;
+    }
+  }
+
+  public float getHealth() {
+    return health;
+  }
+
+  public float getMaxHealth() {
+    return maxHealth;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public float getSpeed() {
+    return speed;
+  }
+
+  public void setDirection(float x, float y) {
+    direction =  atan2(y-this.y, x-this.x);
+  }
   public void transferTank() {
     if (transferedSoFar >= transferDistance) {
       preventControl = false;
       hasTransfered = false;
       transferedSoFar = 0;
       transferSpeed = 20;
-    } else if ((abs(x) > 2000 || abs(y) > 2000) && !hasTransfered) {
+    } else if ((abs(x) > 1500 || abs(y) > 1500) && !hasTransfered) {
       if (abs(transferX) == 1) {
         x = -x + transferX*transferSpeed;
       } else if (abs(transferY) == 1) {
@@ -200,7 +260,7 @@ public class BubbleTank {
       x += transferSpeed * transferX;
       y += transferSpeed * transferY;
       transferedSoFar += abs(transferSpeed);
-      transferSpeed -= 0.9;
+      transferSpeed -= 0.6;
     }
   }
   
