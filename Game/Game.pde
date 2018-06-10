@@ -91,9 +91,9 @@ void draw() {
     }
     player.levelUp();
     tank.spawnBullets(allBullets);
-    
+
     drawMap(tank.getX(), tank.getY());
-    
+
 
     fill(6, 153, 173);
     stroke(195, 234, 250);
@@ -116,16 +116,9 @@ void draw() {
 
     drawShading(tank.getX(), tank.getY());
     drawBubbles(tank.getX(), tank.getY());
-    fill(200);
-    rect(0, 700, 700, 100);
-    fill(0);
-    rect(30, 720, 300, 35);  
-    rect(30, 760, 300, 35);  
-    fill(251, 31, 50);
-    rect(30, 720, 300*(tank.getHealth()/tank.getMaxHealth()), 35);
-    fill(20, 54, 129);
-    rect(30, 760, 300*((float)player.getPoints()/player.getMaxPoints()), 35);
-    fill(200);
+    fill(1,135,155,100);
+    strokeWeight(5);
+    stroke(255,100);
     rect(0, 700, 700, 100);
 
     fill(46, 89, 47);
@@ -321,6 +314,12 @@ void draw() {
       textSize(30);
       text("map", 625, 759); 
 
+      if (m.getHasBoss()) {
+        fill(147, 61, 215);
+        noStroke();
+        ellipse(675, 725, 20, 20);
+      }
+
       if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775) { // for easy
         fill(211, 234, 244);
         strokeWeight(5);
@@ -452,25 +451,25 @@ void drawBullets(float xOffset, float yOffset) {
         allBullets.remove(i);
         i--;
       } else if (current.getId()==0) {
-        if (m.getCurrentRoom().toString().equals("boss")&&m.getHasBoss()){
+        if (m.getCurrentRoom().toString().equals("boss")&&m.getHasBoss()) {
           BossRoom bRoom = (BossRoom)m.getCurrentRoom();
           BubbleTank boss = bRoom.getBoss();
-          if (boss!=null){
-          for (int k=0; k<boss.getBlocks().size();k++){
-            BubbleBlock currentBlock = boss.getBlocks().get(k);
-            if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
-              if (current.toString().equals("stun")) {
-                StunBullet stunner = (StunBullet)current;
-                boss.stun(stunner.getStunTime());
-              }
-              if (!current.toString().equals("super")) {
-                boss.incrementHealth(-2*current.getRadius());
-                allBullets.remove(i);
-                i--;
-                k=boss.getBlocks().size();
+          if (boss!=null) {
+            for (int k=0; k<boss.getBlocks().size(); k++) {
+              BubbleBlock currentBlock = boss.getBlocks().get(k);
+              if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
+                if (current.toString().equals("stun")) {
+                  StunBullet stunner = (StunBullet)current;
+                  boss.stun(stunner.getStunTime());
+                }
+                if (!current.toString().equals("super")) {
+                  boss.incrementHealth(-2*current.getRadius());
+                  allBullets.remove(i);
+                  i--;
+                  k=boss.getBlocks().size();
+                }
               }
             }
-          }
           }
         }
         ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
@@ -531,8 +530,8 @@ void drawEnemies(float xOffset, float yOffset) {
     if (boss!=null&&!showMap&& !playerLevelUp) {
       boss.move(m);
     }
-    if (boss != null){
-    boss.display();
+    if (boss != null) {
+      boss.display();
     }
   }
   if (enemies.size() == 0) {

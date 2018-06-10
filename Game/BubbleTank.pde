@@ -206,6 +206,10 @@ public abstract class BubbleTank {
   public void setX(float newX) {
     x = newX;
   }
+  
+  public void setSpeed(float newSpeed){
+     speed = newSpeed; 
+  }
 
   public void setY(float newY) {
     y = newY;
@@ -251,9 +255,13 @@ public void setDirection(float angle){
   public float getHealth() {
     return health;
   }
-
   public float getMaxHealth() {
     return maxHealth;
+  }
+  
+  public void setHealth(float val){
+   health = val;
+   maxHealth = val;
   }
 
   public int getId() {

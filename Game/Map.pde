@@ -71,12 +71,20 @@ public class Map {
         rooms[bossRow][bossCol] = new BossRoom(n, bossRow, bossCol, difficulty, 0);
         hasBoss = true;
       }
-      if (bossesKilled == 0 && cleared >=0) {
+      if (bossesKilled == 2 && cleared >=2) {
         while (bossRow==currentRoomR() &&bossCol==currentRoomC() || bossRow==-1 || bossCol==-1) {
           bossRow = (int)(random(n));
           bossCol = (int)(random(n));
         }
         rooms[bossRow][bossCol] = new BossRoom(n, bossRow, bossCol, difficulty, 1);
+        hasBoss = true;
+      }
+      if (bossesKilled == 0 && cleared >=0) {
+        while (bossRow==currentRoomR() &&bossCol==currentRoomC() || bossRow==-1 || bossCol==-1) {
+          bossRow = (int)(random(n));
+          bossCol = (int)(random(n));
+        }
+        rooms[bossRow][bossCol] = new BossRoom(n, bossRow, bossCol, difficulty, 2);
         hasBoss = true;
       }
     }

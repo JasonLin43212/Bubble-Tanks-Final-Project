@@ -11,6 +11,9 @@ public class BossRoom extends Room{
       if (type == 1){
         boss = new Shield(difficulty);
       }
+      if (type == 2){
+         boss = new Bull(difficulty); 
+      }
   }
   
   public String toString(){

@@ -422,6 +422,12 @@ public class MenuPages {
     textSize(30); 
     text("map", 625, 759);
 
+    if (m.getHasBoss()) {
+      fill(147, 61, 215);
+      noStroke();
+      ellipse(675, 725, 20, 20);
+    }
+
     fill(255, 155);
     noStroke();
     rect(0, 0, 700, 800);
@@ -476,6 +482,8 @@ public class MenuPages {
       for (int c = 0; c < mapSize; c++) {
         if (m.currentRoomR() == r && m.currentRoomC() == c) {
           fill(39, 150, 203);
+        } else if (m.getRooms()[r][c].toString().equals("boss")) {
+          fill(147, 61, 215);
         } else {
           fill(211, 234, 244);
         }
@@ -491,7 +499,7 @@ public class MenuPages {
           textSize(maprad*0.8); 
           text("S", currentC + (maprad*2*c), currentR + (maprad*2*r)+maprad*0.2);
         }
-        if(m.getRooms()[r][c].getEnemies().size() == 0){
+        if (m.getRooms()[r][c].getEnemies().size() == 0 && !m.getRooms()[r][c].toString().equals("boss")) {
           fill(163, 35, 9);
           textAlign(CENTER);
           textFont(bubble);
@@ -527,254 +535,254 @@ public class MenuPages {
       text("back", 27, 55);
     }
   }
-  
+
   void upgradeodd() {
-    fill(255,155);
+    fill(255, 155);
     noStroke();
-    rect(0,0,700,800);
-    
+    rect(0, 0, 700, 800);
+
     fill(255);
     noStroke();
-    rect(100,100,500,500);
-    
+    rect(100, 100, 500, 500);
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     text("upgrade", 350, 200); 
-    
+
     if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for blaster
       fill(242, 245, 252);
       strokeWeight(7);
       strokeJoin(MITER);
       strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(140,240,140,277);
+      stroke(247, 249, 253);
+      rect(140, 240, 140, 277);
     }
-    
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
     text("blaster", 210, 300); 
-    
+
     textAlign(CENTER);
     textSize(18); 
-    text("a gun\nthat\nshoots\nmultiple\nbullets in\nmultiple\ndirections",210,350);
-    
+    text("a gun\nthat\nshoots\nmultiple\nbullets in\nmultiple\ndirections", 210, 350);
+
     if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
       fill(242, 245, 252);
       strokeWeight(7);
       strokeJoin(MITER);
       strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(280,240,140,277);
+      stroke(247, 249, 253);
+      rect(280, 240, 140, 277);
     }
-    
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
     text("cannon", 350, 300); 
-    
+
     textAlign(CENTER);
     textSize(18); 
-    text("a gun\nthat\nshoots\nlarge\nbullets",350,350);
-    
+    text("a gun\nthat\nshoots\nlarge\nbullets", 350, 350);
+
     if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for machine gun
       fill(242, 245, 252);
       strokeWeight(7);
       strokeJoin(MITER);
       strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(420,240,140,277);
+      stroke(247, 249, 253);
+      rect(420, 240, 140, 277);
     }
-    
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
     text("machine\ngun", 490, 280);
-    
+
     textAlign(CENTER);
     textSize(18); 
-    text("a gun\nthat\nrapidly\nshoots\na lot of\nbullets",490,350);
-    
+    text("a gun\nthat\nrapidly\nshoots\na lot of\nbullets", 490, 350);
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(48); 
-    text("level: " + player.getLevel(), 350, 575); 
+    text("level: " + player.getLevel(), 350, 575);
   }
-  
+
   void upgradeeven() {
-    fill(255,155);
+    fill(255, 155);
     noStroke();
-    rect(0,0,700,800);
-    
+    rect(0, 0, 700, 800);
+
     fill(255);
     noStroke();
-    rect(100,100,500,500);
-    
+    rect(100, 100, 500, 500);
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     text("upgrade", 350, 200); 
-    
+
     if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for blaster
       fill(242, 245, 252);
       strokeWeight(7);
       strokeJoin(MITER);
       strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(140,240,140,277);
+      stroke(247, 249, 253);
+      rect(140, 240, 140, 277);
     }
-    
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
     text("missile", 210, 300); 
-    
+
     textAlign(CENTER);
     textSize(18); 
-    text("bullets\nthat follow\nenemies",210,350);
-    
+    text("bullets\nthat follow\nenemies", 210, 350);
+
     if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
       fill(242, 245, 252);
       strokeWeight(7);
       strokeJoin(MITER);
       strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(280,240,140,277);
+      stroke(247, 249, 253);
+      rect(280, 240, 140, 277);
     }
-    
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
     text("stun\nburst", 350, 280); 
-    
+
     textAlign(CENTER);
     textSize(18); 
-    text("bullets\nthat\nstun\nenemies",350,350);
-    
+    text("bullets\nthat\nstun\nenemies", 350, 350);
+
     if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for machine gun
       fill(242, 245, 252);
       strokeWeight(7);
       strokeJoin(MITER);
       strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(420,240,140,277);
+      stroke(247, 249, 253);
+      rect(420, 240, 140, 277);
     }
-    
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
     text("area\nblast", 490, 280);
-    
+
     textAlign(CENTER);
     textSize(18); 
-    text("bullets\nthat\nexplode",490,350);
-    
+    text("bullets\nthat\nexplode", 490, 350);
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(48);
-    text("level: " + player.getLevel(), 350, 575); 
+    text("level: " + player.getLevel(), 350, 575);
   }
-  
+
   void upgradeSuper() { 
-    fill(255,155);
+    fill(255, 155);
     noStroke();
-    rect(0,0,700,800);
-    
+    rect(0, 0, 700, 800);
+
     fill(255);
     noStroke();
-    rect(100,100,500,500);
-    
+    rect(100, 100, 500, 500);
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     text("upgrade", 350, 200); 
-    
+
     if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for blaster
       fill(242, 245, 252);
       strokeWeight(7);
       strokeJoin(MITER);
       strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(140,240,140,277);
+      stroke(247, 249, 253);
+      rect(140, 240, 140, 277);
     }
-    
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
     text("super\nmissile", 210, 280); 
-    
+
     textAlign(CENTER);
     textSize(18); 
-    text("bullets\nthat\nfollow\nenemies\nlike they\nowe them\nmoney",210,350);
-    
+    text("bullets\nthat\nfollow\nenemies\nlike they\nowe them\nmoney", 210, 350);
+
     if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
       fill(242, 245, 252);
       strokeWeight(7);
       strokeJoin(MITER);
       strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(280,240,140,277);
+      stroke(247, 249, 253);
+      rect(280, 240, 140, 277);
     }
-    
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
     text("super\nblaster", 350, 280); 
-    
+
     textAlign(CENTER);
     textSize(18); 
-    text("just\nlike the\noriginal\nblaster,\nbut better",350,350);
-    
+    text("just\nlike the\noriginal\nblaster,\nbut better", 350, 350);
+
     if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for machine gun
       fill(242, 245, 252);
       strokeWeight(7);
       strokeJoin(MITER);
       strokeCap(SQUARE);
-      stroke(247,249,253);
-      rect(420,240,140,277);
+      stroke(247, 249, 253);
+      rect(420, 240, 140, 277);
     }
-    
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
     text("super\ncannon", 490, 280);
-    
+
     textAlign(CENTER);
     textSize(18); 
-    text("bigger,\nbetter,\neven\nmore\nbullets",490,350);
-    
+    text("bigger,\nbetter,\neven\nmore\nbullets", 490, 350);
+
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
     textSize(48);
-    text("level: " + player.getLevel(), 350, 575); 
+    text("level: " + player.getLevel(), 350, 575);
   }
-  
+
   void pause() {
-    fill(255,150);
-    rect(0,0,700,700);
-    fill(39, 150, 203,200);
-    rect(0,0,700,700);
-      
+    fill(255, 150);
+    rect(0, 0, 700, 700);
+    fill(39, 150, 203, 200);
+    rect(0, 0, 700, 700);
+
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
     text("game paused", 350, 150); // starts at 207 ends at 250
-  
+
     fill(255);
-    rect(215,250,80,300);
-    rect(395,250,80,300);
+    rect(215, 250, 80, 300);
+    rect(395, 250, 80, 300);
   }
 }

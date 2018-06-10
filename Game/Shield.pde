@@ -19,11 +19,16 @@ public class Shield extends BubbleTank {
   public void display() {
     super.display();   
     blocks.clear();
-    buildBlocks();
+    if (shielded){
+      fill(126,173,189);
+       blocks.add(new BubbleBlock(getX(), getY(), 120, getDirection(), color(126,173,189)));
+    }
+    buildBlocks();    
     for (int i=0; i<blocks.size(); i++) {
       blocks.get(i).display();
     }
     rect(getX()-2.5*getRadius(), getY()-3*getRadius(), 5*getRadius()*(getHealth()/getMaxHealth()), 1*getRadius());
+    
   }
 
   public void move(Map m) {
@@ -52,10 +57,10 @@ public class Shield extends BubbleTank {
           allBullets.add(new BubbleBullet(20+difficulty, 6+difficulty, getRadius(), getX(), getY(), getDirection(), getId()));
         }
       }
-      if (bossCoolDown > 200 && bossCoolDown < 250) { 
+      if (bossCoolDown > 200 && bossCoolDown < 230) { 
         if (bossCoolDown % 3==0) {
           for (int i=0; i<difficulty; i++) {
-            allBullets.add(new StunBullet(7, 1.5+difficulty*1.5, getRadius(), getX(), getY(), getDirection()+i*2*PI/difficulty, getId(), difficulty*10));
+            allBullets.add(new StunBullet(7, 1.5+difficulty*1.5, getRadius(), getX(), getY(), getDirection()+i*2*PI/difficulty, getId(), difficulty*5));
           }
         }
       }
@@ -64,11 +69,18 @@ public class Shield extends BubbleTank {
       allBullets.add(new BubbleBullet(6+difficulty, 3+difficulty, getRadius(), getX(), getY(), getDirection(), getId()));
     }
     if (bossCoolDown %300 == 0 && difficulty > 3) {
-      allBullets.add(new BubbleBullet(80, 3+difficulty*0.5, getRadius(), getX(), getY(), getDirection(), getId()));
+      allBullets.add(new BubbleBullet(60, 3+difficulty*0.5, getRadius(), getX(), getY(), getDirection(), getId()));
     }
     if (bossCoolDown % 200 ==0){
       closeFactor= -closeFactor;
     }
+  }
+  
+  public void incrementHealth(float val){
+     if (shielded){
+        val = 0; 
+     }
+     super.incrementHealth(val);
   }
 
   public void buildBlocks() {
