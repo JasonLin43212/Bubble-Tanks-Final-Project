@@ -63,15 +63,21 @@ public class Map {
           }
         }
       }
-      if (bossesKilled == 0 && cleared>=1) {
-        println("spawn");
+      if (bossesKilled == 1 && cleared>=3) {
         while (bossRow==currentRoomR() &&bossCol==currentRoomC() || bossRow==-1 || bossCol==-1) {
           bossRow = (int)(random(n));
           bossCol = (int)(random(n));
         }
         rooms[bossRow][bossCol] = new BossRoom(n, bossRow, bossCol, difficulty, 0);
         hasBoss = true;
-        println(bossRow+ " " +bossCol);
+      }
+      if (bossesKilled == 0 && cleared >=0) {
+        while (bossRow==currentRoomR() &&bossCol==currentRoomC() || bossRow==-1 || bossCol==-1) {
+          bossRow = (int)(random(n));
+          bossCol = (int)(random(n));
+        }
+        rooms[bossRow][bossCol] = new BossRoom(n, bossRow, bossCol, difficulty, 1);
+        hasBoss = true;
       }
     }
     if (hasBoss) {
@@ -88,8 +94,8 @@ public class Map {
       }
     }
   }
-  
-  public boolean getHasBoss(){
-     return hasBoss; 
+
+  public boolean getHasBoss() {
+    return hasBoss;
   }
 }

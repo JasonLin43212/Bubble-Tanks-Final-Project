@@ -9,7 +9,7 @@ public class BossRoom extends Room{
          boss = new Stationary(difficulty); 
       }
       if (type == 1){
-        
+        boss = new Shield(difficulty);
       }
   }
   

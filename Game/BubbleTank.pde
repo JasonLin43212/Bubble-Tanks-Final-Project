@@ -61,6 +61,10 @@ public abstract class BubbleTank {
   public int getStunPeriod() {
     return stunPeriod;
   }
+  
+  public void incrementStun(int val){
+     stunPeriod += val; 
+  }
 
   public void move(Map m) {
     if (!preventControl && id==0 && !showMap && !playerLevelUp && stunPeriod <=0) {
@@ -211,6 +215,9 @@ public abstract class BubbleTank {
     return radius;
   }
 
+public void setDirection(float angle){
+    direction = angle;
+}
   public float getDirection() {
     return direction;
   }

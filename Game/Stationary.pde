@@ -5,7 +5,7 @@ public class Stationary extends BubbleTank {
   int bossCoolDown;
 
   public Stationary(int difficulty) {
-    super(3000 + difficulty*500 + bossesKilled*1000, 40, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    super(3000 + difficulty*500 + bossesKilled*1000, 40, -666, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     bossCoolDown = 500 - difficulty*20;
   }
 
@@ -20,12 +20,13 @@ public class Stationary extends BubbleTank {
     for (int i=0; i<blocks.size(); i++) {
       blocks.get(i).display();
     }
-    rect(getX()-1.5*getRadius(), getY()-2*getRadius(), 3*getRadius()*(getHealth()/getMaxHealth()), 0.5*getRadius());
+     rect(getX()-2.5*getRadius(), getY()-3*getRadius(), 5*getRadius()*(getHealth()/getMaxHealth()), 1*getRadius());
   }
 
   public void move(Map m) {
     setDirection(tank.getX(), tank.getY());
     bossCoolDown--;
+    incrementStun(-10);
     if (bossCoolDown <=0) {
       bossCoolDown = 500 - difficulty*20;
     }
@@ -56,7 +57,7 @@ public class Stationary extends BubbleTank {
         allBullets.add(new BubbleBullet(4+difficulty, 5+difficulty, getRadius(), getX(), getY(), getDirection(), getId()));
       }
       if (bossCoolDown %300 == 0 && difficulty > 3) {
-        allBullets.add(new MissileBullet(40, 0.6+difficulty*0.1, getRadius(), getX(), getY(), getDirection(), getId()));
+        allBullets.add(new MissileBullet(40, 2+difficulty*0.1, getRadius(), getX(), getY(), getDirection(), getId()));
       }
     }
   }

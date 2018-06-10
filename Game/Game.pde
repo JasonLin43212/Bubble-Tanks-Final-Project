@@ -105,8 +105,8 @@ void draw() {
     translate(-tank.getX()+350, -tank.getY()+350);
     ellipse(0, 0, 1495, 1495);
     popMatrix();
-    drawEnemies(tank.getX(), tank.getY());
     m.spawnBoss();
+    drawEnemies(tank.getX(), tank.getY());
     tank.display();
     tank.move(m);
     drawBullets(tank.getX(), tank.getY());
@@ -455,6 +455,7 @@ void drawBullets(float xOffset, float yOffset) {
         if (m.getCurrentRoom().toString().equals("boss")&&m.getHasBoss()){
           BossRoom bRoom = (BossRoom)m.getCurrentRoom();
           BubbleTank boss = bRoom.getBoss();
+          if (boss!=null){
           for (int k=0; k<boss.getBlocks().size();k++){
             BubbleBlock currentBlock = boss.getBlocks().get(k);
             if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
@@ -469,6 +470,7 @@ void drawBullets(float xOffset, float yOffset) {
                 k=boss.getBlocks().size();
               }
             }
+          }
           }
         }
         ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
@@ -521,15 +523,17 @@ void drawEnemies(float xOffset, float yOffset) {
   if (currentRoom.toString().equals("boss") &&m.getHasBoss()) {
     bRoom = (BossRoom)currentRoom;
     boss = bRoom.getBoss();
-    if (boss.getHealth() == 0) {
+    if (boss!=null&&boss.getHealth() == 0) {
       for (Bubble b : allBubbles) {
         b.setClearState(true);
       }
     }
-    if (!showMap&& !playerLevelUp) {
+    if (boss!=null&&!showMap&& !playerLevelUp) {
       boss.move(m);
     }
+    if (boss != null){
     boss.display();
+    }
   }
   if (enemies.size() == 0) {
     for (Bubble b : allBubbles) {
@@ -565,7 +569,7 @@ void keyPressed() {
     tank.setMovement(keyCode, 1);
   }
   if (keyCode == 76) {
-    difficulty = 3;
+    difficulty = 7;
     mapSize = 5;
     useMouse = true;
     m = new Map(mapSize, difficulty);
@@ -581,7 +585,7 @@ void keyPressed() {
   if (keyCode == 50) { // 2
     tank.activateStun();
   }
-  if (keyCode == 51) { // 3
+  if (keyCode == 51) { // 3  
     tank.activateAreaBurst();
   }
   if (keyCode == 52) { // 4

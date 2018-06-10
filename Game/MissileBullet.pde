@@ -24,7 +24,7 @@ public class MissileBullet extends BubbleBullet {
     }
     if (m.getCurrentRoom().toString().equals("boss")) {
       BossRoom bRoom = (BossRoom)m.getCurrentRoom();
-      if (m.getHasBoss()){
+      if (m.getHasBoss() && bRoom.getBoss()!=null){
       direction = atan2(bRoom.getBoss().getY()-y, bRoom.getBoss().getX()-x);
       }
     }
