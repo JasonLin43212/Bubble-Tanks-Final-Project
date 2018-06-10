@@ -119,11 +119,11 @@ void draw() {
 
     fill(72, 139, 73);
     noStroke();
-    rect(26.5, 721.5, percentHealth*197, 17.5);
+    rect(26.5, 721.5, percentHealth*197.5, 17.5);
 
     fill(3, 64, 120);
     noStroke();
-    rect(26.5, 761.5, percentPoint *197, 17.5);
+    rect(26.5, 761.5, percentPoint *197.5, 17.5);
 
     // test for health
     fill(255);
