@@ -425,7 +425,7 @@ void drawBubbles(float xOffset, float yOffset) {
   translate(-xOffset+350, -yOffset+350);
   for (int i=0; i<allBubbles.size(); i++) {
     Bubble currentBubble = allBubbles.get(i);
-    if (!showMap) {
+    if (!showMap && !playerLevelUp) {
       currentBubble.move(tank.getX(), tank.getY());
     }
     currentBubble.display();
@@ -445,7 +445,7 @@ void drawBullets(float xOffset, float yOffset) {
   for (int i = 0; i<allBullets.size(); i++) {
     BubbleBullet current = allBullets.get(i);
     current.display();
-    if (!showMap) {
+    if (!showMap&& !playerLevelUp) {
       if (!current.move()) {
         allBullets.remove(i);
         i--;
@@ -457,6 +457,10 @@ void drawBullets(float xOffset, float yOffset) {
             BubbleBlock currentBlock = currentEnemy.getBlocks().get(k);
             if (dist(current.getX(), current.getY(), currentBlock.getX(), currentBlock.getY())<current.getRadius()+currentBlock.getRadius()) {
               currentEnemy.incrementHealth(-2*current.getRadius());
+              if (current.toString().equals("stun")){
+                StunBullet stunner = (StunBullet)current;
+                 currentEnemy.stun(stunner.getStunTime()); 
+              }
               allBullets.remove(i);
               i--;
               k=currentEnemy.getBlocks().size();
@@ -469,6 +473,10 @@ void drawBullets(float xOffset, float yOffset) {
           BubbleBlock currentBlock = tank.getBlocks().get(k);
           if (dist(current.getX(), current.getY(), currentBlock.getX()-350+tank.getX(), currentBlock.getY()-350+tank.getY())<current.getRadius()+currentBlock.getRadius()) {
             tank.incrementHealth(-2*current.getRadius());
+            if (current.toString().equals("stun")){
+                StunBullet stunner = (StunBullet)current;
+                tank.stun(stunner.getStunTime()); 
+              }
             allBullets.remove(i);
             i--;
             k=tank.getBlocks().size();
@@ -491,7 +499,7 @@ void drawEnemies(float xOffset, float yOffset) {
   }
   for (int i=0; i<enemies.size(); i++) {
     EnemyTank currentEnemy = enemies.get(i);
-    if (!showMap) {
+    if (!showMap&& !playerLevelUp) {
       currentEnemy.spawnBullets(allBullets);
       currentEnemy.setDirection(tank.getX(), tank.getY());
       currentEnemy.move();
@@ -531,24 +539,18 @@ void keyPressed() {
   if (keyCode == 49) { // 1
     tank.activateMissile();
   }
+  if (keyCode == 50) { // 2
+    tank.activateStun();
+  }
+  if (keyCode == 51) { // 3
+    tank.activateAreaBurst();
+  }
   if (keyCode == 61) { // ' + '
     if (player.getLevel() < 25) {
       player.addPoints(90000);
     }
   }
-  if (keyCode == 32) {
-    paused = true;
-    System.out.println(frameRate);
-  }
   
-
-  //System.out.println(keyCode);
-  if (keyCode == 50) { // 2
-    // stuff for blaster
-  }
-  if (keyCode == 51) { // 3
-    // stuff for machine gun
-  }
   if (keyCode == 52) { // 4
     // stuff for super attack
   }

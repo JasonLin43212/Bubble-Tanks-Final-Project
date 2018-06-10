@@ -27,6 +27,14 @@
     block = new BubbleBlock(x,y,radius,direction,color(195,144,163));
     block.display();
   }
+  
+  public void setBlock(BubbleBlock newBlock){
+     block = newBlock;
+  }
+  
+  public BubbleBlock getBlock(){
+    return block;
+  }  
 
   public String toString() {
     return x + "  " + y;

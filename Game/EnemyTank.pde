@@ -307,9 +307,11 @@ public class EnemyTank extends BubbleTank {
       selectNewPath();
     }
     //Go towards your destination
+    if (getStunPeriod() <= 0){
     setX(getX()+cos(goToAngle)*getSpeed());
     setY(getY()+sin(goToAngle)*getSpeed());
     distanceSoFar += getSpeed();
+    }
 }
 
   public void selectNewPath() {

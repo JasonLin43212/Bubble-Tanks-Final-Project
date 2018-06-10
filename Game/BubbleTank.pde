@@ -1,6 +1,6 @@
 public abstract class BubbleTank {
   private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed, shootingDown, maxHealth;
-  private int id, transferX, transferY, transferDistance, transferedSoFar;
+  private int id, transferX, transferY, transferDistance, transferedSoFar, stunPeriod;
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
 
@@ -48,12 +48,22 @@ public abstract class BubbleTank {
     this.stunburst = stunburst; // 4
     this.areablast = areablast; // 5
     this.superattack = superattack; // 6
+
+    stunPeriod = 0;
   }
 
   public abstract void updatedType();
 
+  public void stun(int time) {
+    stunPeriod = time;
+  }
+
+  public int getStunPeriod() {
+    return stunPeriod;
+  }
+
   public void move(Map m) {
-    if (!preventControl && id==0 && !showMap) {
+    if (!preventControl && id==0 && !showMap && !playerLevelUp && stunPeriod <=0) {
       x += (right-left)*speed;
       y += (down-up)*speed;
       direction += rotateLeft - rotateRight;
@@ -139,11 +149,14 @@ public abstract class BubbleTank {
   }
 
   public void display() {
-    if (shootingDown > 0 && !showMap) {
+    if (shootingDown > 0 && !showMap && stunPeriod<=0) {
       shootingDown--;
     }
     if (preventControl) {
       transferTank();
+    }
+    if (stunPeriod >0) {
+      stunPeriod--;
     }
   }
 
@@ -152,7 +165,7 @@ public abstract class BubbleTank {
   }
 
   public void spawnBullets(ArrayList<BubbleBullet> arr) {
-    if (isShooting == 1 && shootingDown == 0 &&!preventControl) {
+    if (isShooting == 1 && shootingDown == 0 &&!preventControl &&!playerLevelUp) {
       shootingDown = coolDown;
       //radius,speed,tankRadius,x,y,direction,id
       //for machine gun (cooldowns, 14,12,10,8)
@@ -364,20 +377,32 @@ public abstract class BubbleTank {
   public void activateMissile() {
     //if statement about cooldown
     //then turn on a variable to shoot 5 + 2*level missiles
-    for (int i=0; i<5+2*missile; i++) {
-      ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
-      if (enemies.size()!=0) {
-        allBullets.add(new MissileBullet(17, 3+missile*1.5, radius, x, y, direction+i*2*PI/(5+2*missile), id, enemies.get((int) (random(enemies.size()))).getId()));
+    if (missile>0) {
+      for (int i=0; i<5+2*missile; i++) {
+        ArrayList<EnemyTank> enemies = m.getCurrentRoom().getEnemies();
+        if (enemies.size()!=0) {
+          allBullets.add(new MissileBullet(17, 3+missile*1.5, radius, x, y, direction+i*2*PI/(5+2*missile), id, enemies.get((int) (random(enemies.size()))).getId()));
+        }
       }
     }
   }
   public void activateStun() {
     //if statement about cooldown
     //then turn on a variable to shoot 5 + 3*level missiles
+    if (stunburst>0){
+    for (int i=0; i<10+12*stunburst; i++) {
+      allBullets.add(new StunBullet(6, 3+stunburst*1.5, radius, x, y, direction+i*2*PI/(10+12*stunburst), id, 120+stunburst*30));
+    }
+    }
   }
   public void activateAreaBurst() {
     //if statement about cooldown
     //then turn on a variable to shoot 5 + 4*level missiles
+    if (areablast>0) {
+      for (int i=0; i<5+8*areablast; i++) {
+        allBullets.add(new BubbleBullet(13, 3+areablast*1.2, radius, x, y, direction+i*2*PI/(5+8*areablast), id));
+      }
+    }
   }
   public void activateSuper() {
     //if statement about cooldown
