@@ -715,4 +715,19 @@ public class MenuPages{
     text("level: " + playerlevel, 350, 575); 
   }
   
+  void pause() {
+    fill(255,150);
+    rect(0,0,700,700);
+    fill(39, 150, 203,200);
+    rect(0,0,700,700);
+      
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    text("game paused", 350, 150); // starts at 207 ends at 250
+  
+    fill(255);
+    rect(215,250,80,300);
+    rect(395,250,80,300);
+  }
 }

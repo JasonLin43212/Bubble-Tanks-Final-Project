@@ -31,6 +31,8 @@ float maprad = 40;
 
 boolean playerlevelup = false; 
 
+boolean paused = false;
+
 void setup() {
   size(700, 800);
   background(39, 150, 203);
@@ -221,23 +223,21 @@ void draw() {
       }
     }
     
-    /* for making cool downs or something, idk
     fill(242, 245, 252);
     noStroke();
-    rect(275, 720, 100, 20);
+    rect(275, 720, 100, 12.5);
     
     fill(242, 245, 252);
     noStroke();
-    rect(275, 760, 100, 20);
+    rect(275, 743.75, 100, 12.5);
     
     fill(242, 245, 252);
     noStroke();
-    rect(395, 720, 100, 20);
+    rect(275, 767.5, 100, 12.5);
     
     fill(242, 245, 252);
     noStroke();
-    rect(395, 760, 100, 20); 
-    */
+    rect(395, 765, 100, 15); 
     
     if (playerlevelup) {
       if (playerlevel % 2 == 1 && playerlevel != 10) {
@@ -299,8 +299,11 @@ void keyPressed() {
       playerlevel++;
     }
   }
+  if (keyCode == 32) {
+    paused = true;
+  }
   
-  //System.out.println(keyCode);
+  // System.out.println(keyCode);
 }
 
 void keyReleased() {
