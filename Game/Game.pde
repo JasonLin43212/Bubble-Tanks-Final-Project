@@ -5,6 +5,17 @@ PFont bubble;
 PFont ptmono;
 Player player = new Player();
 BubbleTank tank = player.getTank();
+
+int playerlevel = player.getLevel();
+
+float health = 25;
+float maxhealth = 100;
+float percentHealth = (health / maxhealth) * 200;
+
+float bubblepoints = 90;
+float maxbp = 100;
+float percentbp = (bubblepoints / maxbp) * 200;
+
 ArrayList<BubbleBullet> allBullets;
 boolean useMouse = false;
 int menuSetting = 1;
@@ -23,6 +34,11 @@ PImage imgUp;
 PImage imgDown;
 PImage imgLeft;
 PImage imgRight;
+
+boolean showMap = false;
+float maprad = 40;
+
+boolean playerlevelup = false; 
 
 void setup() {
   size(700, 800);
@@ -68,12 +84,15 @@ void draw() {
     if (tank.getHasTransfered()) {
       allBullets.clear();
     }
+    
     tank.spawnBullets(allBullets);
     drawMap(tank.getX(), tank.getY());
+    
     fill(6, 153, 173);
     stroke(195, 234, 250);
     strokeWeight(5);
     ellipse(350, 350, 7*tank.getRadius(), 7*tank.getRadius());
+    
     noStroke();
     pushMatrix();
     translate(-tank.getX()+350, -tank.getY()+350);
@@ -82,10 +101,12 @@ void draw() {
     drawEnemies(tank.getX(), tank.getY());
     tank.display();
     tank.move(m);
+        
     drawBullets(tank.getX(), tank.getY());
     if (useMouse) {
       tank.realignDirection(mouseX, mouseY);
     }
+    
     drawShading(tank.getX(), tank.getY());
     drawBubbles(tank.getX(), tank.getY());
     fill(200);
@@ -178,6 +199,34 @@ void draw() {
         textSize(30); 
         text("map", 625, 759);
       }
+      
+      /* for making cool downs or something, idk
+    fill(242, 245, 252);
+    noStroke();
+    rect(275, 720, 100, 20);
+    
+    fill(242, 245, 252);
+    noStroke();
+    rect(275, 760, 100, 20);
+    
+    fill(242, 245, 252);
+    noStroke();
+    rect(395, 720, 100, 20);
+    
+    fill(242, 245, 252);
+    noStroke();
+    rect(395, 760, 100, 20); 
+    */
+    
+    if (playerlevelup) {
+      if (playerlevel % 2 == 1 && playerlevel != 10) {
+        mt.upgradeodd();
+      }
+      if (playerlevel % 2 == 0 && playerlevel != 10) {
+        mt.upgradeeven();
+      }
+      if (playerlevel == 10) {
+        mt.upgradeSuper();
 
       if (showMap) {
         pages.showmap();
@@ -347,6 +396,14 @@ void keyPressed() {
   if (keyCode == 49) { // 1
     // stuff for cannon
   }
+  if (keyCode == 61) { // ' + '
+    if (playerlevel < 25) {
+      playerlevelup = true;
+      playerlevel++;
+    }
+  }
+  
+  //System.out.println(keyCode);
   if (keyCode == 50) { // 2
     // stuff for blaster
   }
@@ -505,6 +562,60 @@ void mouseClicked() {
     showMap = false;
   } else if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775 && !showMap) {
     showMap = true;
+  }
+  else if (showMap) {
+    showMap = false; 
+  }
+  else if (mouseX > 575 && mouseX < 675 && mouseY > 725 && mouseY < 775 && !showMap) {
+      showMap = true;
+  }
+  // player leveled up > options
+  else if (playerlevelup && playerlevel < 26) { // (player.canUpgrade()) {
+    // odd levels
+    if (playerlevel % 2 == 1 && playerlevel != 10) {
+      if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for blaster
+        tank.addBlaster();
+        playerlevelup = false; 
+      }
+      if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
+        tank.addCannon();
+        playerlevelup = false; 
+      }
+      if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for machine gun
+        tank.addMachineGun(); 
+        playerlevelup = false; 
+      }
+    }
+    // even levels
+    if (playerlevel % 2 == 0 && playerlevel != 10) {
+      if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for missile
+        tank.addMissile();
+        playerlevelup = false; 
+      }
+      if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for stun
+        tank.addStunBurst();
+        playerlevelup = false; 
+      }
+      if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for area blast
+        tank.addAreaBlast(); 
+        playerlevelup = false; 
+      }
+    }
+    // level 10 (aka super attack)
+    if (playerlevel == 10)  {
+      if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for missile
+        tank.addSuperAttack(1);
+        playerlevelup = false; 
+      }
+      if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for stun
+        tank.addSuperAttack(2);
+        playerlevelup = false; 
+      }
+      if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for area burst
+        tank.addSuperAttack(3);
+        playerlevelup = false; 
+      }
+    }
   }
 }
 
