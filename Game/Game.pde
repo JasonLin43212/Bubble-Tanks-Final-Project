@@ -33,6 +33,9 @@ boolean playerlevelup = false;
 
 boolean paused = false;
 
+float startms = millis();
+float endms = millis() + (1000 * 15);
+
 void setup() {
   size(700, 800);
   background(39, 150, 203);
@@ -150,10 +153,84 @@ void draw() {
       text(int(percentbp / 2) + "%", 26.5 + percentbp, 776); 
     }
     
+    /*
+    fill(242, 245, 252);
+    noStroke();
+    rect(260, 720, 100, 12.5);
+    
+    fill(242, 245, 252);
+    noStroke();
+    rect(260, 743.75, 100, 12.5);
+    
+    fill(242, 245, 252);
+    noStroke();
+    rect(260, 767.5, 100, 12.5);
+    */
+    
+    // orbital style
+    fill(0,180);
+    noStroke();
+    rect(276 + 15 * cos(TWO_PI - HALF_PI), 730 + 16.5 * sin(TWO_PI - HALF_PI), 1, 5);
+    // x + rcircle + cos(cooldownangleone), y + (rcircle + (0.5 * linesize) - 1) * sin(cooldownangleone), linexx, lineyy
+
+    noFill();
+    strokeWeight(1);
+    stroke(0,180);
+    ellipse(276,730,30,30);
+    
+    float cooldownsec = 15;
+    float cooldown = 60 * cooldownsec;
+    float cooldownangleone = TWO_PI * ((frameCount % cooldown) / cooldown) - HALF_PI;
+        
+    fill(0);
+    noStroke();
+    ellipse(276 + 15 * cos(cooldownangleone), 730 + 15 * sin(cooldownangleone), 5, 5);
+    // x + rcircle + cos(cooldownangleone), y + rcircle * sin(cooldownangleone), mcirclesize, mcirclesize
+    
+    if (cooldownangleone == 0 - HALF_PI) {
+      System.out.println(millis()); 
+    }
+    
+    // fill in style
+    
+    float opacityone = 1 - ((endms - millis()) / (1000 * 15));
+    
+    fill(255); // ,150 + (opacityone * 105));
+    strokeWeight(2.5);
+    stroke(147,202,229);
+    ellipse(335,730,30,30);
+    
+    fill(147,202,229,150 + (opacityone * 100));
+    // fill(147,202,229,opacityone * 255);
+    strokeWeight(2.5);
+    stroke(211,234,244);
+    ellipse(335,730,30,30);
+    
+    fill(255,opacityone * 255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(24); 
+    text("2", 336, 730 + 7.5);
+    
+    if (150 + (opacityone * 100) >= 255) {
+      System.out.println("bwoop");
+      endms += (1000 * 15);
+    }
+    
+    noFill();
+    strokeWeight(1);
+    stroke(255);
+    ellipse(394,730,30,30);
+    
+    fill(242, 245, 252);
+    noStroke();
+    rect(260, 760, 150, 20); 
+    
     // map button 
     fill(242, 245, 252);
     noStroke();
     rect(575, 725, 100, 50);
+    
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
@@ -223,22 +300,6 @@ void draw() {
       }
     }
     
-    fill(242, 245, 252);
-    noStroke();
-    rect(275, 720, 100, 12.5);
-    
-    fill(242, 245, 252);
-    noStroke();
-    rect(275, 743.75, 100, 12.5);
-    
-    fill(242, 245, 252);
-    noStroke();
-    rect(275, 767.5, 100, 12.5);
-    
-    fill(242, 245, 252);
-    noStroke();
-    rect(395, 765, 100, 15); 
-    
     if (playerlevelup) {
       if (playerlevel % 2 == 1 && playerlevel != 10) {
         mt.upgradeodd();
@@ -301,6 +362,7 @@ void keyPressed() {
   }
   if (keyCode == 32) {
     paused = true;
+    System.out.println(frameRate);
   }
   
   // System.out.println(keyCode);
