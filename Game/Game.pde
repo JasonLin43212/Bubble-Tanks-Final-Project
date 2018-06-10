@@ -336,13 +336,27 @@ void keyPressed() {
   if (keyCode == 76) {
     difficulty = 1;
     mapSize = 5;
-    useMouse = false;
+    useMouse = true;
     m = new Map(mapSize, difficulty);
     menuSetting =7;
   }
   if (keyCode == 86) {
     showMap = !showMap;
   }
+  /*
+  if (keyCode == 49) { // 1
+    // stuff for cannon
+  }
+  if (keyCode == 50) { // 2
+    // stuff for blaster
+  }
+  if (keyCode == 51) { // 3
+    // stuff for machine gun
+  }
+  if (keyCode == 52) { // 4
+    // stuff for super attack
+  }
+  */
 }
 
 void keyReleased() {
