@@ -56,9 +56,9 @@ public abstract class BubbleTank {
       }
     }
     if (id==0) {
-      coolDowns[0][1] = 22;
-      coolDowns[1][1] = 14;
-      coolDowns[2][1] = 34;
+      coolDowns[0][1] = 10;
+      coolDowns[1][1] = 10;
+      coolDowns[2][1] = 10;
       coolDowns[3][1] = 400;
       coolDowns[4][1] = 400;
       coolDowns[5][1] = 400;
@@ -188,7 +188,6 @@ public abstract class BubbleTank {
     if (stunPeriod >0) {
       stunPeriod--;
     }
-    println(coolDowns[6][0]);
   }
 
   public void realignDirection(float _x, float _y) {

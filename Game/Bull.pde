@@ -6,7 +6,7 @@ public class Bull extends BubbleTank {
   boolean shielded;
   boolean preventMovement;
   public Bull(int difficulty) {
-    super(3000 + difficulty*500 + bossesKilled*1000, 40, -10, difficulty);
+    super(3000 + difficulty*500 + bossesKilled*1000, 80, -10, difficulty);
     bossCoolDown = 500 - difficulty*20;
     shielded = false;
     preventMovement = false;
@@ -155,6 +155,8 @@ public class Bull extends BubbleTank {
 
 
   public void spawnBubbles(ArrayList<Bubble> arr) {
-    arr.add(new Bubble(getX()+random(20), getY()+random(20), getRadius()*20));
+    for (int i=0; i<40; i++){
+    arr.add(new Bubble(getX()+random(20), getY()+random(20), getRadius()/2));
+    }
   }
 }

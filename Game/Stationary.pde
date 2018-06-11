@@ -5,7 +5,7 @@ public class Stationary extends BubbleTank {
   int bossCoolDown;
 
   public Stationary(int difficulty) {
-    super(3000 + difficulty*500 + bossesKilled*1000, 40, -666,0);
+    super(3000 + difficulty*500 + bossesKilled*1000, 60, -666,0);
     bossCoolDown = 500 - difficulty*20;
   }
 
@@ -128,6 +128,8 @@ public class Stationary extends BubbleTank {
   }
 
   public void spawnBubbles(ArrayList<Bubble> arr) {
-    arr.add(new Bubble(getX()+random(20), getY()+random(20), getRadius()*20));
+    for (int i=0; i<40; i++){
+    arr.add(new Bubble(getX()+random(20), getY()+random(20), getRadius()/2));
+    }
   }
 }

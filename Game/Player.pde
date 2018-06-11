@@ -37,7 +37,7 @@ public class Player {
       tank.setType((int)(level/2));
       playerLevelUp = true;
       bubblePoints = 0;
-      maxPoints += maxPoints*((float)difficulty/20);
+      maxPoints = (int)(maxPoints*(1+(float)mapSize*mapSize/225));
       tank.setHealth(tank.getMaxHealth()*1.14);
     }
   }

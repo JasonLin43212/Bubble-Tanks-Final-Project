@@ -116,6 +116,8 @@ public void showHealth() {
   }
 
   public void spawnBubbles(ArrayList<Bubble> arr) {
-    arr.add(new Bubble(getX()+random(20), getY()+random(20), getRadius()*20));
+    for (int i=0; i<40; i++){
+    arr.add(new Bubble(getX()+random(20), getY()+random(20), getRadius()/2));
+    }
   }
 }

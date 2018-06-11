@@ -63,15 +63,7 @@ public class Map {
           }
         }
       }
-      if (bossesKilled == 1 && cleared>=3) {
-        while (bossRow==currentRoomR() &&bossCol==currentRoomC() || bossRow==-1 || bossCol==-1) {
-          bossRow = (int)(random(n));
-          bossCol = (int)(random(n));
-        }
-        rooms[bossRow][bossCol] = new BossRoom(n, bossRow, bossCol, difficulty, 0);
-        hasBoss = true;
-      }
-      if (bossesKilled == 2 && cleared >=2) {
+      if (bossesKilled == 0 && cleared>=n*n/4) {
         while (bossRow==currentRoomR() &&bossCol==currentRoomC() || bossRow==-1 || bossCol==-1) {
           bossRow = (int)(random(n));
           bossCol = (int)(random(n));
@@ -79,7 +71,15 @@ public class Map {
         rooms[bossRow][bossCol] = new BossRoom(n, bossRow, bossCol, difficulty, 1);
         hasBoss = true;
       }
-      if (bossesKilled == 3 && cleared >=4) {
+      if (bossesKilled == 1 && cleared >=n*n/2) {
+        while (bossRow==currentRoomR() &&bossCol==currentRoomC() || bossRow==-1 || bossCol==-1) {
+          bossRow = (int)(random(n));
+          bossCol = (int)(random(n));
+        }
+        rooms[bossRow][bossCol] = new BossRoom(n, bossRow, bossCol, difficulty, 0);
+        hasBoss = true;
+      }
+      if (bossesKilled == 2 && cleared >=n*n/1.33) {
         while (bossRow==currentRoomR() &&bossCol==currentRoomC() || bossRow==-1 || bossCol==-1) {
           bossRow = (int)(random(n));
           bossCol = (int)(random(n));
@@ -87,7 +87,7 @@ public class Map {
         rooms[bossRow][bossCol] = new BossRoom(n, bossRow, bossCol, difficulty, 2);
         hasBoss = true;
       }
-      if (bossesKilled == 0 && cleared >=0) {
+      if (bossesKilled == 3 && cleared >=n*n) {
         while (bossRow==currentRoomR() &&bossCol==currentRoomC() || bossRow==-1 || bossCol==-1) {
           bossRow = (int)(random(n));
           bossCol = (int)(random(n));

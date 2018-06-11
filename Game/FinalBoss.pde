@@ -193,6 +193,8 @@ public class FinalBoss extends BubbleTank {
   }
 
   public void spawnBubbles(ArrayList<Bubble> arr) {
-    arr.add(new Bubble(getX()+random(20), getY()+random(20), getRadius()*20));
+    for (int i=0; i<120; i++){
+    arr.add(new Bubble(getX()+random(20), getY()+random(20), getRadius()/6));
+    }
   }
 }
