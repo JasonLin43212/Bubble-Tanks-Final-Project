@@ -181,25 +181,7 @@ void draw() {
       textSize(12);
       text((int)(percentPoint*100) + "%", 26.5 + (int)(percentPoint*200), 776);
     }
-    /*
-    fill(242, 245, 252);
-     noStroke();
-     rect(260, 720, 100, 12.5);
-     
-     fill(242, 245, 252);
-     noStroke();
-     rect(260, 743.75, 100, 12.5);
-     
-     fill(242, 245, 252);
-     noStroke();
-     rect(260, 767.5, 100, 12.5);
-     */
-
-    // fill in style
-
-    percentageTime = ((endms - millis()) / (1000 * 15));
     opacitymult = 1 - percentageTime;
-    remainingTime = (endms - millis()) / 1000;
 
     // first
     fill(147, 202, 229);
@@ -334,33 +316,16 @@ void draw() {
         textSize(30); 
         text("map", 625, 759);
       }
-
-      /* for making cool downs or something, idk
-       fill(242, 245, 252);
-       noStroke();
-       rect(275, 720, 100, 20);
-       
-       fill(242, 245, 252);
-       noStroke();
-       rect(275, 760, 100, 20);
-       
-       fill(242, 245, 252);
-       noStroke();
-       rect(395, 720, 100, 20);
-       
-       fill(242, 245, 252);
-       noStroke();
-       rect(395, 760, 100, 20); 
-       */
+      
       int playerLevel = player.getLevel();
       if (playerLevelUp) {
-        if (playerLevel % 2 == 1 && playerLevel != 10) {
+        if (playerLevel % 2 == 1 && playerLevel != 11) {
           pages.upgradeodd();
         }
-        if (playerLevel % 2 == 0 && playerLevel != 10) {
+        if (playerLevel % 2 == 0 && playerLevel != 11) {
           pages.upgradeeven();
         }
-        if (playerLevel == 10) {
+        if (playerLevel == 11) {
           pages.upgradeSuper();
         }
       }
@@ -568,7 +533,7 @@ void keyPressed() {
     tank.setMovement(keyCode, 1);
   }
   if (keyCode == 76) {
-    difficulty = 1;
+    difficulty = 7;
     mapSize = 5;
     useMouse = true;
     m = new Map(mapSize, difficulty);
@@ -752,7 +717,7 @@ void mouseClicked() {
   // player leveled up > options
   else if (playerLevelUp && player.getLevel()< 26) { // (player.canUpgrade()) {
     // odd levels
-    if (player.getLevel() % 2 == 1 && player.getLevel() != 10) {
+    if (player.getLevel() % 2 == 1 && player.getLevel() != 11) {
       if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for blaster
         if (tank.addBlaster()) {
           playerLevelUp = false;
@@ -770,7 +735,7 @@ void mouseClicked() {
       }
     }
     // even levels
-    if (player.getLevel() % 2 == 0 && player.getLevel() != 10) {
+    if (player.getLevel() % 2 == 0 && player.getLevel() != 11) {
       if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for missile
         if (tank.addMissile()) {
           playerLevelUp = false;
@@ -788,7 +753,7 @@ void mouseClicked() {
       }
     }
     // level 10 (aka super attack)
-    if (player.getLevel() == 10) {
+    if (player.getLevel() == 11) {
       if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for missile
         tank.addSuperAttack(1);
         playerLevelUp = false;
