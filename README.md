@@ -32,8 +32,10 @@ processing Game.pde
 Finally, you use `Ctrl-R` to run the game.
 
 ### How To Play
-* To move, use the  `W`  `A`  `S`  `D`  keys.
-* To shoot use:  
+* **Moving**  
+  Use the  `W`  `A`  `S`  `D`  key to move around. 
+* **Shooting**  
+  This depends on what you choose while setting up the game, you can use: 
   * Your **MOUSE** to aim and **CLICK** to shoot.
   * Your **LEFT** and **RIGHT** arrow keys to aim and **SPACE** to shoot.
 * **Map**  <!-- If there's a place you got to go I'm the one you need to know I'm the map -->  
