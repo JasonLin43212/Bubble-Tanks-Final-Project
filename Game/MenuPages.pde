@@ -858,9 +858,13 @@ public class MenuPages {
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
+    textSize(84);
+    text("you won", 350, 212.5); 
     textSize(36);
-    text("Congratulations", 350, 250); // starts at 207 ends at 250
-    text("You have won the game!", 350, 300); 
+    text("congratulations", 350, 275); 
+    text("would you like to", 350, 325); 
+    text("play again?", 350, 375); 
+    
     fill(242, 245, 252);
     noStroke();
     rect(200, 450, 300, 105);
@@ -895,10 +899,13 @@ public class MenuPages {
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
+    textSize(84);
+    text("you lost", 350, 212.5); 
     textSize(36);
-    text("It is really sad", 350, 250); // starts at 207 ends at 250
-    text("that you lose the game.", 350, 300); 
-    text("You can try again.", 350, 350); 
+    text("It is really sad", 350, 275); // starts at 207 ends at 250
+    text("that you lost the game.", 350, 325); 
+    text("You can try again.", 350, 375); 
+    
     fill(242, 245, 252);
     noStroke();
     rect(200, 450, 300, 105);
