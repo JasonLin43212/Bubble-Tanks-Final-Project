@@ -29,7 +29,22 @@ processing Game.pde
 ```
 * If you cannot use that command, simply open up Processing 3 and go to File > Open... and choose Game.pde in the Bubble-Tanks-Final-Project directory.
 
-Finally, you use Ctrl-R to run the game. Have Fun!
+Finally, you use Ctrl-R to run the game.
+
+### How To Play
+* To move, use the **W A S D** keys
+* To shoot use:  
+  * your **MOUSE** to aim and **CLICK** to shoot  
+  * your **LEFT** and **RIGHT** arrow keys to aim and **SPACE** to shoot
+* Use the map to check:  
+  * Where you started
+  * Where you are
+  * Rooms you've cleared
+  * Where the boss room is 
+  
+  Then just click to exit if you're using a mouse or click the **V** key to toggle the map
+
+Have Fun!
 
 ## Bugs That Do Not Affect Gameplay
 * When transfering between rooms, you can catch a glimpse of what is in the other room before transfering.
