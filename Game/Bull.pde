@@ -85,9 +85,9 @@ public class Bull extends BubbleTank {
         }
       }
       if (bossCoolDown < 130 && bossCoolDown > 100) { 
-        if (bossCoolDown % 1==0) {
+        if (bossCoolDown % 5==0) {
           for (int i=0; i<difficulty*2+4; i++) {
-            allBullets.add(new StunBullet(8, difficulty+3, getRadius(), getX(), getY(), getDirection()+i*PI/(difficulty+2), getId(), difficulty*5));
+            allBullets.add(new StunBullet(7, difficulty+2.5, getRadius(), getX(), getY(), getDirection()+i*PI/(difficulty+2), getId(), difficulty*5));
           }
         }
       }

@@ -849,4 +849,79 @@ public class MenuPages {
     rect(215, 250, 80, 300);
     rect(395, 250, 80, 300);
   }
+
+  void win() {
+    background(39, 150, 203);
+    noStroke();
+    bubbles();
+
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(36);
+    text("Congratulations", 350, 250); // starts at 207 ends at 250
+    text("You have won the game!", 350, 300); 
+    fill(242, 245, 252);
+    noStroke();
+    rect(200, 450, 300, 105);
+
+    fill(39, 150, 203);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("retry", 350, 517); // starts at 488 ends at 517
+
+    if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555) {
+      fill(211, 234, 244);
+      strokeWeight(5);
+      strokeJoin(MITER);
+      strokeCap(SQUARE);
+      stroke(255);
+      rect(200, 450, 300, 105);
+
+      fill(255);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(48); // 29
+      text("retry", 350, 517); // starts at 488 ends at 517
+    }
+  }
+  
+  void lose(){
+    background(39, 150, 203);
+    noStroke();
+    bubbles();
+
+    fill(255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(36);
+    text("It is really sad", 350, 250); // starts at 207 ends at 250
+    text("that you lose the game.", 350, 300); 
+    text("You can try again.", 350, 350); 
+    fill(242, 245, 252);
+    noStroke();
+    rect(200, 450, 300, 105);
+
+    fill(39, 150, 203);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(48); // 29
+    text("retry", 350, 517); // starts at 488 ends at 517
+
+    if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555) {
+      fill(211, 234, 244);
+      strokeWeight(5);
+      strokeJoin(MITER);
+      strokeCap(SQUARE);
+      stroke(255);
+      rect(200, 450, 300, 105);
+
+      fill(255);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(48); // 29
+      text("retry", 350, 517); // starts at 488 ends at 517
+    }
+  }
 }

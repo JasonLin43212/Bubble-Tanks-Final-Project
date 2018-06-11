@@ -7,14 +7,6 @@ Player player = new Player();
 PlayerTank tank = player.getTank();
 int bossesKilled = 0;
 
-float health = 25;
-float maxhealth = 100;
-float percentHealth = (health / maxhealth) * 200;
-
-float bubblepoints = 90;
-float maxbp = 100;
-float percentbp = (bubblepoints / maxbp) * 200;
-
 ArrayList<BubbleBullet> allBullets;
 boolean useMouse = false;
 int menuSetting = 1;
@@ -37,13 +29,6 @@ boolean showMap = false;
 float maprad = 40;
 
 boolean playerLevelUp = false; 
-
-boolean paused = false;
-
-float endms = millis() + (1000 * 15);
-float percentageTime = ((endms - millis()) / (1000 * 15));
-float remainingTime = (endms - millis()) / 1000;
-float opacitymult = 1 - percentageTime;
 
 void setup() {
   size(700, 800);
@@ -82,7 +67,18 @@ void draw() {
     pages.mapsettings();
   } else if (menuSetting == 6) {
     pages.instructions();
-  } else {
+  } else if (menuSetting == 0){
+     pages.win(); 
+  }else if (menuSetting == -1){
+     pages.lose(); 
+  }
+  else {
+    if (bossesKilled == 3){
+       menuSetting = 0; 
+    }
+    if (tank.getHealth()==0){
+       menuSetting = -1; 
+    }
     background(0, 72, 110);
     fill(0);
     strokeWeight(1);  
@@ -547,7 +543,9 @@ void keyPressed() {
   if (keyCode == 86) {
     showMap = !showMap;
   }
-
+  if (keyCode == 93){
+     bossesKilled++; 
+  }
   if (keyCode == 49) { // 1
     tank.activateMissile();
   }
@@ -772,6 +770,14 @@ void mouseClicked() {
         playerLevelUp = false;
       }
     }
+  }
+  if (menuSetting <1){
+     if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555){
+        menuSetting = 1;
+        bossesKilled = 0;
+        player = new Player();
+        tank = player.getTank();
+     }
   }
 }
 
