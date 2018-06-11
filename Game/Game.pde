@@ -523,9 +523,6 @@ void drawEnemies(float xOffset, float yOffset) {
 }
 
 void keyPressed() {
-  if (keyCode==222) {
-    tank.updatedType();
-  }
   if (useMouse) {
     if (keyCode != 37 && keyCode != 39) {
       tank.setMovement(keyCode, 1);
