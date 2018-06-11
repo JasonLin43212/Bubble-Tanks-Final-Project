@@ -397,14 +397,14 @@ public class MenuPages {
     
     textSize(24);
     if (useMouse) {
-      text("to move, use\n\n\n\n\nuse your MOUSE to aim and CLICK to shoot\n\nclick the map button to check\nwhere you've been\nthen click anywhere to exit", 350, 225);
+      text("to move, use\n\n\n\nuse your MOUSE to aim and CLICK to shoot\n\nclick the map button to check\nwhere you've been\nthen click anywhere to exit", 350, 225);
     } else {
-      text("to move, use\n\n\n\n\nuse LEFT and RIGHT arrows to aim\n and SPACE to shoot\n\nclick the V button to toggle the map\n to checkwhere you've been", 350, 225);
+      text("to move, use\n\n\n\nuse LEFT and RIGHT arrows to aim\n and SPACE to shoot\n\nclick the V button to toggle the map\n to check where you've been", 350, 225);
     }
-    text("you're in the center of the screen,\nfight the other bubble tanks\n\n\nclick anywhere to start", 350, 590); 
+    text("fight the other bubble tanks\n\n\nare used for missiles, stun, area burst,\nand your special attack\n\nclick anywhere to start", 350, 545); 
     
     textSize(36);
-    text("w\na  s  d\n", 350, 300);
+    text("w\na  s  d\n\n\n\n\n\n1 2 3 4\n", 350, 275);
     textSize(24);
 
     backbutton();
