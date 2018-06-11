@@ -37,7 +37,7 @@ Finally, you use `Ctrl-R` to run the game.
   * Your **MOUSE** to aim and **CLICK** to shoot.
   * Your **LEFT** and **RIGHT** arrow keys to aim and **SPACE** to shoot.
 * **Map**  <!-- If there's a place you got to go I'm the one you need to know I'm the map -->  
-  If you're using your mouse, just click on the map button in the bottom right corner, otherwise, use the **V** key to toggle the map! You can use the map to check:  
+  If you're using your mouse, just click on the map button in the bottom right corner, otherwise, use the `V` key to toggle the map! You can use the map to check:  
   * Where you started.
   * Where you are.
   * Rooms you've cleared.
