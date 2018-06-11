@@ -112,9 +112,11 @@ void draw() {
 
     drawShading(tank.getX(), tank.getY());
     drawBubbles(tank.getX(), tank.getY());
+    
+    fill(255, 100);
+    rect(0, 695, 700, 5);
     fill(1, 135, 155, 100);
-    strokeWeight(5);
-    stroke(255, 100);
+    noStroke();
     rect(0, 700, 700, 100);
 
     fill(46, 89, 47);
