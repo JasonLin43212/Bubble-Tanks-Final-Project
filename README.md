@@ -54,10 +54,10 @@ Finally, you use `Ctrl-R` to run the game.
     
 * **Special Attacks**  
   You get to use the  `1`  `2`  `3`  `4` keys for these. 
-  * `1: Missiles`
-  * `2: Stun`
-  * `3: Area Burst`
-  * `4: Super Attack` (`Super Missile`, `Super Blaster`, `Super Cannon`)
+  * `1`: `Missiles`
+  * `2`: `Stun`
+  * `3`: `Area Burst`
+  * `4`: `Super Attack` (`Super Missile`, `Super Blaster`, `Super Cannon`)
   
   These also come with cooldowns which are indicated by the 4 circles next to the health and EXP bars. 
   
