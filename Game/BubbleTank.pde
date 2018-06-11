@@ -38,13 +38,13 @@ public abstract class BubbleTank {
     blocks = new ArrayList<BubbleBlock>();
     // array with all of these + cool down (2d array) 
     // make something to show cool downs in bottom
-    this.blaster = blaster; // 0
-    this.cannon = cannon; // 1
-    this.machinegun = machinegun; // 2
-    this.missile = missile; // 3
-    this.stunburst = stunburst; // 4
-    this.areablast = areablast; // 5
-    this.superattack = superattack; // 6
+    this.blaster = 0; // 0
+    this.cannon = 0; // 1
+    this.machinegun = 0; // 2
+    this.missile = 0; // 3
+    this.stunburst = 0; // 4
+    this.areablast = 0; // 5
+    this.superattack = 0; // 6
 
     stunPeriod = 0;
     coolDowns = new int[7][2];

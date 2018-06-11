@@ -181,108 +181,113 @@ void draw() {
       textSize(12);
       text((int)(percentPoint*100) + "%", 26.5 + (int)(percentPoint*200), 776);
     }
-    opacitymult = 1 - percentageTime;
-
+    int[][] coolDowns = tank.getCoolDowns();
     // first
     fill(147, 202, 229);
     strokeWeight(2.5);
     stroke(179, 217, 236);
-    ellipse(276, 730, 30, 30);
+    ellipse(285, 750, 50, 50);
 
-    // fill(147,202,229,opacityone * 255);
-    fill(255, 255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
+    fill(255); 
     strokeWeight(2.5);
     stroke(179, 217, 236);
-    ellipse(276, 730, 30, 30);
+    ellipse(285, 750, 40, 40);
 
-    fill(147, 202, 229);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); 
-    text("1", 277, 730 + 7.5);
+    if (tank.getMissile()>0) {
+      if ((float)coolDowns[3][0]/coolDowns[3][1] == 0) {
+        fill(121, 114, 130, 200);
+        noStroke();
+        ellipse(286, 750, 23, 23);
+        ellipse(297, 760, 9, 9);
+        ellipse(275, 760, 9, 9);
+      }
+      fill(10, 110, 162, 255-255*(float)coolDowns[3][0]/coolDowns[3][1]);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(24); 
+      text("1", 286, 750 + 7.5);
+    }
 
-    fill(255, 100 + (opacitymult * 155));
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); 
-    text("1", 277, 730 + 7.5);
 
     // second
     fill(147, 202, 229);
     strokeWeight(2.5);
     stroke(179, 217, 236);
-    ellipse(335, 730, 30, 30);
+    ellipse(365, 750, 50, 50);
 
     // fill(147,202,229,opacityone * 255);
-    fill(255, 255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
+    fill(255); 
     strokeWeight(2.5);
     stroke(179, 217, 236);
-    ellipse(335, 730, 30, 30);
+    ellipse(365, 750, 40, 40);
 
-    fill(147, 202, 229);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); 
-    text("2", 336, 730 + 7.5);
-
-    fill(255, 100 + (opacitymult * 155));
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); 
-    text("2", 336, 730 + 7.5);
+    if (tank.getStunBurst()>0) {
+      if ((float)coolDowns[4][0]/coolDowns[4][1] == 0) {
+        fill(214, 149, 9, 100);
+        noStroke();
+        ellipse(365, 750, 25, 25);
+      }
+      fill(10, 110, 162, 255-255*(float)coolDowns[4][0]/coolDowns[4][1]);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(24); 
+      text("2", 366, 750 + 7.5);
+    }
 
     // third
     fill(147, 202, 229);
     strokeWeight(2.5);
     stroke(179, 217, 236);
-    ellipse(394, 730, 30, 30);
+    ellipse(445, 750, 50, 50);
 
     // fill(147,202,229,opacityone * 255);
-    fill(255, 255 - (opacitymult * 200)); // ,150 + (opacityone * 105));
+    fill(255); 
     strokeWeight(2.5);
     stroke(179, 217, 236);
-    ellipse(394, 730, 30, 30);
+    ellipse(445, 750, 40, 40);
 
-    fill(147, 202, 229);
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); 
-    text("3", 395, 730 + 7.5);
-
-    fill(255, 100 + (opacitymult * 155));
-    textAlign(CENTER);
-    textFont(bubble);
-    textSize(24); 
-    text("3", 395, 730 + 7.5);
-
-    // super attack
-    fill(147, 202, 229);
-    strokeWeight(3);
-    strokeJoin(MITER);
-    strokeCap(SQUARE);
-    stroke(147, 202, 229);
-    rect(260, 760, 150, 20); 
-
-    fill(179, 217, 236);
-    noStroke();
-    rect(261.5, 761.5, opacitymult*141.5, 18);
-
-    fill(255);
-    if (opacitymult > 0.66) {
-      textAlign(RIGHT);
-      textFont(ptmono);
-      textSize(12); 
-      text((int)(remainingTime) + "s", 250 + (int)(opacitymult*150), 775);
-    } else {
-      textAlign(LEFT);
-      textFont(ptmono);
-      textSize(12); 
-      text((int)(remainingTime) + "s", 261.5 + (int)(opacitymult*150), 775);
+    if (tank.getAreaBlast()>0) {
+      if ((float)coolDowns[5][0]/coolDowns[5][1] == 0) {
+        fill(213, 77, 8, 200);
+        noStroke();
+        for (int i=0; i<8; i++) {
+          ellipse(445+14*cos(i*PI/4), 750+14*sin(i*PI/4), 8, 8);
+        }
+      }
+      fill(10, 110, 162, 255-255*(float)coolDowns[5][0]/coolDowns[5][1]);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(24); 
+      text("3", 446, 750 + 7.5);
     }
 
-    if (150 + (opacitymult * 100) >= 255) {
-      System.out.println("bwoop");
-      endms += (1000 * 15);
+    // fourth
+    fill(147, 202, 229);
+    strokeWeight(2.5);
+    stroke(179, 217, 236);
+    ellipse(525, 750, 50, 50);
+
+    // fill(147,202,229,opacityone * 255);
+    fill(255); 
+    strokeWeight(2.5);
+    stroke(179, 217, 236);
+    ellipse(525, 750, 40, 40);
+
+    fill(147, 202, 255);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(24); 
+    if (tank.getAttack()>0) {
+      if ((float)coolDowns[6][0]/coolDowns[6][1] == 0) {
+        fill(195, 144, 163, 200);
+        noStroke();
+        ellipse(526, 750, 25, 25);
+      }
+      fill(10, 110, 162, 255-255*(float)coolDowns[6][0]/coolDowns[6][1]);
+      textAlign(CENTER);
+      textFont(bubble);
+      textSize(24); 
+      text("4", 526, 750 + 7.5);
     }
 
     // map button 
@@ -316,7 +321,7 @@ void draw() {
         textSize(30); 
         text("map", 625, 759);
       }
-      
+
       int playerLevel = player.getLevel();
       if (playerLevelUp) {
         if (playerLevel % 2 == 1 && playerLevel != 11) {
