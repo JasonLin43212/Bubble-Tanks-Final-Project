@@ -533,9 +533,6 @@ void keyPressed() {
   if (keyCode == 86) {
     showMap = !showMap;
   }
-  if (keyCode == 93){
-     bossesKilled++; 
-  }
   if (keyCode == 49) { // 1
     tank.activateMissile();
   }
