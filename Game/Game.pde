@@ -73,7 +73,7 @@ void draw() {
      pages.lose(); 
   }
   else {
-    if (bossesKilled == 3){
+    if (bossesKilled == 4){
        menuSetting = 0; 
     }
     if (tank.getHealth()==0){
