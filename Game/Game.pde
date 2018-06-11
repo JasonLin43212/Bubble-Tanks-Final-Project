@@ -533,13 +533,6 @@ void keyPressed() {
   } else {
     tank.setMovement(keyCode, 1);
   }
-  if (keyCode == 76) {
-    difficulty = 7;
-    mapSize = 5;
-    useMouse = true;
-    m = new Map(mapSize, difficulty);
-    menuSetting =7;
-  }
   if (keyCode == 86) {
     showMap = !showMap;
   }
