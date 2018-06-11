@@ -771,7 +771,7 @@ void mouseClicked() {
       }
     }
   }
-  if (menuSetting <1){
+  if (menuSetting <1  ){
      if (mouseX > 200 && mouseX < 500 && mouseY > 450 && mouseY < 555){
         menuSetting = 1;
         bossesKilled = 0;
