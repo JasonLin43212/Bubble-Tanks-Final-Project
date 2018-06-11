@@ -7,7 +7,7 @@ public class Shield extends BubbleTank {
   float closeFactor = 1;
 
   public Shield(int difficulty) {
-    super(3000 + difficulty*500 + bossesKilled*1000, 40, -5, difficulty/2, 0, 0, 0, 0, 0, 0, 0, 0);
+    super(3000 + difficulty*500 + bossesKilled*1000, 40, -5, difficulty/2);
     bossCoolDown = 500 - difficulty*20;
     shielded = false;
   }
@@ -27,8 +27,21 @@ public class Shield extends BubbleTank {
     for (int i=0; i<blocks.size(); i++) {
       blocks.get(i).display();
     }
-    rect(getX()-2.5*getRadius(), getY()-3*getRadius(), 5*getRadius()*(getHealth()/getMaxHealth()), 1*getRadius());
-    
+    showHealth();
+  }
+
+public void showHealth() {
+    pushMatrix();
+    translate(tank.getX()-350, tank.getY()-350);
+    fill(46, 89, 47);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(36); // 29
+    text("Boss Health", 350, 50);
+    rect(100, 50, 500, 30);
+    fill(72, 139, 73);
+    rect(105, 52.5, 490*(getHealth()/getMaxHealth()), 25);
+    popMatrix();
   }
 
   public void move(Map m) {

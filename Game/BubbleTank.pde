@@ -1,14 +1,13 @@
 public abstract class BubbleTank {
-  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, coolDown, speed, transferSpeed, shootingDown, maxHealth;
+  private float health, x, y, direction, radius, left, right, up, down, rotateLeft, rotateRight, isShooting, speed, transferSpeed, maxHealth;
   private int id, transferX, transferY, transferDistance, transferedSoFar, stunPeriod;
   private boolean preventControl, hasTransfered;
   public ArrayList<BubbleBlock> blocks;
 
   public int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
+  public int[][] coolDowns;
 
-  public BubbleTank(float health, float radius, int id, float speed, int coolDown, 
-    int blaster, int cannon, int machinegun, int missile, int stunburst, 
-    int areablast, int superattack) {
+  public BubbleTank(float health, float radius, int id, float speed) {
 
     this.health = health;
     this.maxHealth = health;
@@ -24,13 +23,6 @@ public abstract class BubbleTank {
     down = 0;
     rotateLeft = 0;
     rotateRight = 0;
-    if (id!=0) {
-      this.coolDown = coolDown; 
-      isShooting = 1;
-      shootingDown = coolDown;
-    } else {
-      this.coolDown = 30;
-    }
     preventControl = false;
     hasTransfered = false;
     transferX = 0;
@@ -50,6 +42,17 @@ public abstract class BubbleTank {
     this.superattack = superattack; // 6
 
     stunPeriod = 0;
+    coolDowns = new int[7][2];
+    for (int i=0; i<7; i++) {
+      coolDowns[i][0] = 0;
+    }
+    coolDowns[0][1] = 22;
+    coolDowns[1][1] = 14;
+    coolDowns[2][1] = 34;
+    coolDowns[3][1] = 400;
+    coolDowns[4][1] = 400;
+    coolDowns[5][1] = 400;
+    coolDowns[6][1] = 900;
   }
 
   public abstract void updatedType();
@@ -61,9 +64,9 @@ public abstract class BubbleTank {
   public int getStunPeriod() {
     return stunPeriod;
   }
-  
-  public void incrementStun(int val){
-     stunPeriod += val; 
+
+  public void incrementStun(int val) {
+    stunPeriod += val;
   }
 
   public void move(Map m) {
@@ -153,8 +156,12 @@ public abstract class BubbleTank {
   }
 
   public void display() {
-    if (shootingDown > 0 && !showMap && stunPeriod<=0) {
-      shootingDown--;
+    if (!showMap && stunPeriod<=0) {
+      for (int i=0; i<7; i++) {
+        if (coolDowns[i][0]>0) {
+          coolDowns[i][0]--;
+        }
+      }
     }
     if (preventControl) {
       transferTank();
@@ -162,6 +169,7 @@ public abstract class BubbleTank {
     if (stunPeriod >0) {
       stunPeriod--;
     }
+    println(coolDowns[6][0]);
   }
 
   public void realignDirection(float _x, float _y) {
@@ -169,28 +177,35 @@ public abstract class BubbleTank {
   }
 
   public void spawnBullets(ArrayList<BubbleBullet> arr) {
-    if (isShooting == 1 && shootingDown == 0 &&!preventControl &&!playerLevelUp) {
-      shootingDown = coolDown;
-      //radius,speed,tankRadius,x,y,direction,id
+    if (isShooting == 1 &&!preventControl &&!playerLevelUp) {
       //for machine gun (cooldowns, 14,12,10,8)
-      for (int i=0; i<machinegun; i++) {
-        float offSet;
-        if (i%2==0) {
-          offSet = (i+2)/2*40;
-        } else {
-          offSet= -(i+2)/2*40;
+      if (coolDowns[0][0] == 0) {
+        for (int i=0; i<machinegun; i++) {
+          float offSet;
+          if (i%2==0) {
+            offSet = (i+2)/2*40;
+          } else {
+            offSet= -(i+2)/2*40;
+          }
+          arr.add(new BubbleBullet(5, 15, radius, x+cos(direction+PI/2)*offSet, y+sin(direction+PI/2)*offSet, direction, id));
         }
-        arr.add(new BubbleBullet(5, 15, radius, x+cos(direction+PI/2)*offSet, y+sin(direction+PI/2)*offSet, direction, id));
+        coolDowns[0][0] = coolDowns[0][1];
       }
       //for blaster (cooldowns: 22,20,18,16)
-      for (int i=0; i<blaster+1; i++) {
-        float angle = 2*PI/(blaster+1);
-        arr.add(new BubbleBullet(10, 15, radius, x, y, direction+i*angle, id));
+      if (coolDowns[1][0] ==0) {
+        for (int i=0; i<blaster+1; i++) {
+          float angle = 2*PI/(blaster+1);
+          arr.add(new BubbleBullet(10, 15, radius, x, y, direction+i*angle, id));
+        }
+        coolDowns[1][0] = coolDowns[1][1];
       }
       //for canon
+      if (coolDowns[2][0]==0){
       for (int i=0; i<cannon; i++) {
         float angle = PI/(cannon+1);
         arr.add(new BubbleBullet(20, 15, radius, x, y, direction-(PI/2)+(i+1)*angle, id));
+      }
+      coolDowns[2][0] = coolDowns[2][1];
       }
     }
   }
@@ -206,9 +221,9 @@ public abstract class BubbleTank {
   public void setX(float newX) {
     x = newX;
   }
-  
-  public void setSpeed(float newSpeed){
-     speed = newSpeed; 
+
+  public void setSpeed(float newSpeed) {
+    speed = newSpeed;
   }
 
   public void setY(float newY) {
@@ -219,9 +234,9 @@ public abstract class BubbleTank {
     return radius;
   }
 
-public void setDirection(float angle){
+  public void setDirection(float angle) {
     direction = angle;
-}
+  }
   public float getDirection() {
     return direction;
   }
@@ -258,10 +273,10 @@ public void setDirection(float angle){
   public float getMaxHealth() {
     return maxHealth;
   }
-  
-  public void setHealth(float val){
-   health = val;
-   maxHealth = val;
+
+  public void setHealth(float val) {
+    health = val;
+    maxHealth = val;
   }
 
   public int getId() {
@@ -297,9 +312,13 @@ public void setDirection(float angle){
     }
   }
 
-  public void addBlaster () {
-    System.out.println("blasters: " + blaster + " > " + (blaster + 1));
+  public boolean addBlaster () {
+    if (blaster==4){
+       return false; 
+    }
     blaster++;
+    coolDowns[0][1] -= 2;
+    return true;
   }
 
   public int getBlaster () {
@@ -310,9 +329,13 @@ public void setDirection(float angle){
     blaster = val;
   }
 
-  public void addCannon () {
-    System.out.println("cannons: " + cannon + " > " + (cannon + 1));
+  public boolean addCannon () {
+    if (cannon ==4){
+      return false; 
+    }
     cannon++;
+    coolDowns[1][1] -= 2;
+    return true;
   }
 
   public int getCannon () {
@@ -324,9 +347,13 @@ public void setDirection(float angle){
   }
 
 
-  public void addMachineGun () {
-    System.out.println("machine guns: " + machinegun + " > " + (machinegun + 1));
+  public boolean addMachineGun () {
+    if (machinegun==4){
+       return false; 
+    }
     machinegun++;
+    coolDowns[2][1] -= 2;
+    return true;
   }
 
   public int getMachineGun () {
@@ -338,9 +365,13 @@ public void setDirection(float angle){
   }
 
 
-  public void addMissile () {
-    System.out.println("missile: " + missile + " > " + (missile + 1));
+  public boolean addMissile () {
+    if (missile == 4){
+       return false; 
+    }
     missile++;
+    coolDowns[3][1] -= 30;
+    return true;
   }
 
   public int getMissile () {
@@ -352,9 +383,13 @@ public void setDirection(float angle){
   }
 
 
-  public void addStunBurst () {
-    System.out.println("stun burst: " + stunburst + " > " + (stunburst + 1));
+  public boolean addStunBurst () {
+    if (stunburst == 4){
+       return false; 
+    }
     stunburst++;
+    coolDowns[4][1] -= 30;
+    return true;
   }
 
   public int getStunBurst () {
@@ -366,9 +401,13 @@ public void setDirection(float angle){
   }
 
 
-  public void addAreaBlast () {
-    System.out.println("area burst: " + areablast + " > " + (areablast + 1));
+  public boolean addAreaBlast () {
+    if (areablast==4){
+       return false; 
+    }
     areablast++;
+    coolDowns[5][1] -= 30;
+    return true;
   }
 
   public int getAreaBlast () {
@@ -381,7 +420,6 @@ public void setDirection(float angle){
 
 
   public void addSuperAttack (int n) {
-    System.out.println("super attack: " + n);
     superattack = n; // 1 = super missile        2 = super blaster        3 = super cannon
   }
 
@@ -391,37 +429,46 @@ public void setDirection(float angle){
 
   public void activateMissile() {
     //if statement about cooldown
-    if (missile>0) {
+    if (missile>0 && coolDowns[3][0]==0) {
       for (int i=0; i<5+2*missile; i++) {
         allBullets.add(new MissileBullet(17, 3+missile*1.5, radius, x, y, direction+i*2*PI/(5+2*missile), id));
       }
+      coolDowns[3][0] = coolDowns[3][1];
     }
   }
   public void activateStun() {
     //if statement about cooldown
-    if (stunburst>0) {
+    if (stunburst>0 && coolDowns[4][0]==0) {
       for (int i=0; i<10+12*stunburst; i++) {
         allBullets.add(new StunBullet(6, 3+stunburst*1.5, radius, x, y, direction+i*2*PI/(10+12*stunburst), id, 120+stunburst*30));
       }
+      coolDowns[4][0] = coolDowns[4][1];
     }
   }
   public void activateAreaBurst() {
     //if statement about cooldown
-    if (areablast>0) {
+    if (areablast>0&&coolDowns[5][0]==0) {
       for (int i=0; i<5+8*areablast; i++) {
         allBullets.add(new BubbleBullet(13, 3+areablast*1.2, radius, x, y, direction+i*2*PI/(5+8*areablast), id));
       }
+      coolDowns[5][0] = coolDowns[5][1];
     }
   }
   public void activateSuper() {
     //if statement about cooldown
     //then turn on a variable to shoot 1 missiles
-    if (getAttack() > 0){
-       allBullets.add(new SuperBullet(27,5,radius,x,y,direction,id,getAttack())); 
+    if (getAttack() > 0&&coolDowns[6][0]==0) {
+      allBullets.add(new SuperBullet(27, 5, radius, x, y, direction, id, getAttack()));
+      coolDowns[6][0] = coolDowns[6][1];
     }
+    
+  }
+
+  public void spawnBubbles(ArrayList<Bubble> arr) {
+    return;
   }
   
-  public void spawnBubbles(ArrayList<Bubble> arr){
-     return; 
+  public int[][] getCoolDowns(){
+     return coolDowns; 
   }
 }

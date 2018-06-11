@@ -14,6 +14,9 @@ public class BossRoom extends Room{
       if (type == 2){
          boss = new Bull(difficulty); 
       }
+      if (type == 3){
+         boss = new FinalBoss(difficulty); 
+      }
   }
   
   public String toString(){

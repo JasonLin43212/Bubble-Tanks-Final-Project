@@ -563,11 +563,21 @@ public class MenuPages {
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
-    text("blaster", 210, 300); 
+    String extraBlaster="";
+    if (tank.getBlaster()<4) {
+      extraBlaster = ""+(tank.getBlaster()+1);
+    }
 
-    textAlign(CENTER);
-    textSize(18); 
-    text("a gun\nthat\nshoots\nmultiple\nbullets in\nmultiple\ndirections", 210, 350);
+    if (tank.getBlaster()==4) {
+      text("MAXED", 210, 325);
+      text("OUT", 210, 350);
+      text("BLASTER", 210, 375);
+    } else {
+      text("blaster\n"+extraBlaster, 210, 300); 
+      textAlign(CENTER);
+      textSize(18); 
+      text("a gun\nthat\nshoots\nmultiple\nbullets in\nmultiple\ndirections", 210, 370);
+    }
 
     if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
       fill(242, 245, 252);
@@ -581,12 +591,24 @@ public class MenuPages {
     fill(39, 150, 203);
     textAlign(CENTER);
     textFont(bubble);
-    textSize(24); // 29
-    text("cannon", 350, 300); 
+    textSize(24); // 2
 
-    textAlign(CENTER);
-    textSize(18); 
-    text("a gun\nthat\nshoots\nlarge\nbullets", 350, 350);
+    String extraCannon="";
+    if (tank.getCannon()<4) {
+      extraCannon = ""+(tank.getCannon()+1);
+    }
+
+    if (tank.getCannon()==4) {
+      text("MAXED", 350, 325);
+      text("OUT", 350, 350);
+      text("CANNON", 350, 375);
+    } else {
+      text("CANNON\n"+extraCannon, 350, 300); 
+      textAlign(CENTER);
+      textSize(18); 
+      text("a gun\nthat\nshoots\nlarge\nbullets", 350, 370);
+    }
+
 
     if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for machine gun
       fill(242, 245, 252);
@@ -601,11 +623,22 @@ public class MenuPages {
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
-    text("machine\ngun", 490, 280);
 
-    textAlign(CENTER);
-    textSize(18); 
-    text("a gun\nthat\nrapidly\nshoots\na lot of\nbullets", 490, 350);
+    String extraMachine="";
+    if (tank.getMachineGun()<4) {
+      extraMachine = ""+(tank.getMachineGun()+1);
+    }
+
+    if (tank.getMachineGun()==4) {
+      text("MAXED", 490, 325);
+      text("OUT", 490, 350);
+      text("machine\ngun", 490, 375);
+    } else {
+      text("machine\ngun "+extraMachine, 490, 300); 
+      textAlign(CENTER);
+      textSize(18); 
+      text("a gun\nthat\nrapidly\nshoots\na lot of\nbullets", 490, 370);
+    }
 
     fill(39, 150, 203);
     textAlign(CENTER);
@@ -641,11 +674,22 @@ public class MenuPages {
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
-    text("missile", 210, 300); 
 
-    textAlign(CENTER);
-    textSize(18); 
-    text("bullets\nthat follow\nenemies", 210, 350);
+    String extraMissile="";
+    if (tank.getMissile()<4) {
+      extraMissile = ""+(tank.getMissile()+1);
+    }
+
+    if (tank.getMissile()==4) {
+      text("MAXED", 210, 325);
+      text("OUT", 210, 350);
+      text("missile", 210, 375);
+    } else {
+      text("missile "+extraMissile, 210, 300); 
+      textAlign(CENTER);
+      textSize(18); 
+      text("bullets\nthat follow\nenemies", 210, 350);
+    }
 
     if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
       fill(242, 245, 252);
@@ -660,11 +704,21 @@ public class MenuPages {
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
-    text("stun\nburst", 350, 280); 
+    String extraStun="";
+    if (tank.getStunBurst()<4) {
+      extraStun = ""+(tank.getStunBurst()+1);
+    }
 
-    textAlign(CENTER);
-    textSize(18); 
-    text("bullets\nthat\nstun\nenemies", 350, 350);
+    if (tank.getStunBurst()==4) {
+      text("MAXED", 350, 325);
+      text("OUT", 350, 350);
+      text("stun\nburst", 350, 380);
+    } else {
+      text("stun\nburst "+extraStun, 350, 300); 
+      textAlign(CENTER);
+      textSize(18); 
+      text("bullets\nthat\nstun\nenemies", 350, 370);
+    }
 
     if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for machine gun
       fill(242, 245, 252);
@@ -679,11 +733,21 @@ public class MenuPages {
     textAlign(CENTER);
     textFont(bubble);
     textSize(24); // 29
-    text("area\nblast", 490, 280);
+    String extraArea="";
+    if (tank.getAreaBlast()<4) {
+      extraArea= ""+(tank.getAreaBlast()+1);
+    }
 
-    textAlign(CENTER);
-    textSize(18); 
-    text("bullets\nthat\nexplode", 490, 350);
+    if (tank.getAreaBlast()==4) {
+      text("MAXED", 490, 325);
+      text("OUT", 490, 350);
+      text("area\nblast", 490, 380);
+    } else {
+      text("area\nblast "+extraArea, 490, 300); 
+      textAlign(CENTER);
+      textSize(18); 
+      text("bullets\nthat\nexplode", 490, 370);
+    }
 
     fill(39, 150, 203);
     textAlign(CENTER);

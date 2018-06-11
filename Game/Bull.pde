@@ -6,7 +6,7 @@ public class Bull extends BubbleTank {
   boolean shielded;
   boolean preventMovement;
   public Bull(int difficulty) {
-    super(3000 + difficulty*500 + bossesKilled*1000, 40, -10, difficulty, 0, 0, 0, 0, 0, 0, 0, 0);
+    super(3000 + difficulty*500 + bossesKilled*1000, 40, -10, difficulty);
     bossCoolDown = 500 - difficulty*20;
     shielded = false;
     preventMovement = false;
@@ -23,8 +23,23 @@ public class Bull extends BubbleTank {
     for (int i=0; i<blocks.size(); i++) {
       blocks.get(i).display();
     }
-    rect(getX()-2.5*getRadius(), getY()-3*getRadius(), 5*getRadius()*(getHealth()/getMaxHealth()), 1*getRadius());
+    showHealth();
   }
+
+  public void showHealth() {
+    pushMatrix();
+    translate(tank.getX()-350, tank.getY()-350);
+    fill(46, 89, 47);
+    textAlign(CENTER);
+    textFont(bubble);
+    textSize(36); // 29
+    text("Boss Health", 350, 50);
+    rect(100, 50, 500, 30);
+    fill(72, 139, 73);
+    rect(105, 52.5, 490*(getHealth()/getMaxHealth()), 25);
+    popMatrix();
+  }
+
 
   public void move(Map m) {
     if (!preventMovement) {
@@ -38,8 +53,8 @@ public class Bull extends BubbleTank {
         setX((750-getRadius())*cos(angle));
         setY((750-getRadius())*sin(angle));
       }
-      if (dist(getX(),getY(),tank.getX(),tank.getY())<200){
-         bossCoolDown = 131; 
+      if (dist(getX(), getY(), tank.getX(), tank.getY())<200) {
+        bossCoolDown = 131;
       }
     }
     bossCoolDown--;
@@ -81,7 +96,7 @@ public class Bull extends BubbleTank {
       allBullets.add(new MissileBullet(7+difficulty, 4+difficulty, getRadius(), getX(), getY(), getDirection(), getId()));
     }
     if (bossCoolDown %150 == 0 && difficulty > 3) {
-      allBullets.add(new StunBullet(50, 5+difficulty*2, getRadius(), getX(), getY(), getDirection(), getId(),40));
+      allBullets.add(new StunBullet(50, 5+difficulty*2, getRadius(), getX(), getY(), getDirection(), getId(), 40));
     }
   }
 

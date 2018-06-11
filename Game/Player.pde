@@ -10,8 +10,8 @@ public class Player {
 
   public Player() {
     bubblePoints = 0;
-    //health,radius,id,speed,coolDown,type,blaster, cannon, machinegun, missile, stunburst, areablast, superattack
-    tank = new PlayerTank(1000, 40, 0, 20, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+    //health,radius,id,speed,type
+    tank = new PlayerTank(1000, 40, 0, 20,0);
 
     maxPoints = 100;
   }
@@ -38,7 +38,7 @@ public class Player {
       playerLevelUp = true;
       bubblePoints = 0;
       maxPoints += maxPoints*((float)difficulty/20);
-      tank.setHealth(tank.getMaxHealth()*1.25);
+      tank.setHealth(tank.getMaxHealth()*1.14);
     }
   }
     

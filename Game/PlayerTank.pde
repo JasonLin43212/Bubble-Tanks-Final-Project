@@ -5,10 +5,8 @@ public class PlayerTank extends BubbleTank {
 
   // private int blaster, cannon, machinegun, missile, stunburst, areablast, superattack;
 
-  public PlayerTank(float health, float radius, int id, float speed, int coolDown, int type, 
-    int blaster, int cannon, int machinegun, int missile, int stunburst, 
-    int areablast, int superattack) {
-    super(health, radius, id, speed, coolDown, blaster, cannon, machinegun, missile, stunburst, areablast, superattack);
+  public PlayerTank(float health, float radius, int id, float speed,int type) {
+    super(health, radius, id, speed);
 
     this.type = type;
   }
