@@ -36,8 +36,7 @@ public abstract class BubbleTank {
       isShooting = 0;
     }
     blocks = new ArrayList<BubbleBlock>();
-    // array with all of these + cool down (2d array) 
-    // make something to show cool downs in bottom
+
     this.blaster = 0; // 0
     this.cannon = 0; // 1
     this.machinegun = 0; // 2
@@ -168,7 +167,7 @@ public abstract class BubbleTank {
     if (code == 39) {
       rotateLeft = state*radians(5);
     }
-    // Spacebar
+    // spacebar
     if (code == 32 && (!showMap || state == 0) && mouseX > 0 && mouseX<700 && mouseY>0 && mouseY<700) {
       isShooting = state;
     }

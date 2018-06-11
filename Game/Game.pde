@@ -112,9 +112,11 @@ void draw() {
 
     drawShading(tank.getX(), tank.getY());
     drawBubbles(tank.getX(), tank.getY());
+    
+    fill(255, 100);
+    rect(0, 695, 700, 5);
     fill(1, 135, 155, 100);
-    strokeWeight(5);
-    stroke(255, 100);
+    noStroke();
     rect(0, 700, 700, 100);
 
     fill(46, 89, 47);
@@ -177,7 +179,9 @@ void draw() {
       textSize(12);
       text((int)(percentPoint*100) + "%", 26.5 + (int)(percentPoint*200), 776);
     }
+    
     int[][] coolDowns = tank.getCoolDowns();
+    
     // first
     fill(147, 202, 229);
     strokeWeight(2.5);
@@ -204,14 +208,12 @@ void draw() {
       text("1", 286, 750 + 7.5);
     }
 
-
     // second
     fill(147, 202, 229);
     strokeWeight(2.5);
     stroke(179, 217, 236);
     ellipse(365, 750, 50, 50);
 
-    // fill(147,202,229,opacityone * 255);
     fill(255); 
     strokeWeight(2.5);
     stroke(179, 217, 236);
@@ -236,7 +238,6 @@ void draw() {
     stroke(179, 217, 236);
     ellipse(445, 750, 50, 50);
 
-    // fill(147,202,229,opacityone * 255);
     fill(255); 
     strokeWeight(2.5);
     stroke(179, 217, 236);
@@ -263,7 +264,6 @@ void draw() {
     stroke(179, 217, 236);
     ellipse(525, 750, 50, 50);
 
-    // fill(147,202,229,opacityone * 255);
     fill(255); 
     strokeWeight(2.5);
     stroke(179, 217, 236);
@@ -523,9 +523,6 @@ void drawEnemies(float xOffset, float yOffset) {
 }
 
 void keyPressed() {
-  if (keyCode==222) {
-    tank.updatedType();
-  }
   if (useMouse) {
     if (keyCode != 37 && keyCode != 39) {
       tank.setMovement(keyCode, 1);
@@ -533,18 +530,8 @@ void keyPressed() {
   } else {
     tank.setMovement(keyCode, 1);
   }
-  if (keyCode == 76) {
-    difficulty = 7;
-    mapSize = 5;
-    useMouse = true;
-    m = new Map(mapSize, difficulty);
-    menuSetting =7;
-  }
   if (keyCode == 86) {
     showMap = !showMap;
-  }
-  if (keyCode == 93){
-     bossesKilled++; 
   }
   if (keyCode == 49) { // 1
     tank.activateMissile();
@@ -557,12 +544,6 @@ void keyPressed() {
   }
   if (keyCode == 52) { // 4
     tank.activateSuper();
-  }
-
-  if (keyCode == 61) { // ' + '
-    if (player.getLevel() < 25) {
-      player.addPoints(90000);
-    }
   }
 }
 
@@ -781,7 +762,7 @@ void mouseClicked() {
   }
 }
 
-void bubbles() { // reusable!!
+void bubbles() {
   bubbleTick++;
   if (bubbleTick % 10 == 0) {
     titleCircles.add(new TitleBubble(random(700), random(10)+1, random(20))); 

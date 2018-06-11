@@ -36,5 +36,4 @@ public class BubbleBlock {
      return radius; 
   }
   
-  
 }

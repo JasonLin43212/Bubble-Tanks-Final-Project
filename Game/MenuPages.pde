@@ -394,15 +394,17 @@ public class MenuPages {
     textAlign(CENTER);
     textFont(bubble);
     text("instructions", 350, 150); // starts at 107 ends at 150
+    
     textSize(24);
     if (useMouse) {
-      text("to move, use\n\n\n\n\nuse your MOUSE to aim and CLICK to shoot\n\nclick the map button to check\nwhere you've been\nthen click anywhere to exit", 350, 225);
+      text("to move, use\n\n\n\nuse your MOUSE to aim and CLICK to shoot\n\nclick the map button to check\nwhere you've been\nthen click anywhere to exit", 350, 225);
     } else {
-      text("to move, use\n\n\n\n\nuse LEFT and RIGHT arrows to aim\n and SPACE to shoot\n\nclick the V button to toggle the map\n to checkwhere you've been", 350, 225);
+      text("to move, use\n\n\n\nuse LEFT and RIGHT arrows to aim\n and SPACE to shoot\n\nclick the V button to toggle the map\n to check where you've been", 350, 225);
     }
-    text("you're in the center of the screen,\nfight the other bubble tanks\n\n\nclick anywhere to start", 350, 590); 
+    text("fight the other bubble tanks\n\n\nare used for missiles, stun, area burst,\nand your special attack\n\nclick anywhere to start", 350, 545); 
+    
     textSize(36);
-    text("w\na  s  d\n", 350, 300);
+    text("w\na  s  d\n\n\n\n\n\n1 2 3 4\n", 350, 275);
     textSize(24);
 
     backbutton();
@@ -576,7 +578,7 @@ public class MenuPages {
       text("blaster\n"+extraBlaster, 210, 300); 
       textAlign(CENTER);
       textSize(18); 
-      text("a gun\nthat\nshoots\nmultiple\nbullets in\nmultiple\ndirections", 210, 370);
+      text("a gun\nthat shoots\nbullets in\nmultiple\ndirections", 210, 370);
     }
 
     if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
@@ -858,9 +860,13 @@ public class MenuPages {
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
+    textSize(84);
+    text("you won", 350, 200); 
     textSize(36);
-    text("Congratulations", 350, 250); // starts at 207 ends at 250
-    text("You have won the game!", 350, 300); 
+    text("congratulations", 350, 275); 
+    text("would you like to", 350, 325); 
+    text("play again?", 350, 375); 
+    
     fill(242, 245, 252);
     noStroke();
     rect(200, 450, 300, 105);
@@ -895,10 +901,13 @@ public class MenuPages {
     fill(255);
     textAlign(CENTER);
     textFont(bubble);
+    textSize(84);
+    text("you lost", 350, 200); 
     textSize(36);
-    text("It is really sad", 350, 250); // starts at 207 ends at 250
-    text("that you lose the game.", 350, 300); 
-    text("You can try again.", 350, 350); 
+    text("It is really sad", 350, 275); // starts at 207 ends at 250
+    text("that you lost the game.", 350, 325); 
+    text("try again?", 350, 375); 
+    
     fill(242, 245, 252);
     noStroke();
     rect(200, 450, 300, 105);
