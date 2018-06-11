@@ -116,9 +116,9 @@ void draw() {
 
     drawShading(tank.getX(), tank.getY());
     drawBubbles(tank.getX(), tank.getY());
-    fill(1,135,155,100);
+    fill(1, 135, 155, 100);
     strokeWeight(5);
-    stroke(255,100);
+    stroke(255, 100);
     rect(0, 700, 700, 100);
 
     fill(46, 89, 47);
@@ -754,31 +754,37 @@ void mouseClicked() {
     // odd levels
     if (player.getLevel() % 2 == 1 && player.getLevel() != 10) {
       if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for blaster
-        tank.addBlaster();
-        playerLevelUp = false;
+        if (tank.addBlaster()) {
+          playerLevelUp = false;
+        }
       }
       if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
-        tank.addCannon();
-        playerLevelUp = false;
+        if (tank.addCannon()) {
+          playerLevelUp = false;
+        }
       }
       if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for machine gun
-        tank.addMachineGun(); 
-        playerLevelUp = false;
+        if (tank.addMachineGun()) { 
+          playerLevelUp = false;
+        }
       }
     }
     // even levels
     if (player.getLevel() % 2 == 0 && player.getLevel() != 10) {
       if (mouseX > 150 && mouseX < 270 && mouseY > 150 && mouseY < 550) { // for missile
-        tank.addMissile();
-        playerLevelUp = false;
+        if (tank.addMissile()) {
+          playerLevelUp = false;
+        }
       }
       if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for stun
-        tank.addStunBurst();
-        playerLevelUp = false;
+        if ( tank.addStunBurst()) {
+          playerLevelUp = false;
+        }
       }
       if (mouseX > 450 && mouseX < 550 && mouseY > 150 && mouseY < 550) { // for area blast
-        tank.addAreaBlast(); 
-        playerLevelUp = false;
+        if ( tank.addAreaBlast()) { 
+          playerLevelUp = false;
+        }
       }
     }
     // level 10 (aka super attack)
