@@ -394,6 +394,7 @@ public class MenuPages {
     textAlign(CENTER);
     textFont(bubble);
     text("instructions", 350, 150); // starts at 107 ends at 150
+    
     textSize(24);
     if (useMouse) {
       text("to move, use\n\n\n\n\nuse your MOUSE to aim and CLICK to shoot\n\nclick the map button to check\nwhere you've been\nthen click anywhere to exit", 350, 225);
@@ -401,6 +402,7 @@ public class MenuPages {
       text("to move, use\n\n\n\n\nuse LEFT and RIGHT arrows to aim\n and SPACE to shoot\n\nclick the V button to toggle the map\n to checkwhere you've been", 350, 225);
     }
     text("you're in the center of the screen,\nfight the other bubble tanks\n\n\nclick anywhere to start", 350, 590); 
+    
     textSize(36);
     text("w\na  s  d\n", 350, 300);
     textSize(24);
@@ -576,7 +578,7 @@ public class MenuPages {
       text("blaster\n"+extraBlaster, 210, 300); 
       textAlign(CENTER);
       textSize(18); 
-      text("a gun\nthat\nshoots\nmultiple\nbullets in\nmultiple\ndirections", 210, 370);
+      text("a gun\nthat shoots\nbullets in\nmultiple\ndirections", 210, 370);
     }
 
     if (mouseX > 300 && mouseX < 420 && mouseY > 150 && mouseY < 550) { // for cannon
