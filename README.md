@@ -67,4 +67,4 @@ Have Fun!
 * When transfering between rooms, you can catch a glimpse of what is in the other room before transfering.
 
 ## Bugs That Do Affect Gameplay
-* If you are moving and then decide to click outside of the window, your tank will continue to move. To fix this, click back inside the game and use the WASD keys to move in the direction that the tank is currently moving in. It should stop the tank from moving any further.
+* If you are moving and then decide to click outside of the window, your tank will continue to move. To fix this, click back inside the game and use the  `W`  `A`  `S`  `D`  keys to move in the direction that the tank is currently moving in. It should stop the tank from moving any further.
