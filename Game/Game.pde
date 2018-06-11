@@ -551,12 +551,6 @@ void keyPressed() {
   if (keyCode == 52) { // 4
     tank.activateSuper();
   }
-
-  if (keyCode == 61) { // ' + '
-    if (player.getLevel() < 25) {
-      player.addPoints(90000);
-    }
-  }
 }
 
 void keyReleased() {
