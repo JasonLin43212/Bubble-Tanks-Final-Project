@@ -1,5 +1,8 @@
 # Bubble-Tanks-Final-Project
+Jason Lin, Rachel Ng
+
 A top down shooter game with Bubble Tanks with different types of upgrades and enemies.
+
 ## Features
 * The ability to move around and shoot with keyboard and mouse.
 * The ability to kill enemies or get klled.
